@@ -1,4 +1,4 @@
-#include "lib-rr/kinematics/HolonomicDriveKinematics.h"
+#include "kinematics/HolonomicDriveKinematics.h"
 
 HolonomicDriveKinematics::HolonomicDriveKinematics(EncoderConfig encoder_config, HolonomicWheelLocations wheel_locations, 
     Pose current_pose) : IDriveKinematics(encoder_config, current_pose),

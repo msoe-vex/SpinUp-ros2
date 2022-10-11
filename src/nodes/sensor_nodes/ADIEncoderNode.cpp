@@ -1,4 +1,4 @@
-#include "lib-rr/nodes/sensor_nodes/ADIEncoderNode.h"
+#include "nodes/sensor_nodes/ADIEncoderNode.h"
 
 // By default, this constructor calls the constructor for the Node object in
 // NodeManager.h

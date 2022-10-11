@@ -1,4 +1,4 @@
-#include "lib-rr/auton/auton_actions/MoveLiftToPositionAction.h"
+#include "auton/auton_actions/MoveLiftToPositionAction.h"
 
 MoveLiftToPositionAction::MoveLiftToPositionAction(ILiftNode* lift_node, int position, int tolerance, bool waitForCompletion) : 
         m_lift_node(lift_node), 

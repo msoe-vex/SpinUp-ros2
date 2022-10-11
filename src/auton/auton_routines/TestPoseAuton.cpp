@@ -1,4 +1,4 @@
-#include "lib-rr/auton/auton_routines/TestPoseAuton.h"
+#include "auton/auton_routines/TestPoseAuton.h"
 
 TestPoseAuton::TestPoseAuton(IDriveNode* drive_node, OdometryNode* odom_node) : 
         Auton("Test Pose Auton"), 

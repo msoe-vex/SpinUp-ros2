@@ -1,13 +1,13 @@
 #pragma once
 
-#include "lib-rr/auton/Auton.h"
-#include "lib-rr/nodes/subsystems/IDriveNode.h"
-#include "lib-rr/nodes/odometry_nodes/OdometryNode.h"
-#include "lib-rr/auton/auton_actions/FollowPathAction.h"
-#include "lib-rr/pathing/PathManager.h"
-#include "lib-rr/pathing/Path.h"
-#include "lib-rr/pursuit/path_pursuit/HolonomicPathPursuit.h"
-#include "lib-rr/eigen/Eigen/Dense"
+#include "auton/Auton.h"
+#include "nodes/subsystems/IDriveNode.h"
+#include "nodes/odometry_nodes/OdometryNode.h"
+#include "auton/auton_actions/FollowPathAction.h"
+#include "pathing/PathManager.h"
+#include "pathing/Path.h"
+#include "pursuit/path_pursuit/HolonomicPathPursuit.h"
+#include "eigen/Eigen/Dense"
 
 class TestPathAuton : public Auton {
 public:

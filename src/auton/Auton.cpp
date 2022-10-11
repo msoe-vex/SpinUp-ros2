@@ -1,4 +1,4 @@
-#include "lib-rr/auton/Auton.h"
+#include "auton/Auton.h"
 
 using namespace std;
 

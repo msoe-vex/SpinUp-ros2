@@ -1,4 +1,4 @@
-#include "lib-rr/pathing/PathSelector.h"
+#include "pathing/PathSelector.h"
 
 std::string stripDotJSON(std::string s) {
     return s.substr(0, s.size() - 5);

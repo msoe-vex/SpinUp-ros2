@@ -1,8 +1,8 @@
 #pragma once
 
 #include "api.h"
-#include "lib-rr/eigen/Eigen/Dense"
-#include "lib-rr/math/Pose.h"
+#include "eigen/Eigen/Dense"
+#include "math/Pose.h"
 
 class Waypoint {
 private:

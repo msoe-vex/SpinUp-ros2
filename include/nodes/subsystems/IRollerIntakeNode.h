@@ -1,6 +1,6 @@
 #pragma once
 
-#include "lib-rr/nodes/NodeManager.h"
+#include "nodes/NodeManager.h"
 
 class IRollerIntakeNode : public Node {
 private:

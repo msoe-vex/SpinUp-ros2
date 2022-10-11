@@ -1,8 +1,8 @@
 #pragma once
 
-#include "lib-rr/nodes/NodeManager.h"
-#include "lib-rr/pathing/PathManager.h"
-#include "lib-rr/auton/Auton.h"
+#include "nodes/NodeManager.h"
+#include "pathing/PathManager.h"
+#include "auton/Auton.h"
 
 class AutonManagerNode : public Node {
 private:

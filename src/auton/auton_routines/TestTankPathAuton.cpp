@@ -1,4 +1,4 @@
-#include "lib-rr/auton/auton_routines/TestTankPathAuton.h"
+#include "auton/auton_routines/TestTankPathAuton.h"
 
 TestTankPathAuton::TestTankPathAuton(IDriveNode* drive_node, OdometryNode* odom_node) : 
         Auton("Test Path Node"), 

@@ -1,4 +1,4 @@
-#include "lib-rr/auton/auton_actions/LiftVoltageAction.h"
+#include "auton/auton_actions/LiftVoltageAction.h"
 
 LiftVoltageAction::LiftVoltageAction(ILiftNode* liftNode, int voltage, double time) : 
         m_liftNode(liftNode), 

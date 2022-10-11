@@ -2,9 +2,9 @@
 
 #include <vector>
 #include <iostream>
-#include "lib-rr/eigen/Eigen/Dense"
-#include "lib-rr/pathing/PathPoint.h"
-#include "lib-rr/math/Pose.h"
+#include "eigen/Eigen/Dense"
+#include "pathing/PathPoint.h"
+#include "math/Pose.h"
 
 using namespace std;
 

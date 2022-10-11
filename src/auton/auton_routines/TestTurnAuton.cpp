@@ -1,4 +1,4 @@
-#include "lib-rr/auton/auton_routines/TestTurnAuton.h"
+#include "auton/auton_routines/TestTurnAuton.h"
 
 TestTurnAuton::TestTurnAuton(IDriveNode* drive_node, InertialSensorNode* inertial_sensor_node) : 
         Auton("Test Turn Node"), 

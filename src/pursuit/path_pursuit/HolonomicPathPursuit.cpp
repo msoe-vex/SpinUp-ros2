@@ -1,4 +1,4 @@
-#include "lib-rr/pursuit/path_pursuit/HolonomicPathPursuit.h"
+#include "pursuit/path_pursuit/HolonomicPathPursuit.h"
 
 HolonomicPathPursuit::HolonomicPathPursuit(Path path, Timer timer) : IPathPursuit(path, timer),
         m_x_pid(0.03, 0., 0., 0.),

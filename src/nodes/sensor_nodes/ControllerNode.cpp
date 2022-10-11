@@ -1,4 +1,4 @@
-#include "lib-rr/nodes/sensor_nodes/ControllerNode.h"
+#include "nodes/sensor_nodes/ControllerNode.h"
 
 //This constructor also calls the Node constructor from NodeManager.h
 //The Node class constructor automatically adds the node so we don't have to?

@@ -1,4 +1,4 @@
-#include "lib-rr/pathing/Waypoint.h"
+#include "pathing/Waypoint.h"
 
 Waypoint::Waypoint(Pose position, Vector2d velocity, float time) {
     m_position = position;

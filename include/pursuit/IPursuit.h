@@ -1,9 +1,9 @@
 #pragma once
 
-#include "lib-rr/eigen/Eigen/Dense"
-#include "lib-rr/util/Timer.h"
-#include "lib-rr/math/Pose.h"
-#include "lib-rr/util/Logger.h"
+#include "eigen/Eigen/Dense"
+#include "util/Timer.h"
+#include "math/Pose.h"
+#include "util/Logger.h"
 
 using namespace Eigen;
 

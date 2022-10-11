@@ -1,20 +1,13 @@
 #pragma once
 
 #include "api.h"
-#include "lib-rr/nodes/NodeManager.h"
-#include "ros_lib/ros.h"
-#include "ros_lib/std_msgs/Bool.h"
-#include "ros_lib/std_msgs/Empty.h"
+#include "nodes/NodeManager.h"
 
 class ADIDigitalOutNode : public Node {
 private:
     pros::ADIDigitalOut m_digital_out;
     std::string m_handle_name;
-    std::string m_sub_publish_data_name;
-    std::string m_sub_digital_out_name;
     bool m_reverse;
-    ros::Subscriber<std_msgs::Bool, ADIDigitalOutNode>* m_digital_out_sub;
-    ros::Subscriber<std_msgs::Empty, ADIDigitalOutNode>* m_publish_data_sub;
 
     void m_setValue(const std_msgs::Bool& msg);
 

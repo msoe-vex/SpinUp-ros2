@@ -1,4 +1,4 @@
-#include "lib-rr/kinematics/TankDriveKinematics.h"
+#include "kinematics/TankDriveKinematics.h"
 
 TankDriveKinematics::TankDriveKinematics(EncoderConfig encoder_config, TankWheelLocations wheel_locations, 
     Pose current_pose) : IDriveKinematics(encoder_config, current_pose),

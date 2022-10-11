@@ -1,4 +1,4 @@
-#include "lib-rr/auton/auton_actions/FollowPathAction.h"
+#include "auton/auton_actions/FollowPathAction.h"
 
 FollowPathAction::FollowPathAction(IDriveNode* drive_node, OdometryNode* odom_node, IPathPursuit* pursuit, Path path, bool reset_pose, double end_dist_threshold) :
         m_drive_node(drive_node),

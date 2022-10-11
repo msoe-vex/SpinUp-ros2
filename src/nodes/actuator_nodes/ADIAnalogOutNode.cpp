@@ -1,4 +1,4 @@
-#include "lib-rr/nodes/actuator_nodes/ADIAnalogOutNode.h"
+#include "nodes/actuator_nodes/ADIAnalogOutNode.h"
 
 ADIAnalogOutNode::ADIAnalogOutNode(NodeManager* node_manager, std::string handle_name,
     int port) : Node(node_manager, 50), 

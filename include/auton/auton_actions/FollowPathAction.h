@@ -1,11 +1,11 @@
 #pragma once
 
-#include "lib-rr/auton/Auton.h"
-#include "lib-rr/nodes/subsystems/IDriveNode.h"
-#include "lib-rr/nodes/odometry_nodes/OdometryNode.h"
-#include "lib-rr/pursuit/path_pursuit/IPathPursuit.h"
-#include "lib-rr/math/Pose.h"
-#include "lib-rr/util/Logger.h"
+#include "auton/Auton.h"
+#include "nodes/subsystems/IDriveNode.h"
+#include "nodes/odometry_nodes/OdometryNode.h"
+#include "pursuit/path_pursuit/IPathPursuit.h"
+#include "math/Pose.h"
+#include "util/Logger.h"
 
 class FollowPathAction : public AutonAction {
 private:

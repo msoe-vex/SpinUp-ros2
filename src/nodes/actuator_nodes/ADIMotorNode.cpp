@@ -1,4 +1,4 @@
-#include "lib-rr/nodes/actuator_nodes/ADIMotorNode.h"
+#include "nodes/actuator_nodes/ADIMotorNode.h"
 
 ADIMotorNode::ADIMotorNode(NodeManager* node_manager, std::string handle_name,
     int port) : Node(node_manager, 50), 

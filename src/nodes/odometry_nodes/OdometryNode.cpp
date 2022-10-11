@@ -1,4 +1,4 @@
-#include "lib-rr/nodes/odometry_nodes/OdometryNode.h"
+#include "nodes/odometry_nodes/OdometryNode.h"
 
 OdometryNode::OdometryNode(NodeManager* node_manager, std::string handle_name, 
         ADIEncoderNode* odom_encoder_1, ADIEncoderNode* odom_encoder_2, InertialSensorNode* inertial_sensor_node, 

@@ -1,22 +1,12 @@
 #pragma once
 
-#include "lib-rr/nodes/NodeManager.h"
+#include "nodes/NodeManager.h"
 #include "api.h"
-#include "ros_lib/ros.h"
-#include "ros_lib/v5_hal/V5Motor.h"
-#include "ros_lib/std_msgs/Int8.h"
-#include "ros_lib/std_msgs/Empty.h"
 
 class MotorNode : public Node {
 private:
     pros::Motor m_motor;
-    v5_hal::V5Motor m_motor_msg;
     std::string m_handle_name;
-    std::string m_sub_publish_data_name;
-    std::string m_sub_move_motor_voltage_name;
-    ros::Publisher* m_publisher;
-    ros::Subscriber<std_msgs::Int8, MotorNode>* m_move_motor_voltage_sub;
-    ros::Subscriber<std_msgs::Empty, MotorNode>* m_publish_data_sub;
 
     void m_populateMessage();
 

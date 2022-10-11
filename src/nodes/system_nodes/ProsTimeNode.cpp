@@ -1,4 +1,4 @@
-#include "lib-rr/nodes/system_nodes/ProsTimeNode.h"
+#include "nodes/system_nodes/ProsTimeNode.h"
 
 ProsTimeNode::ProsTimeNode(NodeManager* node_manager, std::string handle_name) 
     : Node (node_manager, 50) {

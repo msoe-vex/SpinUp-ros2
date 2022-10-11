@@ -1,8 +1,7 @@
 #pragma once
 
-#include "lib-rr/nodes/NodeManager.h"
+#include "nodes/NodeManager.h"
 #include "api.h"
-#include "ros_lib/ros.h"
 
 class ConnectionCheckerNode : public Node {
 private:

@@ -4,11 +4,11 @@
 #include <unordered_map>
 #include <fstream>
 #include <vector>
-#include "lib-rr/pathing/Path.h"
-#include "lib-rr/pathing/PathPoint.h"
-#include "lib-rr/3rdparty/json.hpp"
-#include "lib-rr/math/Math.h"
-#include "lib-rr/util/Logger.h"
+#include "pathing/Path.h"
+#include "pathing/PathPoint.h"
+#include "3rdparty/json.hpp"
+#include "math/Math.h"
+#include "util/Logger.h"
 
 using namespace nlohmann;
 using namespace std;

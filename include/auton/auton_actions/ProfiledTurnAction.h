@@ -1,10 +1,10 @@
 #pragma once
 
 #include <math.h>
-#include "lib-rr/auton/Auton.h"
-#include "lib-rr/nodes/subsystems/IDriveNode.h"
-#include "lib-rr/nodes/sensor_nodes/InertialSensorNode.h"
-#include "lib-rr/eigen/Eigen/Dense"
+#include "auton/Auton.h"
+#include "nodes/subsystems/IDriveNode.h"
+#include "nodes/sensor_nodes/InertialSensorNode.h"
+#include "eigen/Eigen/Dense"
 
 class ProfiledTurnAction : public AutonAction {
 private:

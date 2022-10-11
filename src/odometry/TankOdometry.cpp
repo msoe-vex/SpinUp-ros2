@@ -1,4 +1,4 @@
-#include "lib-rr/odometry/TankOdometry.h"
+#include "odometry/TankOdometry.h"
 
 TankOdometry::TankOdometry(EncoderConfig leftEncoderConfig, EncoderConfig rightEncoderConfig, EncoderLocations locations,
     Pose currentPose): IOdometry(leftEncoderConfig, rightEncoderConfig, locations, currentPose), m_locations(locations) {

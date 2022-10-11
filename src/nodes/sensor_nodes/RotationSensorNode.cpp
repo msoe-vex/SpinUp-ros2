@@ -1,4 +1,4 @@
-#include "lib-rr/nodes/sensor_nodes/RotationSensorNode.h"
+#include "nodes/sensor_nodes/RotationSensorNode.h"
 
 RotationSensorNode::RotationSensorNode(NodeManager* node_manager, 
     int rotation_port, std::string handle_name) : Node (node_manager, 20), 

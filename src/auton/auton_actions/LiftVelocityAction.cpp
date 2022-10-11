@@ -1,4 +1,4 @@
-#include "lib-rr/auton/auton_actions/LiftVelocityAction.h"
+#include "auton/auton_actions/LiftVelocityAction.h"
 
 LiftVelocityAction::LiftVelocityAction(ILiftNode* liftNode, float velocity, double time) : 
         m_liftNode(liftNode), 

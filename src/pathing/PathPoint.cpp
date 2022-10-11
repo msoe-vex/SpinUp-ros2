@@ -1,4 +1,4 @@
-#include "lib-rr/pathing/PathPoint.h"
+#include "pathing/PathPoint.h"
 
 PathPoint::PathPoint(float time, Pose pose, Vector2d linear_velocity, float rotational_velocity) {
     m_time = time;

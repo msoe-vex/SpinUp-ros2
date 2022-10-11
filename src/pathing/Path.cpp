@@ -1,4 +1,4 @@
-#include "lib-rr/pathing/Path.h"
+#include "pathing/Path.h"
 
 Path::Path() : 
         m_is_complete(false),

@@ -1,4 +1,4 @@
-#include "lib-rr/nodes/system_nodes/HelloWorldNode.h"
+#include "nodes/system_nodes/HelloWorldNode.h"
 
 // By default, this constructor calls the constructor for the Node object in
 // NodeManager.h

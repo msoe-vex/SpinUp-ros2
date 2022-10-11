@@ -1,4 +1,4 @@
-#include "lib-rr/odometry/FollowerOdometry.h"
+#include "odometry/FollowerOdometry.h"
 
 FollowerOdometry::FollowerOdometry(EncoderConfig xEncoderConfig, EncoderConfig yEncoderConfig, EncoderLocations locations,
     Pose currentPose): IOdometry(xEncoderConfig, yEncoderConfig, locations, currentPose), m_locations(locations) {

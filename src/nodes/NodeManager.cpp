@@ -1,11 +1,12 @@
-#include "lib-rr/nodes/NodeManager.h"
+#include "nodes/NodeManager.h"
+#include <string>
 
 NodeManager::NodeManager(uint32_t(*get_milliseconds)(void)) {
     m_get_millis = get_milliseconds;
-    m_handle = new ros::NodeHandle();
+    m_handle = new std::string("test");
 }
 
-ros::NodeHandle* NodeManager::addNode(Node* node,
+std::string* NodeManager::addNode(Node* node,
     uint32_t interval_milliseconds) {
     NodeManager::NodeStructure node_structure = { node, interval_milliseconds, 0 };
     m_node_structures.push_back(node_structure);
@@ -14,7 +15,7 @@ ros::NodeHandle* NodeManager::addNode(Node* node,
 }
 
 void NodeManager::initialize() {
-    m_handle->initNode();
+    // m_handle->initNode();
 
     for (auto node_structure : m_node_structures) {
         node_structure.node->initialize();
@@ -28,7 +29,7 @@ void NodeManager::reset() {
 }
 
 void NodeManager::executeTeleop() {
-    m_handle->spinOnce();
+    // m_handle->spinOnce();
     
     for (auto& node_structure : m_node_structures) {
         auto current_time = m_get_millis();
@@ -43,7 +44,7 @@ void NodeManager::executeTeleop() {
 }
 
 void NodeManager::executeAuton() {
-    m_handle->spinOnce();
+    // m_handle->spinOnce();
     
     for (auto& node_structure : m_node_structures) {
         auto current_time = m_get_millis();

@@ -1,17 +1,12 @@
 #pragma once
 
 #include "api.h"
-#include "lib-rr/nodes/NodeManager.h"
-#include "ros_lib/ros.h"
-#include "ros_lib/std_msgs/Int16.h"
+#include "nodes/NodeManager.h"
 
 class ADIMotorNode : public Node {
 
 private:
     pros::ADIMotor m_motor;
-    std::string m_handle_name;
-    std::string m_sub_motor_name;
-    ros::Subscriber<std_msgs::Int16, ADIMotorNode>* m_motor_sub;
 
     void m_setValue(const std_msgs::Int16& msg);
 

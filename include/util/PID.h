@@ -1,7 +1,7 @@
 #pragma once
 
-#include "lib-rr/util/Timer.h"
-#include "lib-rr/util/Logger.h"
+#include "util/Timer.h"
+#include "util/Logger.h"
 
 //
 // Created by Jonathan T. Phung on 3/4/2021.

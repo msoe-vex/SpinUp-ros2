@@ -1,12 +1,12 @@
 #pragma once
 
 #include <math.h>
-#include "lib-rr/auton/Auton.h"
-#include "lib-rr/nodes/subsystems/IDriveNode.h"
-#include "lib-rr/nodes/odometry_nodes/OdometryNode.h"
-#include "lib-rr/nodes/sensor_nodes/InertialSensorNode.h"
-#include "lib-rr/pursuit/pose_pursuit/IPosePursuit.h"
-#include "lib-rr/math/Pose.h"
+#include "auton/Auton.h"
+#include "nodes/subsystems/IDriveNode.h"
+#include "nodes/odometry_nodes/OdometryNode.h"
+#include "nodes/sensor_nodes/InertialSensorNode.h"
+#include "pursuit/pose_pursuit/IPosePursuit.h"
+#include "math/Pose.h"
 
 class DriveToPoseAction : public AutonAction {
 private:

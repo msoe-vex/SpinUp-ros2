@@ -1,4 +1,4 @@
-#include "lib-rr/auton/auton_actions/UseClawAction.h"
+#include "auton/auton_actions/UseClawAction.h"
 
 UseClawAction::UseClawAction(IClawNode* claw_node, bool position) : 
         m_claw_node(claw_node), 

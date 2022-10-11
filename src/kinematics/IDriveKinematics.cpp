@@ -1,4 +1,4 @@
-#include "lib-rr/kinematics/IDriveKinematics.h"
+#include "kinematics/IDriveKinematics.h"
 
 IDriveKinematics::IDriveKinematics(EncoderConfig encoder_config, Pose current_pose) :
         m_ticks_to_distance_m((encoder_config.wheel_diameter * M_PI) / 

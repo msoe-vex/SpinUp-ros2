@@ -1,4 +1,4 @@
-#include "lib-rr/pursuit/pose_pursuit/HolonomicPosePursuit.h"
+#include "pursuit/pose_pursuit/HolonomicPosePursuit.h"
 
 HolonomicPosePursuit::HolonomicPosePursuit(Pose target_pose, Timer timer) : IPosePursuit(target_pose, timer), 
         m_x_pid(0.1, 0., 0., 0.),

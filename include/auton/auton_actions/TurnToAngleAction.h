@@ -1,12 +1,12 @@
 #pragma once
 
-#include "lib-rr/auton/Auton.h"
-#include "lib-rr/util/PID.h"
-#include "lib-rr/util/Timer.h"
-#include "lib-rr/util/Constants.h"
-#include "lib-rr/nodes/subsystems/IDriveNode.h"
-#include "lib-rr/nodes/sensor_nodes/InertialSensorNode.h"
-#include "lib-rr/eigen/Eigen/Dense"
+#include "auton/Auton.h"
+#include "util/PID.h"
+#include "util/Timer.h"
+#include "util/Constants.h"
+#include "nodes/subsystems/IDriveNode.h"
+#include "nodes/sensor_nodes/InertialSensorNode.h"
+#include "eigen/Eigen/Dense"
 
 class TurnToAngleAction : public AutonAction {
 private:

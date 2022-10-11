@@ -1,6 +1,6 @@
 #pragma once
 
-#include "lib-rr/odometry/IOdometry.h"
+#include "odometry/IOdometry.h"
 
 class TankOdometry : public IOdometry {
 private:

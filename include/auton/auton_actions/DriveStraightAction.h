@@ -1,10 +1,10 @@
 #pragma once
 
 #include <math.h>
-#include "lib-rr/auton/Auton.h"
-#include "lib-rr/nodes/subsystems/IDriveNode.h"
-#include "lib-rr/nodes/odometry_nodes/OdometryNode.h"
-#include "lib-rr/util/PID.h"
+#include "auton/Auton.h"
+#include "nodes/subsystems/IDriveNode.h"
+#include "nodes/odometry_nodes/OdometryNode.h"
+#include "util/PID.h"
 
 class DriveStraightAction : public AutonAction {
 public:

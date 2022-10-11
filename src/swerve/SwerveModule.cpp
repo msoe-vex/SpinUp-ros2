@@ -1,4 +1,4 @@
-#include "lib-rr/swerve/SwerveModule.h"
+#include "swerve/SwerveModule.h"
 
 SwerveModule::SwerveModule(Eigen::Vector2d module_location, double kP, double kI, double kD) : 
     m_module_location(module_location),

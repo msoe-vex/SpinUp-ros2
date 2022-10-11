@@ -1,8 +1,8 @@
 #pragma once
 
 #include "api.h"
-#include "lib-rr/auton/Auton.h"
-#include "lib-rr/nodes/subsystems/ILiftNode.h"
+#include "auton/Auton.h"
+#include "nodes/subsystems/ILiftNode.h"
 
 class MoveLiftToPositionAction : public AutonAction {
 private:

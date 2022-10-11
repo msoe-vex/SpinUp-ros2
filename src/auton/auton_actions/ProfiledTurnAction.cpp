@@ -1,4 +1,4 @@
-#include "lib-rr/auton/auton_actions/ProfiledTurnAction.h"
+#include "auton/auton_actions/ProfiledTurnAction.h"
 
 ProfiledTurnAction::ProfiledTurnAction(IDriveNode* drive_node, InertialSensorNode* imu, Eigen::Rotation2Dd angle, double max_velocity, 
         double max_accel) :

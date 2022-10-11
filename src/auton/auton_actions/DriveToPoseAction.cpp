@@ -1,4 +1,4 @@
-#include "lib-rr/auton/auton_actions/DriveToPoseAction.h"
+#include "auton/auton_actions/DriveToPoseAction.h"
 
 DriveToPoseAction::DriveToPoseAction(IDriveNode* drive_node, OdometryNode* odom_node, IPosePursuit* pursuit, Pose end_pose) :
         m_drive_node(drive_node),

@@ -1,11 +1,11 @@
 #pragma once
 
-#include "lib-rr/auton/Auton.h"
-#include "lib-rr/nodes/subsystems/IDriveNode.h"
-#include "lib-rr/nodes/odometry_nodes/OdometryNode.h"
-#include "lib-rr/auton/auton_actions/DriveToPoseAction.h"
-#include "lib-rr/pursuit/pose_pursuit/HolonomicPosePursuit.h"
-#include "lib-rr/eigen/Eigen/Dense"
+#include "auton/Auton.h"
+#include "nodes/subsystems/IDriveNode.h"
+#include "nodes/odometry_nodes/OdometryNode.h"
+#include "auton/auton_actions/DriveToPoseAction.h"
+#include "pursuit/pose_pursuit/HolonomicPosePursuit.h"
+#include "eigen/Eigen/Dense"
 
 class TestPoseAuton : public Auton {
 public:

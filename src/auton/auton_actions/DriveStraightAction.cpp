@@ -1,4 +1,4 @@
-#include "lib-rr/auton/auton_actions/DriveStraightAction.h"
+#include "auton/auton_actions/DriveStraightAction.h"
 
 DriveStraightAction::DriveStraightAction(IDriveNode* drive_node, OdometryNode* odometry_node, DriveStraightParams params, double distance, double max_velocity, double max_accel, double slowDownCoef) :
         m_drive_node(drive_node), 

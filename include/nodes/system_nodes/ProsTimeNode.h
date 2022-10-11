@@ -1,10 +1,8 @@
 #pragma once
 
-#include "lib-rr/nodes/NodeManager.h"
+#include "nodes/NodeManager.h"
 #include "api.h"
-#include "ros_lib/ros.h"
 #include "ros_lib/std_msgs/UInt32.h"
-#include "ros_lib/std_msgs/Empty.h"
 
 class ProsTimeNode : public Node {
 private:

@@ -1,10 +1,10 @@
 #pragma once
 
 #include "api.h"
-#include "lib-rr/math/Pose.h"
-#include "lib-rr/math/Math.h"
-#include "lib-rr/util/Encoders.h"
-#include "lib-rr/util/Constants.h"
+#include "math/Pose.h"
+#include "math/Math.h"
+#include "util/Encoders.h"
+#include "util/Constants.h"
 
 class IOdometry {
 public:

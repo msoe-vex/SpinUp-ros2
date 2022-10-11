@@ -1,10 +1,7 @@
 #pragma once
 
-#include "lib-rr/nodes/NodeManager.h"
+#include "nodes/NodeManager.h"
 #include "api.h"
-#include "ros_lib/ros.h"
-#include "ros_lib/v5_hal/V5RotationSensor.h"
-#include "ros_lib/std_msgs/Empty.h"
 
 class RotationSensorNode : public Node {
 private:

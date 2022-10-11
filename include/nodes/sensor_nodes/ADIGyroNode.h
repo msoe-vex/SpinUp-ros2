@@ -1,19 +1,12 @@
 #pragma once
 
-#include "lib-rr/nodes/NodeManager.h"
+#include "nodes/NodeManager.h"
 #include "api.h"
-#include "ros_lib/ros.h"
-#include "ros_lib/std_msgs/Float32.h"
-#include "ros_lib/std_msgs/Empty.h"
 
 class ADIGyroNode : public Node {
 private:
     pros::ADIGyro m_gyro;
-    std_msgs::Float32 m_gyro_msg;
     std::string m_handle_name;
-    std::string m_sub_publish_data_name;
-    ros::Publisher* m_publisher;
-    ros::Subscriber<std_msgs::Empty, ADIGyroNode>* m_publish_data_sub;
 
     void m_populateMessage();
 

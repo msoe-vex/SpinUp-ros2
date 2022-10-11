@@ -1,10 +1,10 @@
 #pragma once
 
-#include "lib-rr/nodes/subsystems/IDriveNode.h"
-#include "lib-rr/math/Pose.h"
-#include "lib-rr/util/Encoders.h"
-#include "lib-rr/util/Timer.h"
-#include "lib-rr/eigen/Eigen/Dense"
+#include "nodes/subsystems/IDriveNode.h"
+#include "math/Pose.h"
+#include "util/Encoders.h"
+#include "util/Timer.h"
+#include "eigen/Eigen/Dense"
 
 class IDriveKinematics { 
 protected:

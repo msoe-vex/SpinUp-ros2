@@ -1,4 +1,4 @@
-#include "lib-rr/auton/AutonManagerNode.h"
+#include "auton/AutonManagerNode.h"
 
 AutonManagerNode::AutonManagerNode(NodeManager* node_manager, std::vector<Auton*> autons) : 
     Node(node_manager, 50), m_autons(autons) {

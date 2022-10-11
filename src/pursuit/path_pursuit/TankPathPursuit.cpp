@@ -1,4 +1,4 @@
-#include "lib-rr/pursuit/path_pursuit/TankPathPursuit.h"
+#include "pursuit/path_pursuit/TankPathPursuit.h"
 
 TankPathPursuit::TankPathPursuit(Path path, Timer timer) : IPathPursuit(path, timer),
         m_linear_pid(0.03, 0., 0., 0.),

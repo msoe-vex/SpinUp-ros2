@@ -1,4 +1,4 @@
-#include "lib-rr/pursuit/adaptive_pursuit/Rotation2d.h"
+#include "pursuit/adaptive_pursuit/Rotation2d.h"
 
 Rotation2d::Rotation2d() {
 	m_cos = 1;

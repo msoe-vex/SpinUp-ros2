@@ -1,4 +1,4 @@
-#include "lib-rr/nodes/sensor_nodes/InertialSensorNode.h"
+#include "nodes/sensor_nodes/InertialSensorNode.h"
 
 InertialSensorNode::InertialSensorNode(NodeManager* node_manager, 
         std::string handle_name, int sensor_port) : Node(node_manager, 20), 

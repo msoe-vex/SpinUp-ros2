@@ -1,10 +1,10 @@
 #pragma once
 
+#include <string>
 #include <vector>
 
 #include "api.h"
-#include "ros_lib/ros.h"
-#include "lib-rr/util/Constants.h"
+#include "util/Constants.h"
 
 class Node;
 
@@ -30,10 +30,9 @@ private:
 protected:
 
 public:
-    ros::NodeHandle* m_handle;
     NodeManager(uint32_t(*get_milliseconds)(void));
 
-    ros::NodeHandle* addNode(Node* node, uint32_t interval_milliseconds);
+    std::string* addNode(Node* node, uint32_t interval_milliseconds);
 
     void initialize();
 
@@ -62,7 +61,7 @@ public:
         m_handle = node_manager->addNode(this, interval_milliseconds);
     }
 
-    ros::NodeHandle* m_handle;
+    std::string* m_handle;
 
     virtual void initialize() = 0;
     virtual void teleopPeriodic() {}

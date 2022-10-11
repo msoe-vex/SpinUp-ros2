@@ -1,9 +1,9 @@
 #pragma once
 
 #include <math.h>
-#include "lib-rr/odometry/IOdometry.h"
-#include "lib-rr/util/Constants.h"
-#include "lib-rr/util/Logger.h"
+#include "odometry/IOdometry.h"
+#include "util/Constants.h"
+#include "util/Logger.h"
 
 class FollowerOdometry : public IOdometry {
 private:

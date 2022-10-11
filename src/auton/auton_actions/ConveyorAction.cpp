@@ -1,4 +1,4 @@
-#include "lib-rr/auton/auton_actions/ConveyorAction.h"
+#include "auton/auton_actions/ConveyorAction.h"
 
 ConveyorAction::ConveyorAction(IConveyorNode* conveyor_node, int voltage, double time) : 
         m_conveyor_node(conveyor_node), 

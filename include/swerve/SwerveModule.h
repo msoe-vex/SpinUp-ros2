@@ -1,8 +1,8 @@
 #pragma once
 
-#include "lib-rr/eigen/Eigen/Dense"
-#include "lib-rr/eigen/Eigen/Geometry"
-#include "lib-rr/util/Constants.h"
+#include "eigen/Eigen/Dense"
+#include "eigen/Eigen/Geometry"
+#include "util/Constants.h"
 
 struct MotorPowers {
     int8_t left_motor_power;
