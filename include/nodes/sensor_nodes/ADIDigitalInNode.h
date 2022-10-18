@@ -8,10 +8,6 @@ private:
     pros::ADIDigitalIn m_digital_in;
     std::string m_handle_name;
 
-    void m_populateMessage();
-
-    void m_publishData(const std_msgs::Empty& msg);
-
 public:
     ADIDigitalInNode(NodeManager* node_manager, int port, std::string handle_name);
 

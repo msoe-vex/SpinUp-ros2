@@ -13,8 +13,6 @@ public:
 
     InertialSensorNode(NodeManager* node_manager, std::string handle_name, 
         int sensor_port);
-
-    InertialSensorNode(NodeManager* node_manager, std::string handle_name);
     
     void initialize();
     

@@ -8,10 +8,6 @@ private:
     pros::ADIGyro m_gyro;
     std::string m_handle_name;
 
-    void m_populateMessage();
-
-    void m_publishData(const std_msgs::Empty& msg);
-
 public:
     ADIGyroNode(NodeManager* node_manager, int port, double multiplier, std::string handle_name);
 

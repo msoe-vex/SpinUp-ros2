@@ -9,16 +9,6 @@ InertialSensorNode::InertialSensorNode(NodeManager* node_manager,
     m_inertial_sensor = new pros::Imu(sensor_port);
 }
 
-InertialSensorNode::InertialSensorNode(NodeManager* node_manager, std::string handle_name, 
-        std::string subscribe_handle) : Node(node_manager, 20), m_yaw(0), m_gyro_offset_angle(GYRO_OFFSET),
-        m_sub_inertial_sensor_name(subscribe_handle) {
-    m_handle_name = handle_name.insert(0, "sensor/");
-    m_config = ROS;
-
-    m_inertial_sensor_sub = new ros::Subscriber<v5_hal::RollPitchYaw, InertialSensorNode>
-        (m_sub_inertial_sensor_name.c_str(), &InertialSensorNode::m_handleSensorMsg, this);
-}
-
 void InertialSensorNode::m_handleSensorMsg(const v5_hal::RollPitchYaw& msg) {
     // Convert value to radians
     Eigen::Rotation2Dd current_angle(msg.yaw  * (M_PI/180));
@@ -46,11 +36,6 @@ void InertialSensorNode::initialize() {
         case V5:
             m_inertial_sensor->reset();
             break;
-        case ROS:
-            Node::m_handle->subscribe(*m_inertial_sensor_sub);
-            break;
-        default:
-            Node::m_handle->logerror("Error initializing inertial sensor");
     }
 }
 
@@ -106,7 +91,5 @@ InertialSensorNode::~InertialSensorNode () {
     switch (m_config) {
         case V5:
             delete m_inertial_sensor;
-        case ROS:
-            delete m_inertial_sensor_sub;
     }
 }

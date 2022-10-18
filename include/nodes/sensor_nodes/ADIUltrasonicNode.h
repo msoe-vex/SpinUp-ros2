@@ -8,10 +8,6 @@ private:
     pros::ADIUltrasonic m_ultrasonic;
     std::string m_handle_name;
 
-    void m_populateMessage();
-
-    void m_publishData(const std_msgs::Empty& msg);
-
 public:
     ADIUltrasonicNode(NodeManager* node_manager, int port_ping, int port_echo, std::string handle_name);
 

@@ -10,10 +10,6 @@ private:
 
     bool m_is_reversed;
 
-    void m_populateMessage();
-
-    void m_publishData(const std_msgs::Empty& msg);
-
 public:
     ADIAnalogInNode(NodeManager* node_manager, int port, std::string handle_name, bool reverse=false);
 
