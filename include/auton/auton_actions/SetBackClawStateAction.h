@@ -1,10 +1,10 @@
 #pragma once
 
 #include "api.h"
-#include "lib-rr/auton/Auton.h"
-#include "lib-rr/util/Timer.h"
-#include "lib-rr/util/Constants.h"
-#include "nodes/BackClawNode.h"
+#include "auton/Auton.h"
+#include "util/Timer.h"
+#include "util/Constants.h"
+#include "nodes/subsystems/BackClawNode.h"
 
 class SetBackClawStateAction : public AutonAction {
 private:

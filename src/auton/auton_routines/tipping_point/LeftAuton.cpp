@@ -1,4 +1,4 @@
-#include "auton/auton_routines/LeftAuton.h"
+#include "auton/auton_routines/tipping_point/LeftAuton.h"
 
 LeftAuton::LeftAuton(IDriveNode* driveNode, OdometryNode* odomNode, IClawNode* frontClawNode, IClawNode* wingArm, BackClawNode* backClawNode, ILiftNode* liftNode, IRollerIntakeNode* intakeNode) : 
         Auton("15in Left Outer Auton", "/usd/pathMatchAuton2-15.json"), 

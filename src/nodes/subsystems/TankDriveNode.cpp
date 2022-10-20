@@ -1,4 +1,4 @@
-#include "nodes/TankDriveNode.h"
+#include "nodes/subsystems/TankDriveNode.h"
 
 TankDriveNode::TankDriveNode(NodeManager* node_manager, std::string handle_name, ControllerNode* controller, 
         TankEightMotors motors, TankDriveKinematics kinematics) : IDriveNode(node_manager), 

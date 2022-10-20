@@ -1,4 +1,4 @@
-#include "auton/auton_routines/odomTest.h"
+#include "auton/auton_routines/tipping_point/odomTest.h"
 
 odomTest::odomTest(IDriveNode* drive_node, OdometryNode* odom_node, InertialSensorNode* inertial_sensor_node) : 
         Auton("Test Turn Node"), 

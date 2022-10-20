@@ -1,4 +1,4 @@
-#include "auton/auton_routines/testAuton.h"
+#include "auton/auton_routines/tipping_point/testAuton.h"
 
 testAuton::testAuton(ILiftNode* lift_node) : 
         Auton("Test Turn Node"), 

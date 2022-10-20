@@ -1,11 +1,11 @@
 #pragma once
 
-#include "lib-rr/nodes/NodeManager.h"
-#include "lib-rr/nodes/subsystems/IDriveNode.h"
+#include "nodes/NodeManager.h"
+#include "nodes/subsystems/IDriveNode.h"
 #include "api.h"
-#include "lib-rr/nodes/actuator_nodes/MotorNode.h"
-#include "lib-rr/nodes/sensor_nodes/ControllerNode.h"
-#include "lib-rr/kinematics/TankDriveKinematics.h"
+#include "nodes/actuator_nodes/MotorNode.h"
+#include "nodes/sensor_nodes/ControllerNode.h"
+#include "kinematics/TankDriveKinematics.h"
 
 class TankDriveNode : public IDriveNode {
 public: 

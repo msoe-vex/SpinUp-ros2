@@ -1,10 +1,10 @@
 #pragma once
 
-#include "lib-rr/nodes/NodeManager.h"
-#include "lib-rr/nodes/sensor_nodes/ControllerNode.h"
-#include "lib-rr/nodes/actuator_nodes/ADIDigitalOutNode.h"
-#include "lib-rr/util/Timer.h"
-#include "nodes/ClawNode.h"
+#include "nodes/NodeManager.h"
+#include "nodes/sensor_nodes/ControllerNode.h"
+#include "nodes/actuator_nodes/ADIDigitalOutNode.h"
+#include "util/Timer.h"
+#include "nodes/subsystems/ClawNode.h"
 #include "pros/misc.h"
 
 class BackClawNode : public Node {

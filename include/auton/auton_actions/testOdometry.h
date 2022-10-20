@@ -1,11 +1,11 @@
 #pragma once
-#include "lib-rr/auton/Auton.h"
-#include "lib-rr/util/Timer.h"
-#include "lib-rr/nodes/subsystems/IDriveNode.h"
-#include "lib-rr/auton/auton_actions/DriveStraightAction.h"
-#include "lib-rr/auton/auton_actions/TurnToAngleAction.h"
-#include "lib-rr/nodes/odometry_nodes/OdometryNode.h"
-#include "lib-rr/math/Math.h"
+#include "auton/Auton.h"
+#include "util/Timer.h"
+#include "nodes/subsystems/IDriveNode.h"
+#include "auton/auton_actions/DriveStraightAction.h"
+#include "auton/auton_actions/TurnToAngleAction.h"
+#include "nodes/odometry_nodes/OdometryNode.h"
+#include "math/Math.h"
 
 class testOdometry : public AutonAction {
 private:

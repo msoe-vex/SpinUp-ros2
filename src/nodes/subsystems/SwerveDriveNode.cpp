@@ -1,4 +1,4 @@
-#include "nodes/SwerveDriveNode.h"
+#include "nodes/subsystems/SwerveDriveNode.h"
 
 // By default, this constructor calls the constructor for the Node object in
 // NodeManager.h
@@ -54,5 +54,4 @@ void DriverControlNode::autonPeriodic() {
 }
 
 DriverControlNode::~DriverControlNode() { 
-    delete m_publisher; 
 }

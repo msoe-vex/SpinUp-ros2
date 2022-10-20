@@ -1,4 +1,4 @@
-#include "nodes/HolonomicDriveNode.h"
+#include "nodes/subsystems/HolonomicDriveNode.h"
 
 HolonomicDriveNode::HolonomicDriveNode(NodeManager* node_manager, std::string handle_name, ControllerNode* controller, 
     InertialSensorNode* inertial_sensor, HolonomicEightMotors motors, HolonomicDriveKinematics kinematics) : 

@@ -1,4 +1,4 @@
-#include "auton/auton_routines/RightShortAuton.h"
+#include "auton/auton_routines/tipping_point/RightShortAuton.h"
 
 RightShortAuton::RightShortAuton(IDriveNode* driveNode, OdometryNode* odomNode, IClawNode* frontClawNode, IClawNode* wingArm, BackClawNode* backClawNode, ILiftNode* liftNode, IRollerIntakeNode* intakeNode) : 
         Auton("15in Right Short Auton", "/usd/rightQuickPath.json"), 

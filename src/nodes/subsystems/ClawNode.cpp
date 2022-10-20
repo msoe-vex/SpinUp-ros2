@@ -1,4 +1,4 @@
-#include "nodes/ClawNode.h"
+#include "nodes/subsystems/ClawNode.h"
 
 ClawNode::ClawNode(NodeManager* node_manager, std::string handle_name, 
 		ControllerNode* controller, ADIDigitalOutNode* claw, pros::controller_digital_e_t button) : 

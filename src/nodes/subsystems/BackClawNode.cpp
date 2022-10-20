@@ -1,4 +1,4 @@
-#include "nodes/BackClawNode.h"
+#include "nodes/subsystems/BackClawNode.h"
 
 BackClawNode::BackClawNode(NodeManager* node_manager, std::string handle_name,
         ControllerNode* controller, pros::controller_digital_e_t pivotButton, 

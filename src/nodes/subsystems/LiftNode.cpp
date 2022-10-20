@@ -1,4 +1,4 @@
-#include "nodes/LiftNode.h"
+#include "nodes/subsystems/LiftNode.h"
 
 LiftNode::LiftNode(NodeManager* node_manager, std::string handle_name, 
         ControllerNode* controller, MotorNode* left_motor, 

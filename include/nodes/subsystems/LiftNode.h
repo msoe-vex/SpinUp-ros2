@@ -1,13 +1,13 @@
 #pragma once
 
-#include "lib-rr/nodes/NodeManager.h"
-#include "lib-rr/nodes/subsystems/ILiftNode.h"
-#include "lib-rr/nodes/sensor_nodes/ControllerNode.h"
-#include "lib-rr/nodes/actuator_nodes/MotorNode.h"
-#include "lib-rr/nodes/sensor_nodes/ADIDigitalInNode.h"
-#include "lib-rr/nodes/sensor_nodes/ADIPotentiometerNode.h"
+#include "nodes/NodeManager.h"
+#include "nodes/subsystems/ILiftNode.h"
+#include "nodes/sensor_nodes/ControllerNode.h"
+#include "nodes/actuator_nodes/MotorNode.h"
+#include "nodes/sensor_nodes/ADIDigitalInNode.h"
+#include "nodes/sensor_nodes/ADIPotentiometerNode.h"
 #include "pros/misc.h"
-#include "lib-rr/util/PID.h"
+#include "util/PID.h"
 
 class LiftNode : public ILiftNode {
 public:

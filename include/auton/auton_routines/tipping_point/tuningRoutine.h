@@ -1,13 +1,13 @@
 #pragma once
 
 #include "Constants.h"
-#include "lib-rr/auton/Auton.h"
-#include "lib-rr/nodes/subsystems/IDriveNode.h"
-#include "lib-rr/nodes/odometry_nodes/OdometryNode.h"
-#include "lib-rr/nodes/sensor_nodes/InertialSensorNode.h"
-#include "lib-rr/auton/auton_actions/DriveStraightAction.h"
-#include "lib-rr/util/Constants.h"
-#include "lib-rr/eigen/Eigen/Dense"
+#include "auton/Auton.h"
+#include "nodes/subsystems/IDriveNode.h"
+#include "nodes/odometry_nodes/OdometryNode.h"
+#include "nodes/sensor_nodes/InertialSensorNode.h"
+#include "auton/auton_actions/DriveStraightAction.h"
+#include "util/Constants.h"
+#include "eigen/Eigen/Dense"
 
 class tuningRoutine : public Auton {
 public:

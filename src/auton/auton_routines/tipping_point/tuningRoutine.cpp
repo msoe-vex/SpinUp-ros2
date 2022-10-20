@@ -1,4 +1,4 @@
-#include "auton/auton_routines/tuningRoutine.h"
+#include "auton/auton_routines/tipping_point/tuningRoutine.h"
 
 tuningRoutine::tuningRoutine(IDriveNode* drive_node, OdometryNode* odometry_node) : 
         Auton("Tune DriveStraight"), 

@@ -1,4 +1,4 @@
-#include "nodes/IntakeNode.h"
+#include "nodes/subsystems/IntakeNode.h"
 
 IntakeNode::IntakeNode(NodeManager* node_manager, std::string handle_name, ControllerNode* controller, 
 pros::controller_digital_e_t intake_button, pros::controller_digital_e_t outtake_button, 

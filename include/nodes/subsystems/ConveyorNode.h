@@ -1,13 +1,13 @@
 #pragma once
 
-#include "lib-rr/nodes/NodeManager.h"
+#include "nodes/NodeManager.h"
 #include "api.h"
-#include "lib-rr/nodes/actuator_nodes/MotorNode.h"
-#include "lib-rr/nodes/sensor_nodes/ADIAnalogInNode.h"
-#include "lib-rr/nodes/sensor_nodes/ControllerNode.h"
-#include "lib-rr/nodes/actuator_nodes/ADIDigitalOutNode.h"
-#include "lib-rr/util/Constants.h"
-#include "lib-rr/util/Timer.h"
+#include "nodes/actuator_nodes/MotorNode.h"
+#include "nodes/sensor_nodes/ADIAnalogInNode.h"
+#include "nodes/sensor_nodes/ControllerNode.h"
+#include "nodes/actuator_nodes/ADIDigitalOutNode.h"
+#include "util/Constants.h"
+#include "util/Timer.h"
 
 class ConveyorNode : public Node {
 public:

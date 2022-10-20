@@ -2,14 +2,14 @@
 
 #include <algorithm>
 #include <initializer_list>
-#include "lib-rr/nodes/NodeManager.h"
+#include "nodes/NodeManager.h"
 #include "api.h"
-#include "lib-rr/nodes/subsystems/IDriveNode.h"
-#include "lib-rr/nodes/actuator_nodes/MotorNode.h"
-#include "lib-rr/nodes/sensor_nodes/ControllerNode.h"
-#include "lib-rr/nodes/sensor_nodes/InertialSensorNode.h"
-#include "lib-rr/kinematics/HolonomicDriveKinematics.h"
-#include "lib-rr/eigen/Eigen/Dense"
+#include "nodes/subsystems/IDriveNode.h"
+#include "nodes/actuator_nodes/MotorNode.h"
+#include "nodes/sensor_nodes/ControllerNode.h"
+#include "nodes/sensor_nodes/InertialSensorNode.h"
+#include "kinematics/HolonomicDriveKinematics.h"
+#include "eigen/Eigen/Dense"
 
 class HolonomicDriveNode : public IDriveNode {
 public: 

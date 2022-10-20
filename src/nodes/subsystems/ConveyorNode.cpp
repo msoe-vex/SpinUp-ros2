@@ -1,4 +1,4 @@
-#include "nodes/ConveyorNode.h"
+#include "nodes/subsystems/ConveyorNode.h"
 
 ConveyorNode::ConveyorNode(NodeManager* node_manager, std::string handle_name, ControllerNode* controller, 
         MotorNode* bottom_conveyor_motor, MotorNode* top_conveyor_motor, ADIAnalogInNode* bottom_conveyor_sensor, 

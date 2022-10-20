@@ -1,15 +1,15 @@
 #pragma once
 
-#include "lib-rr/auton/Auton.h"
-#include "lib-rr/nodes/subsystems/IDriveNode.h"
-#include "lib-rr/nodes/odometry_nodes/OdometryNode.h"
-#include "lib-rr/nodes/sensor_nodes/InertialSensorNode.h"
-#include "lib-rr/auton/auton_actions/DriveStraightAction.h"
+#include "auton/Auton.h"
+#include "nodes/subsystems/IDriveNode.h"
+#include "nodes/odometry_nodes/OdometryNode.h"
+#include "nodes/sensor_nodes/InertialSensorNode.h"
+#include "auton/auton_actions/DriveStraightAction.h"
 #include "auton/auton_actions/testOdometry.h"
-#include "lib-rr/auton/auton_actions/UseClawAction.h"
-#include "lib-rr/auton/auton_actions/MoveLiftToPositionAction.h"
-#include "lib-rr/util/Constants.h"
-#include "lib-rr/eigen/Eigen/Dense"
+#include "auton/auton_actions/UseClawAction.h"
+#include "auton/auton_actions/MoveLiftToPositionAction.h"
+#include "util/Constants.h"
+#include "eigen/Eigen/Dense"
 
 class odomTest : public Auton {
 public:

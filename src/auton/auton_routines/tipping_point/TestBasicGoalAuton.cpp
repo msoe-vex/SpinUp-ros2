@@ -1,4 +1,4 @@
-#include "auton/auton_routines/TestBasicGoalAuton.h"
+#include "auton/auton_routines/tipping_point/TestBasicGoalAuton.h"
 
 TestBasicGoalAuton::TestBasicGoalAuton(IDriveNode* drive_node, OdometryNode* odom_node, IClawNode* claw_node) : 
         Auton("Test Path Node"), 

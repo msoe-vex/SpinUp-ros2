@@ -1,20 +1,18 @@
 #pragma once
 
-#include "lib-rr/nodes/NodeManager.h"
-#include "lib-rr/eigen/Eigen/Dense"
-#include "lib-rr/swerve/SwerveController.h"
-#include "lib-rr/nodes/actuator_nodes/MotorNode.h"
-#include "lib-rr/nodes/sensor_nodes/ADIAnalogInNode.h"
-#include "lib-rr/nodes/sensor_nodes/ControllerNode.h"
-#include "lib-rr/nodes/sensor_nodes/InertialSensorNode.h"
-#include "ros_lib/v5_hal/RollPitchYaw.h"
+#include "nodes/NodeManager.h"
+#include "eigen/Eigen/Dense"
+#include "swerve/SwerveController.h"
+#include "nodes/actuator_nodes/MotorNode.h"
+#include "nodes/sensor_nodes/ADIAnalogInNode.h"
+#include "nodes/sensor_nodes/ControllerNode.h"
+#include "nodes/sensor_nodes/InertialSensorNode.h"
 
 class DriverControlNode : public Node {
 private:
     SwerveController swerveController;
 
     std::string m_handle_name;
-    ros::Publisher* m_publisher;
 
     Eigen::Vector2d controller_target_velocity;
     Eigen::Vector2d field_target_velocity;
@@ -38,8 +36,6 @@ private:
     ADIAnalogInNode* rear_swerve_pot;
     InertialSensorNode* inertial_sensor;
     pros::Controller* controller_primary;
-
-    void m_navxDataCallback(const v5_hal::RollPitchYaw& msg);
 
     void m_spinIntakesVoltage(int voltage);
 
