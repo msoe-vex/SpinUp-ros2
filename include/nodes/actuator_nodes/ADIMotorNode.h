@@ -7,8 +7,7 @@ class ADIMotorNode : public Node {
 
 private:
     pros::ADIMotor m_motor;
-
-    void m_setValue(const std_msgs::Int16& msg);
+    std::string m_handle_name;
 
 public:
     ADIMotorNode(NodeManager* node_manager, std::string handle_name, int port);

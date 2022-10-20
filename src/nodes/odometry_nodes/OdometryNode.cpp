@@ -26,7 +26,7 @@ IOdometry* OdometryNode::m_getOdomClass(OdomConfig config) {
         case TANK:
             return new TankOdometry(v5_integrated_encoder_config, v5_integrated_encoder_config, m_locations);
         default:
-            Node::m_handle->logerror("Error creating odometry instance in OdometryNode.cpp");
+            // Node::m_handle->logerror("Error creating odometry instance in OdometryNode.cpp");
             return new FollowerOdometry(adi_encoder_config, adi_encoder_config, m_locations);
     }
 }

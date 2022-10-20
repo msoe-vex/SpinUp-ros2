@@ -36,6 +36,34 @@
 
 #include "api.h"
 
+
+#include "nodes/NodeManager.h"
+#include "auton/AutonManagerNode.h"
+#include "nodes/actuator_nodes/MotorNode.h"
+#include "nodes/sensor_nodes/ADIAnalogInNode.h"
+#include "nodes/sensor_nodes/ADIDigitalInNode.h"
+#include "nodes/sensor_nodes/ADIEncoderNode.h"
+#include "nodes/sensor_nodes/ADIGyroNode.h"
+#include "nodes/sensor_nodes/ADIUltrasonicNode.h"
+#include "nodes/sensor_nodes/ADIPotentiometerNode.h"
+#include "nodes/sensor_nodes/InertialSensorNode.h"
+#include "nodes/sensor_nodes/ControllerNode.h"
+#include "nodes/system_nodes/CompetitionStatusNode.h"
+#include "nodes/system_nodes/ProsTimeNode.h"
+#include "nodes/system_nodes/BatteryNode.h"
+#include "nodes/sensor_nodes/InertialSensorNode.h"
+#include "nodes/system_nodes/ConnectionCheckerNode.h"
+#include "nodes/subsystems/IDriveNode.h"
+#include "nodes/subsystems/IConveyorNode.h"
+#include "nodes/subsystems/IRollerIntakeNode.h"
+#include "auton/auton_actions/DriveStraightAction.h"
+#include "auton/auton_actions/FollowPathAction.h"
+#include "eigen/Eigen/Dense"
+#include "pathing/PathManager.h"
+#include "pathing/PathSelector.h"
+#include "auton/AutonSelector.h"
+#include "util/Logger.h"
+
 /**
  * You should add more #includes here
  */

@@ -8,12 +8,6 @@ private:
     pros::Motor m_motor;
     std::string m_handle_name;
 
-    void m_populateMessage();
-
-    void m_publishData(const std_msgs::Empty& msg);
-
-    void m_moveMotorVoltage(const std_msgs::Int8& msg);
-
     int m_getMaxRPM();
 
 public:

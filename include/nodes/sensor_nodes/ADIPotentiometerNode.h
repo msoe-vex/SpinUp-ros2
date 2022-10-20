@@ -2,7 +2,6 @@
 
 #include "nodes/NodeManager.h"
 #include "api.h"
-#include "ros_lib/std_msgs/Float64.h"
 
 class ADIPotentiometerNode : public Node {
 private:

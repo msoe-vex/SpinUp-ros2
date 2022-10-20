@@ -30,6 +30,7 @@ private:
 protected:
 
 public:
+    std::string* m_handle;
     NodeManager(uint32_t(*get_milliseconds)(void));
 
     std::string* addNode(Node* node, uint32_t interval_milliseconds);

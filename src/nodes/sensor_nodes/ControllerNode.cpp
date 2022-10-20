@@ -12,12 +12,12 @@ ControllerNode::ControllerNode(NodeManager* node_manager, std::string handle_nam
     m_handle_name = handle_name.insert(0, "joystick/");
 }
 
-void ControllerNode::m_rumbleController(const std_msgs::String& msg) {
-    std::string str = msg.data;
-    if (str.length() <= 8) {
-        m_controller.rumble(str.c_str());
-    }
-}
+// void ControllerNode::m_rumbleController(const std_msgs::String& msg) {
+//     std::string str = msg.data;
+//     if (str.length() <= 8) {
+//         m_controller.rumble(str.c_str());
+//     }
+// }
 
 void ControllerNode::initialize() {
 }

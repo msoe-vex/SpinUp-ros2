@@ -9,10 +9,6 @@ private:
     std::string m_handle_name;
     bool m_reverse;
 
-    void m_setValue(const std_msgs::Bool& msg);
-
-    void m_publishData(const std_msgs::Empty& msg);
-
 public:
     ADIDigitalOutNode(NodeManager* node_manager, std::string handle_name, int port, bool initial_state=false, bool reverse=false);
 

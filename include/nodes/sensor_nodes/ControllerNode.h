@@ -9,7 +9,7 @@ private:
     pros::Controller m_controller; //Creates a new Pros Controller object
     std::string m_handle_name; //Creates a handle name to specify between objects
 
-    void m_rumbleController(const std_msgs::String& msg);
+    // void m_rumbleController(const std_msgs::String& msg);
 
 public:
     ControllerNode(NodeManager* node_manager, std::string handle_name,

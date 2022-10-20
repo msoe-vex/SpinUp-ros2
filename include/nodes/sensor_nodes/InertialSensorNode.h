@@ -42,7 +42,7 @@ private:
     Eigen::Rotation2Dd m_yaw;
     Eigen::Rotation2Dd m_gyro_offset_angle; 
 
-    void m_handleSensorMsg(const v5_hal::RollPitchYaw& msg);
+    // void m_handleSensorMsg(const v5_hal::RollPitchYaw& msg);
 
     Eigen::Rotation2Dd m_getV5Roll();
 

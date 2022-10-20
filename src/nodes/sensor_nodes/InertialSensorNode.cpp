@@ -9,12 +9,12 @@ InertialSensorNode::InertialSensorNode(NodeManager* node_manager,
     m_inertial_sensor = new pros::Imu(sensor_port);
 }
 
-void InertialSensorNode::m_handleSensorMsg(const v5_hal::RollPitchYaw& msg) {
-    // Convert value to radians
-    Eigen::Rotation2Dd current_angle(msg.yaw  * (M_PI/180));
-    // Rotate by the initial angle to get our current yaw
-    m_yaw = current_angle.inverse() * m_gyro_offset_angle;
-}
+// void InertialSensorNode::m_handleSensorMsg(const v5_hal::RollPitchYaw& msg) {
+//     // Convert value to radians
+//     Eigen::Rotation2Dd current_angle(msg.yaw  * (M_PI/180));
+//     // Rotate by the initial angle to get our current yaw
+//     m_yaw = current_angle.inverse() * m_gyro_offset_angle;
+// }
 
 Eigen::Rotation2Dd InertialSensorNode::m_getV5Roll() {
     Eigen::Rotation2Dd current_angle(m_inertial_sensor->get_roll() * -(M_PI/180));
