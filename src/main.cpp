@@ -2,7 +2,21 @@
 
 NodeManager* nodeManager;
 
+NodeManager* node_manager = new NodeManager(pros::millis);
 
+ControllerNode* primary_controller;
+
+MotorNode* left_front_drive;
+MotorNode* left_front_drive_2;
+MotorNode* left_rear_drive;
+MotorNode* left_rear_drive_2;
+MotorNode* right_front_drive;
+MotorNode* right_front_drive_2;
+MotorNode* right_rear_drive;
+MotorNode* right_rear_drive_2;
+HolonomicDriveNode* holonomic_drive_node;
+
+InertialSensorNode* inertial_sensor;
 
 /**
  * Runs initialization code. This occurs as soon as the program is started.
@@ -12,6 +26,36 @@ NodeManager* nodeManager;
  */
 void initialize() {
 	nodeManager = new NodeManager(pros::millis);
+
+	HolonomicDriveNode::HolonomicEightMotors holonomic_drive_motors = {
+		left_front_drive, 
+		left_front_drive_2,
+		left_rear_drive,
+		left_rear_drive_2, 
+		right_front_drive,
+		right_front_drive_2,
+		right_rear_drive,
+		right_rear_drive_2 
+	};
+
+	EncoderConfig holonomic_encoder_config = {
+		0, // Initial ticks
+		360, // Ticks per RPM
+		3.75 // Wheel diameter
+	};
+
+	HolonomicDriveKinematics::HolonomicWheelLocations holonomic_wheel_locations = {
+		Vector2d(-5.48, 5.48), // Left front
+		Vector2d(-5.48, -5.48), // Left rear
+		Vector2d(5.48, 5.48), // Right front
+		Vector2d(5.48, -5.48) // Right rear
+	};
+
+	HolonomicDriveKinematics holonomic_drive_kinematics(holonomic_encoder_config, holonomic_wheel_locations);
+
+    holonomic_drive_node = new HolonomicDriveNode(node_manager, "drivetrain", primary_controller, inertial_sensor,
+	    holonomic_drive_motors,	holonomic_drive_kinematics);
+
 
 
 }
