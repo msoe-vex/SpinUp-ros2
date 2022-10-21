@@ -49,6 +49,7 @@ private:
     int m_lowerStop = 275;
 
     PID m_lift_pid;
+    PID m_lift_pid_goal;
 
     int m_target_position;
     int m_tolerance;

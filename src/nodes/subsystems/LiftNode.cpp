@@ -10,6 +10,7 @@ LiftNode::LiftNode(NodeManager* node_manager, std::string handle_name,
         m_potentiometer(potentiometer),
         m_lift_state(HOLDING),
         m_lift_pid(0.002, 0., 0., 0), 
+        m_lift_pid_goal(0.002, 0., 0., 0), //TO DO: TUNE FOR GOAL IN MIND
         m_target_position(0),
         m_tolerance(10) {
 

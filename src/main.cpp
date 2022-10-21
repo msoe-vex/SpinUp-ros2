@@ -1,8 +1,13 @@
 #include "main.h"
+#include "nodes/sensor_nodes/ADIDigitalInNode.h"
+#include "nodes/sensor_nodes/ADIPotentiometerNode.h"
 
 NodeManager* nodeManager;
 
+MotorNode* leftLiftMotor;
+MotorNode* rightLiftMotor;
 
+ADIPotentiometerNode* liftPotentiometer;
 
 /**
  * Runs initialization code. This occurs as soon as the program is started.
@@ -13,7 +18,9 @@ NodeManager* nodeManager;
 void initialize() {
 	nodeManager = new NodeManager(pros::millis);
 
-
+	leftLiftMotor = new MotorNode(nodeManager, 18, "leftLiftMotor", false);
+	rightLiftMotor = new MotorNode(nodeManager, 17, "rightLiftMotor", true);
+	liftPotentiometer = new ADIPotentiometerNode(nodeManager, 'H', "liftPotentiometer");
 }
 
 /**
@@ -63,7 +70,7 @@ void autonomous() {}
 void opcontrol() {
 	// Reset all nodes to default configuration
 	nodeManager->reset();
-	
+
 	// Execute teleop code
 	while (true) {
 		nodeManager->executeTeleop();
