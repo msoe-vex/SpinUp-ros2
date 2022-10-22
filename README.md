@@ -7,3 +7,8 @@ The above command will clone the repo and update the submodules.
 
 If you have already cloned this repo without the above command or are having include issues, run this command:  
 `git submodule update --init --recursive`
+
+#### Other good comands to run when you are having issues
+
+`pros build clean`
+`pros conduct upgrade`
