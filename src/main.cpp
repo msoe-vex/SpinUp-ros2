@@ -27,6 +27,17 @@ InertialSensorNode* inertial_sensor;
 void initialize() {
 	nodeManager = new NodeManager(pros::millis);
 
+	/* Define the drivetrain components */
+	left_front_drive = new MotorNode(node_manager, 16, "leftFrontDrive", true);
+	left_front_drive_2 = new MotorNode(node_manager, 15, "leftFrontTopDrive", false);
+	left_rear_drive = new MotorNode(node_manager, 9, "leftRearDrive", true);
+	left_rear_drive_2 = new MotorNode(node_manager, 10, "leftRearTopDrive", false);
+
+	right_front_drive = new MotorNode(node_manager, 1, "rightFrontDrive", false);
+	right_front_drive_2 = new MotorNode(node_manager, 13, "rightFrontTopDrive", true);
+	right_rear_drive = new MotorNode(node_manager, 2, "rightRearDrive", false);
+	right_rear_drive_2 = new MotorNode(node_manager, 3, "rightRearTopDrive", true);
+
 	HolonomicDriveNode::HolonomicEightMotors holonomic_drive_motors = {
 		left_front_drive, 
 		left_front_drive_2,
@@ -56,7 +67,8 @@ void initialize() {
     holonomic_drive_node = new HolonomicDriveNode(node_manager, "drivetrain", primary_controller, inertial_sensor,
 	    holonomic_drive_motors,	holonomic_drive_kinematics);
 
-
+	// Call the node manager to initialize all of the nodes above
+	node_manager->initialize();
 
 }
 
