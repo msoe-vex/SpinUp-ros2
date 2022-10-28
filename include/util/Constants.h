@@ -8,7 +8,7 @@
 
 // Offset to apply to get the gyro into our correct frame of reference
 // Forward is M_PI_2, so we rotate the gyro angle to match
-#define GYRO_OFFSET (M_PI_2)
+#define GYRO_OFFSET (0)
 #define MAX_WHEEL_SPEED 1.1526 // Wheel speed for Holonomic Drive in m/s 
 
 // The following was from code that is no longer in current use
