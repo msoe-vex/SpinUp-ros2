@@ -14,9 +14,12 @@ MotorNode *right_front_drive;
 MotorNode *right_front_drive_2;
 MotorNode *right_rear_drive;
 MotorNode *right_rear_drive_2;
+MotorNode *intake;
 HolonomicDriveNode *holonomic_drive_node;
 
 InertialSensorNode *inertial_sensor;
+
+IntakeNode* intake_node;
 
 /**
  * Runs initialization code. This occurs as soon as the program is started.
@@ -70,6 +73,12 @@ void initialize() {
   holonomic_drive_node = new HolonomicDriveNode(
       node_manager, "drivetrain", primary_controller, inertial_sensor,
       holonomic_drive_motors, holonomic_drive_kinematics);
+
+/* Define the intake components */
+	intake = new MotorNode(node_manager, 5, "intake", true);
+
+    intake_node = new IntakeNode(node_manager, "intake", 
+    primary_controller, pros::E_CONTROLLER_DIGITAL_R1, pros::E_CONTROLLER_DIGITAL_R2, intake);	
 
   // Call the node manager to initialize all of the nodes above
   node_manager->initialize();
