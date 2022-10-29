@@ -1,4 +1,5 @@
 #include "main.h"
+#include "nodes/subsystems/IntakeNode.h"
 
 NodeManager *nodeManager;
 
@@ -135,6 +136,7 @@ void opcontrol() {
   // Execute teleop code
   while (true) {
     nodeManager->executeTeleop();
-    holonomic_drive_node->m_fieldOrientedControl();
+    holonomic_drive_node->teleopPeriodic();
+    intake_node->teleopPeriodic();
   }
 }
