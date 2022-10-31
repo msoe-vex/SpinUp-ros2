@@ -14,7 +14,8 @@ public:
 
     void initialize();
 
-    void teleopPeriodic();
+    void teleopPeriodicA();
+    void teleopPeriodicB();
 
     void autonPeriodic();
 
@@ -25,9 +26,11 @@ private:
 
     std::string m_handle_name;
 
-    MotorNode* fly_wheel;
+    MotorNode* motor;
 
     PID* pid;
+
+    bool toggle;
 
 
 };
