@@ -1,4 +1,5 @@
 #include "main.h"
+#include "nodes/actuator_nodes/MotorNode.h"
 #include "nodes/subsystems/IntakeNode.h"
 
 NodeManager *nodeManager;
@@ -16,11 +17,14 @@ MotorNode *right_front_drive_2;
 MotorNode *right_rear_drive;
 MotorNode *right_rear_drive_2;
 MotorNode *intake;
+MotorNode *shooter;
+MotorNode *shooter2;
 HolonomicDriveNode *holonomic_drive_node;
 
 InertialSensorNode *inertial_sensor;
 
 IntakeNode* intake_node;
+ShooterNode* shooter_node;
 
 /**
  * Runs initialization code. This occurs as soon as the program is started.
@@ -77,9 +81,14 @@ void initialize() {
 
 /* Define the intake components */
 	intake = new MotorNode(node_manager, 5, "intake", true);
+	shooter = new MotorNode(node_manager, 11, "intake", true);
+	shooter2 = new MotorNode(node_manager, 12, "intake", true);
 
     intake_node = new IntakeNode(node_manager, "intake", 
     primary_controller, pros::E_CONTROLLER_DIGITAL_R1, pros::E_CONTROLLER_DIGITAL_R2, intake);	
+
+    shooter_node = new ShooterNode(node_manager, "shooter", 
+    primary_controller, pros::E_CONTROLLER_DIGITAL_L1, pros::E_CONTROLLER_DIGITAL_L2, shooter, shooter2);	
 
   // Call the node manager to initialize all of the nodes above
   node_manager->initialize();

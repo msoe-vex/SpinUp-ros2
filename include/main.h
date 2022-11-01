@@ -64,6 +64,7 @@
 #include "auton/AutonSelector.h"
 #include "nodes/subsystems/HolonomicDriveNode.h"
 #include "nodes/subsystems/IntakeNode.h"
+#include "nodes/subsystems/ShooterNode.h"
 
 /**
  * You should add more #includes here
