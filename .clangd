@@ -1,0 +1,2 @@
+Diagnostics:
+    Suppress: [type_unsupported, unknown_typename, excess_initializers]

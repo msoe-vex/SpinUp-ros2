@@ -1,9 +1,22 @@
 #include "nodes/NodeManager.h"
+#include "nodes/sensor_nodes/ControllerNode.h"
+#include "nodes/subsystems/InputHandlerNode.h"
 #include <string>
 
 NodeManager::NodeManager(uint32_t(*get_milliseconds)(void)) {
     m_get_millis = get_milliseconds;
     m_handle = new std::string("test");
+
+    ControllerNode controller_node = {
+        this,
+        "controller",
+    };
+
+    InputHandlerNode input_handler_node = {
+        this,
+        "handler",
+        &controller_node
+    };
 }
 
 std::string* NodeManager::addNode(Node* node,
