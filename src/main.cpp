@@ -19,11 +19,13 @@ MotorNode *right_rear_drive_2;
 MotorNode *intake;
 MotorNode *shooter;
 MotorNode *shooter2;
+MotorNode *indexer;
 HolonomicDriveNode *holonomic_drive_node;
 
 InertialSensorNode *inertial_sensor;
 
 IntakeNode* intake_node;
+IntakeNode *indexer_node;
 ShooterNode* shooter_node;
 
 /**
@@ -81,11 +83,16 @@ void initialize() {
 
 /* Define the intake components */
 	intake = new MotorNode(node_manager, 5, "intake", true);
-	shooter = new MotorNode(node_manager, 11, "intake", true);
-	shooter2 = new MotorNode(node_manager, 12, "intake", true);
+	indexer = new MotorNode(node_manager, 7, "indexer", true);
+	shooter = new MotorNode(node_manager, 11, "shooter", true);
+	shooter2 = new MotorNode(node_manager, 12, "shooter2", true);
 
     intake_node = new IntakeNode(node_manager, "intake", 
     primary_controller, pros::E_CONTROLLER_DIGITAL_R1, pros::E_CONTROLLER_DIGITAL_R2, intake);	
+
+    indexer_node = new IntakeNode(node_manager, "indexer", 
+    primary_controller, pros::E_CONTROLLER_DIGITAL_X, pros::E_CONTROLLER_DIGITAL_Y, indexer);	
+
 
     shooter_node = new ShooterNode(node_manager, "shooter", 
     primary_controller, pros::E_CONTROLLER_DIGITAL_L1, pros::E_CONTROLLER_DIGITAL_L2, shooter, shooter2);	
@@ -147,5 +154,7 @@ void opcontrol() {
     nodeManager->executeTeleop();
     holonomic_drive_node->teleopPeriodic();
     intake_node->teleopPeriodic();
+    indexer_node->teleopPeriodic();
+    shooter_node->teleopPeriodic();
   }
 }
