@@ -10,11 +10,11 @@ public:
 
 
     FlyWheelNode(NodeManager* node_manager, std::string handle_name, ControllerNode* controller,
-    MotorNode motor);
+    MotorNode* motorL, MotorNode* motorR);
 
     void initialize();
 
-    void teleopPeriodicA();
+    void teleopPeriodic();
     void teleopPeriodicB();
 
     void autonPeriodic();
@@ -26,11 +26,12 @@ private:
 
     std::string m_handle_name;
 
-    MotorNode* motor;
+    MotorNode* m_motorL;
+    MotorNode* m_motorR;
 
-    PID* pid;
+    PID* m_pid;
 
-    bool toggle;
+    bool m_toggle;
 
 
 };

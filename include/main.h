@@ -53,6 +53,7 @@
 #include "nodes/system_nodes/BatteryNode.h"
 #include "nodes/sensor_nodes/InertialSensorNode.h"
 #include "nodes/system_nodes/ConnectionCheckerNode.h"
+#include "nodes/subsystems/FlyWheelNode.h"
 #include "nodes/subsystems/IDriveNode.h"
 #include "nodes/subsystems/IConveyorNode.h"
 #include "nodes/subsystems/IRollerIntakeNode.h"
