@@ -1,16 +1,13 @@
-#include "nodes/actuator_nodes/MotorNode.h"
-#include "nodes/subsystems/IShooterNode.h"
 #include "nodes/subsystems/ShooterNode.h"
 
 ShooterNode::ShooterNode(NodeManager* node_manager, std::string handle_name, ControllerNode* controller, 
-pros::controller_digital_e_t shoot_button, pros::controller_digital_e_t reverse_button, 
-        MotorNode* shooter, MotorNode* shooter2) : IShooterNode(node_manager, handle_name), 
+pros::controller_digital_e_t shoot_button, 
+        MotorNode* shooter, MotorNode* shooter2) : Node(node_manager, 10), 
         m_controller(controller->getController()),
         m_shooter(shooter),
         m_shooter2(shooter2),
         m_state(IDLE),
-        m_shootButton(shoot_button),
-        m_reverseButton(reverse_button) {
+        m_shootButton(shoot_button) {
     m_handle_name = handle_name.insert(0, "robot/");
 }
 
@@ -30,7 +27,6 @@ void ShooterNode::initialize() {
 
 void ShooterNode::teleopPeriodic() {
     bool shootButtonCurrentState = m_controller->get_digital(m_shootButton);
-    bool reverseButtonCurrentState = m_controller->get_digital(m_reverseButton);
 
     switch (m_state) {
         case IDLE:
@@ -38,8 +34,6 @@ void ShooterNode::teleopPeriodic() {
 
             if (shootButtonCurrentState && !m_previousShooterState) {
                 m_state = SHOOTING;
-            } else if (reverseButtonCurrentState == 1) {
-                m_state = REVERSE;
             }
 
             break;
@@ -47,18 +41,6 @@ void ShooterNode::teleopPeriodic() {
             setShootVoltage(MAX_MOTOR_VOLTAGE);
 
             if (shootButtonCurrentState && !m_previousShooterState) {
-                m_state = IDLE;
-            } else if (reverseButtonCurrentState) {
-                m_state = REVERSE;
-            }
-
-            break;
-        case REVERSE:
-            setShootVoltage(-1 * MAX_MOTOR_VOLTAGE);
-
-            if (shootButtonCurrentState) {
-                m_state = SHOOTING;
-            } else if (!reverseButtonCurrentState) {
                 m_state = IDLE;
             }
 

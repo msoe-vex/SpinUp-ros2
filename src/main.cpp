@@ -95,7 +95,7 @@ void initialize() {
 
 
     shooter_node = new ShooterNode(node_manager, "shooter", 
-    primary_controller, pros::E_CONTROLLER_DIGITAL_L1, pros::E_CONTROLLER_DIGITAL_L2, shooter, shooter2);	
+    primary_controller, pros::E_CONTROLLER_DIGITAL_L1, shooter, shooter2);	
 
   // Call the node manager to initialize all of the nodes above
   node_manager->initialize();

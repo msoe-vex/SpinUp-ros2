@@ -5,10 +5,11 @@
 #include "nodes/actuator_nodes/MotorNode.h"
 #include "nodes/sensor_nodes/ControllerNode.h"
 #include "nodes/actuator_nodes/ADIDigitalOutNode.h"
-#include "nodes/subsystems/IShooterNode.h"
 #include "util/Constants.h"
+#include "nodes/actuator_nodes/MotorNode.h"
 
-class ShooterNode: public IShooterNode {
+
+class ShooterNode: public Node {
 public:
     enum ShooterState {
         SHOOTING, REVERSE, IDLE
@@ -16,7 +17,7 @@ public:
 
     ShooterNode(NodeManager* node_manager, std::string handle_name, 
     ControllerNode* controller, pros::controller_digital_e_t shoot_button, 
-    pros::controller_digital_e_t reverse_button, MotorNode* shooter, MotorNode* shooter2);
+    MotorNode* shooter, MotorNode* shooter2);
 
     void setShootVoltage(int voltage);
 
@@ -38,7 +39,6 @@ private:
     MotorNode* m_shooter2;
 
     pros::controller_digital_e_t m_shootButton;
-    pros::controller_digital_e_t m_reverseButton;
 
     bool m_previousShooterState = false;
 
