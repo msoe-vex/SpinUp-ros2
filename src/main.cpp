@@ -253,16 +253,26 @@ void autonomous() {}
  * task, not resume it from where it left off.
  */
 void opcontrol() {
-  // Reset all nodes to default configuration
-  nodeManager->reset();
+    // Reset all nodes to default configuration
+    nodeManager->reset();
 
-  // Execute teleop code
-  while (true) {
-    nodeManager->executeTeleop();
-    holonomic_drive_node->teleopPeriodic();
-    intake_node->teleopPeriodic();
-    indexer_node->teleopPeriodic();
-    shooter_node->teleopPeriodic();
-    encoder->teleopPeriodic();
-  }
+    // Check that all nodes are initialized
+    std::vector<Node*> nodes = {holonomic_drive_node, intake_node, indexer_node, shooter_node, encoder, inertial_sensor};
+    for (Node* node : nodes) {
+        if (node == nullptr) {
+            pros::lcd::print(0, "Node %s is not initialized!", node->m_handle->c_str());
+            return;
+        }
+    }
+
+    // Execute teleop code
+    while (true) {
+        nodeManager->executeTeleop();
+        holonomic_drive_node->teleopPeriodic();
+        intake_node->teleopPeriodic();
+        indexer_node->teleopPeriodic();
+        shooter_node->teleopPeriodic();
+        encoder->teleopPeriodic();
+        inertial_sensor->teleopPeriodic();
+    }
 }
