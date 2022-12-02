@@ -55,6 +55,7 @@
 #include "nodes/system_nodes/ConnectionCheckerNode.h"
 #include "nodes/subsystems/IDriveNode.h"
 #include "nodes/subsystems/IConveyorNode.h"
+#include "nodes/subsystems/InputHandlerNode.h"
 #include "nodes/subsystems/IRollerIntakeNode.h"
 #include "auton/auton_actions/DriveStraightAction.h"
 #include "auton/auton_actions/FollowPathAction.h"

@@ -1,10 +1,12 @@
 #include "main.h"
+#include "nodes/subsystems/InputHandlerNode.h"
 
 NodeManager *nodeManager;
 
 NodeManager *node_manager = new NodeManager(pros::millis);
 
 ControllerNode *primary_controller;
+InputHandlerNode *input_handler;
 
 MotorNode *left_front_drive;
 MotorNode *left_front_drive_2;
@@ -29,6 +31,7 @@ void initialize() {
 
   // Define all nodes used by the robot here
   primary_controller = new ControllerNode(node_manager, "primary");
+  input_handler = new InputHandlerNode(node_manager, "handler", primary_controller);
 
   /* Define the drivetrain components */
   // for testing drivetrain purposes, a 4 motor drivetrain is being used

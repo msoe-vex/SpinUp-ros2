@@ -10,6 +10,19 @@ InputHandlerNode::InputHandlerNode(NodeManager* node_manager, std::string handle
     m_handle_name = handle_name.insert(0, "input/");
 }
 
+void InputHandlerNode::clear_pressed() {
+    just_pressed.clear();
+    pressed.clear();
+}
+
+void InputHandlerNode::push_new_press(pros::controller_digital_e_t button) {
+    just_pressed.insert_or_assign(button, nullptr);
+}
+
+void InputHandlerNode::push_pressing(pros::controller_digital_e_t button) {
+    pressed.insert_or_assign(button, nullptr);
+}
+
 void InputHandlerNode::teleopPeriodic() {
     clear_pressed();
 

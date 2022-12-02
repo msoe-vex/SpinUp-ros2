@@ -39,18 +39,10 @@ public:
     void teleopPeriodic();
     void autonPeriodic() {};
 
-    void clear_pressed() {
-        just_pressed.clear();
-        pressed.clear();
-    }
+    void clear_pressed();
 
-    void push_new_press(pros::controller_digital_e_t button) {
-        just_pressed.insert_or_assign(button, nullptr);
-    }
-    
-    void push_pressing(pros::controller_digital_e_t button) {
-        pressed.insert_or_assign(button, nullptr);
-    }
+    void push_new_press(pros::controller_digital_e_t button);
+    void push_pressing(pros::controller_digital_e_t button);
 
     ~InputHandlerNode();
 };
