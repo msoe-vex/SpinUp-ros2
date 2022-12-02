@@ -6,6 +6,7 @@ ADIEncoderNode::ADIEncoderNode(NodeManager* node_manager, int port_top,
     int port_bottom, std::string handle_name, bool reverse) : Node(node_manager, 10), 
     m_encoder(port_top, port_bottom, reverse) {
     m_handle_name = handle_name.insert(0, "sensor/");
+    m_prevTicks = 0;
 }
 
 ADIEncoderNode::ADIEncoderNode(NodeManager* node_manager, pros::ext_adi_port_tuple_t port_tuple, 
@@ -19,6 +20,15 @@ void ADIEncoderNode::initialize() {
 
 int ADIEncoderNode::getValue() {
     return m_encoder.get_value();
+}
+
+float ADIEncoderNode::getRPM() {
+    float delta_time = m_timer.Get();
+    float delta_ticks = getValue() - m_prevTicks;
+
+    m_timer.Start();
+    m_prevTicks = getValue();
+    return (60.0 / delta_time) * (delta_ticks / 360.0);    
 }
 
 void ADIEncoderNode::teleopPeriodic() {

@@ -35,6 +35,7 @@
 #define PROS_USE_LITERALS
 
 #include "api.h"
+#include <math.h>
 
 
 #include "nodes/NodeManager.h"

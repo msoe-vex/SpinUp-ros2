@@ -27,6 +27,9 @@ public:
     void moveVoltage(int voltage);
 
     void moveVelocity(float velocity);
+    float getVelocity();
+
+    float getRPM();
 
     void moveAbsolute(double position, int max_velocity);
 
