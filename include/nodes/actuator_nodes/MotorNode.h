@@ -28,6 +28,8 @@ public:
 
     void moveVelocity(float velocity);
 
+    double getVelocity();
+
     void moveAbsolute(double position, int max_velocity);
 
     void teleopPeriodic();

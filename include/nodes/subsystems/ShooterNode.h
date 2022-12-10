@@ -2,17 +2,19 @@
 
 #include "nodes/NodeManager.h"
 #include "api.h"
+#include "math.h"
 #include "nodes/actuator_nodes/MotorNode.h"
 #include "nodes/sensor_nodes/ControllerNode.h"
 #include "nodes/actuator_nodes/ADIDigitalOutNode.h"
 #include "util/Constants.h"
+#include "util/PID.h"
 #include "nodes/actuator_nodes/MotorNode.h"
 
 
 class ShooterNode: public Node {
 public:
     enum ShooterState {
-        SHOOTING, REVERSE, IDLE
+        SHOOTING, REVERSE, IDLE, PID
     };
 
     ShooterNode(NodeManager* node_manager, std::string handle_name, 
@@ -41,6 +43,12 @@ private:
     pros::controller_digital_e_t m_shootButton;
 
     bool m_previousShooterState = false;
+
+    PID m_PID;
+    PID m_PID2;
+
+    float m_currentError;
+    float m_currentError2;
 
     std::string m_handle_name;
 };

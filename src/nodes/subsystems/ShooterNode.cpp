@@ -7,7 +7,9 @@ pros::controller_digital_e_t shoot_button,
         m_shooter(shooter),
         m_shooter2(shooter2),
         m_state(IDLE),
-        m_shootButton(shoot_button) {
+        m_shootButton(shoot_button),
+        m_PID(0.5,0,0,0),
+        m_PID2(0.5,0,0,0) {
     m_handle_name = handle_name.insert(0, "robot/");
 }
 
@@ -33,7 +35,7 @@ void ShooterNode::teleopPeriodic() {
             setShootVoltage(0);
 
             if (shootButtonCurrentState && !m_previousShooterState) {
-                m_state = SHOOTING;
+                m_state = PID;
             }
 
             break;
@@ -45,6 +47,20 @@ void ShooterNode::teleopPeriodic() {
             }
 
             break;
+        
+        case PID:
+            m_currentError = (float)(40.0 - m_shooter->getVelocity())/50.0f;
+            m_currentError2 = (float)(40.0 - m_shooter2->getVelocity())/50.0f;
+
+            m_shooter->moveVelocity(fabs(50.f*(m_currentError2+0.8f)));//m_PID.calculate(m_currentError));
+            m_shooter2->moveVelocity(fabs(50.f*(m_currentError2+0.8f)));
+            
+            if (shootButtonCurrentState && !m_previousShooterState) {
+                m_state = IDLE;
+            }
+
+            break;
+
         default:
             break;
     };
