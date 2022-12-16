@@ -14,7 +14,7 @@
 class ShooterNode: public Node {
 public:
     enum ShooterState {
-        SHOOTING, REVERSE, IDLE, PID
+        SHOOTING, REVERSE, IDLE, TEST
     };
 
     ShooterNode(NodeManager* node_manager, std::string handle_name, 
@@ -45,10 +45,10 @@ private:
     bool m_previousShooterState = false;
 
     PID m_PID;
-    PID m_PID2;
 
     float m_currentError;
-    float m_currentError2;
+    float m_target_velocity;
+    float m_feedback;
 
     std::string m_handle_name;
 };

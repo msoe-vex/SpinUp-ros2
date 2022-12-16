@@ -1,4 +1,5 @@
 #include "nodes/subsystems/ShooterNode.h"
+#include "util/Constants.h"
 
 ShooterNode::ShooterNode(NodeManager* node_manager, std::string handle_name, ControllerNode* controller, 
 pros::controller_digital_e_t shoot_button, 
@@ -8,9 +9,9 @@ pros::controller_digital_e_t shoot_button,
         m_shooter2(shooter2),
         m_state(IDLE),
         m_shootButton(shoot_button),
-        m_PID(0.5,0,0,0),
-        m_PID2(0.5,0,0,0) {
+        m_PID(0.5,0,0,0) {
     m_handle_name = handle_name.insert(0, "robot/");
+    m_target_velocity = 40.f;
 }
 
 void ShooterNode::setShootVoltage(int voltage) {
@@ -35,7 +36,7 @@ void ShooterNode::teleopPeriodic() {
             setShootVoltage(0);
 
             if (shootButtonCurrentState && !m_previousShooterState) {
-                m_state = PID;
+                m_state = TEST;
             }
 
             break;
@@ -48,12 +49,13 @@ void ShooterNode::teleopPeriodic() {
 
             break;
         
-        case PID:
-            m_currentError = (float)(40.0 - m_shooter->getVelocity())/50.0f;
-            m_currentError2 = (float)(40.0 - m_shooter2->getVelocity())/50.0f;
+        case TEST:
+            m_currentError = m_target_velocity - m_shooter->getVelocity();
 
-            m_shooter->moveVelocity(fabs(50.f*(m_currentError2+0.8f)));//m_PID.calculate(m_currentError));
-            m_shooter2->moveVelocity(fabs(50.f*(m_currentError2+0.8f)));
+            m_feedback =  m_PID.calculate(m_currentError) * MAX_VELOCITY;
+
+            m_shooter->moveVelocity(m_feedback);
+            m_shooter2->moveVelocity(m_feedback);
             
             if (shootButtonCurrentState && !m_previousShooterState) {
                 m_state = IDLE;

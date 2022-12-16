@@ -28,7 +28,7 @@ public:
 
     void moveVelocity(float velocity);
 
-    double getVelocity();
+    float getVelocity();
 
     void moveAbsolute(double position, int max_velocity);
 
