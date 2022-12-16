@@ -33,41 +33,37 @@ void ShooterNode::teleopPeriodic() {
 
     switch (m_state) {
         case IDLE:
-            setShootVoltage(0);
+            m_target_velocity = IDLE_VELOCITY;
 
             if (shootButtonCurrentState && !m_previousShooterState) {
-                m_state = TEST;
+                m_state = SHOOTING;
             }
 
             break;
         case SHOOTING:
-            setShootVoltage(MAX_MOTOR_VOLTAGE);
+            m_target_velocity = SHOOTING_VELOCITY;
 
             if (shootButtonCurrentState && !m_previousShooterState) {
                 m_state = IDLE;
             }
-
-            break;
-        
-        case TEST:
-            m_currentError = m_target_velocity - m_shooter->getVelocity();
-
-            m_feedback =  m_PID.calculate(m_currentError) * MAX_VELOCITY;
-
-            m_shooter->moveVelocity(m_feedback);
-            m_shooter2->moveVelocity(m_feedback);
             
-            if (shootButtonCurrentState && !m_previousShooterState) {
-                m_state = IDLE;
-            }
-
-            break;
-
+            break;  
         default:
             break;
     };
 
+    setShooterPID();
     m_previousShooterState = shootButtonCurrentState;
+}
+
+void ShooterNode::setShooterPID() {
+    m_currentError = m_target_velocity - m_shooter->getVelocity();
+
+    m_feedback =  m_PID.calculate(m_currentError) * MAX_VELOCITY;
+
+    m_shooter->moveVelocity(m_feedback);
+    m_shooter2->moveVelocity(m_feedback);
+                
 }
 
 void ShooterNode::autonPeriodic() {

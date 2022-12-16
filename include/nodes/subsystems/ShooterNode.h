@@ -31,6 +31,8 @@ public:
 
     void autonPeriodic();
 
+    void setShooterPID();
+
     ~ShooterNode();
 
 private:
