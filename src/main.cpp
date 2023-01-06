@@ -83,9 +83,14 @@ void init15in() {
     inertial_sensor =
         new InertialSensorNode(node_manager, "inertialSensor", 10); 
 
-    // TODO: Need encoder locations, IOdometry::EncoderLocations locations
+    //TODO: Dummy Encoder Values, need updates to see what would be accurate
+    IOdometry::EncoderLocations encoderLocations {
+		Vector2d(-0.008, -4.882),
+		Vector2d(1.556, -1.263)
+	};
+
     odom_node = new OdometryNode(node_manager, "odometry", x_odom_encoder,
-            y_odom_encoder, inertial_sensor, OdometryNode::FOLLOWER);
+            y_odom_encoder, inertial_sensor, OdometryNode::FOLLOWER, encoderLocations);
 
     HolonomicDriveKinematics holonomic_drive_kinematics(
         holonomic_encoder_config, holonomic_wheel_locations);
