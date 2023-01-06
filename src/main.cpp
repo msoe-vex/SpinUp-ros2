@@ -1,5 +1,7 @@
 #include "main.h"
 #include "nodes/actuator_nodes/MotorNode.h"
+#include "nodes/odometry_nodes/OdometryNode.h"
+#include "nodes/sensor_nodes/ADIEncoderNode.h"
 #include "nodes/subsystems/IntakeNode.h"
 
 NodeManager *nodeManager;
@@ -24,7 +26,12 @@ HolonomicDriveNode *holonomic_drive_node;
 
 ADIEncoderNode* encoder;
 
+ADIEncoderNode* x_odom_encoder;
+ADIEncoderNode* y_odom_encoder;
+
 InertialSensorNode *inertial_sensor;
+
+OdometryNode* odom_node;
 
 IntakeNode* intake_node;
 IntakeNode *indexer_node;
@@ -65,10 +72,20 @@ void init15in() {
 
     encoder = new ADIEncoderNode(node_manager, 'C', 'D', "encoder");        
 
+    /* Define the odometry components here*/
+
+    // TODO: Need the right ports for the odometry encoders
+    x_odom_encoder = new ADIEncoderNode(node_manager, 'A', 'B', "xOdomEncoder", false);
+	y_odom_encoder = new ADIEncoderNode(node_manager, 'C', 'D', "yOdomEncoder", false);
+
     // TODO: PUT A GYRO ON THE ROBOT
     // Also put the right port here
     inertial_sensor =
         new InertialSensorNode(node_manager, "inertialSensor", 10); 
+
+    // TODO: Need encoder locations, IOdometry::EncoderLocations locations
+    odom_node = new OdometryNode(node_manager, "odometry", x_odom_encoder,
+            y_odom_encoder, inertial_sensor, OdometryNode::FOLLOWER);
 
     HolonomicDriveKinematics holonomic_drive_kinematics(
         holonomic_encoder_config, holonomic_wheel_locations);
