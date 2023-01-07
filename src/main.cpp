@@ -21,6 +21,7 @@ MotorNode *shooter_motor;
 MotorNode *shooter_motor_2;
 MotorNode *indexer_motor;
 HolonomicDriveNode *holonomic_drive_node;
+TankDriveNode *tank_drive_node;
 
 ADIEncoderNode* encoder;
 
@@ -106,24 +107,26 @@ void init18in() {
     right_rear_drive = new MotorNode(node_manager, 4, "rightRearDrive", false); // 2 is ded
     right_rear_drive_2 = new MotorNode(node_manager, 3, "rightRearTopDrive", true); // prev 3
 
-    HolonomicDriveNode::HolonomicEightMotors holonomic_drive_motors = {
+    TankDriveNode::TankEightMotors tank_drive_motors = {
         left_front_drive,  left_front_drive_2, left_rear_drive,
         left_rear_drive_2, right_front_drive,  right_front_drive_2,
         right_rear_drive,  right_rear_drive_2};
 
-    EncoderConfig holonomic_encoder_config = {
-        0,   // Initial ticks
-        360, // Ticks per RPM
-        3.75 // Wheel diameter
+    TankDriveKinematics::TankWheelLocations tank_wheel_locations = {
+        Vector2d(0, 0),  // Left
+        Vector2d(0, 0)    // Right
     };
 
-    HolonomicDriveKinematics::HolonomicWheelLocations holonomic_wheel_locations =
-        {
-            Vector2d(-5.48, 5.48),  // Left front
-            Vector2d(-5.48, -5.48), // Left rear
-            Vector2d(5.48, 5.48),   // Right front
-            Vector2d(5.48, -5.48)   // Right rear
-        };
+    EncoderConfig encoder_config = {
+		0, // Initial ticks
+		900., // Ticks per RPM
+		3.25 // Wheel diameter
+	};
+
+    TankDriveKinematics tank_kinematics(encoder_config, tank_wheel_locations);
+
+    tank_drive_node = new TankDriveNode(node_manager, "tankDrive", primary_controller,
+                                        tank_drive_motors, tank_kinematics);
 
     encoder = new ADIEncoderNode(node_manager, 'C', 'D', "encoder");        
 
@@ -131,13 +134,6 @@ void init18in() {
     // Also put the right port here
     inertial_sensor =
         new InertialSensorNode(node_manager, "inertialSensor", 10); 
-
-    HolonomicDriveKinematics holonomic_drive_kinematics(
-        holonomic_encoder_config, holonomic_wheel_locations);
-
-    holonomic_drive_node = new HolonomicDriveNode(
-        node_manager, "drivetrain", primary_controller, inertial_sensor,
-        holonomic_drive_motors, holonomic_drive_kinematics);
 
     /* Define the intake components */
     intake_motor = new MotorNode(node_manager, 5, "intake", true);
@@ -257,7 +253,7 @@ void opcontrol() {
     nodeManager->reset();
 
     // Check that all nodes are initialized
-    std::vector<Node*> nodes = {holonomic_drive_node, intake_node, indexer_node, shooter_node, encoder, inertial_sensor};
+    std::vector<Node*> nodes = {tank_drive_node, intake_node, indexer_node, shooter_node, encoder, inertial_sensor};
     for (Node* node : nodes) {
         if (node == nullptr) {
             pros::lcd::print(0, "Node %s is not initialized!", node->m_handle->c_str());
@@ -268,7 +264,7 @@ void opcontrol() {
     // Execute teleop code
     while (true) {
         nodeManager->executeTeleop();
-        holonomic_drive_node->teleopPeriodic();
+        tank_drive_node->teleopPeriodic();
         intake_node->teleopPeriodic();
         indexer_node->teleopPeriodic();
         shooter_node->teleopPeriodic();

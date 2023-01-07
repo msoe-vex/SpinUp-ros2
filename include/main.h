@@ -63,6 +63,7 @@
 #include "pathing/PathSelector.h"
 #include "auton/AutonSelector.h"
 #include "nodes/subsystems/HolonomicDriveNode.h"
+#include "nodes/subsystems/TankDriveNode.h"
 #include "nodes/subsystems/IntakeNode.h"
 #include "nodes/subsystems/ShooterNode.h"
 
