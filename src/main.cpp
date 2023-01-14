@@ -84,9 +84,13 @@ void init15in() {
         new InertialSensorNode(node_manager, "inertialSensor", 10); 
 
     //TODO: Dummy Encoder Values, need updates to see what would be accurate
+    //Encoder values in inches
     IOdometry::EncoderLocations encoderLocations {
-		Vector2d(-0.008, -4.882),
-		Vector2d(1.556, -1.263)
+        //TODO : Get more accurate measurements -- cad file?
+        //Hypotenuse of x from center: (0.35, -6)
+		Vector2d(-0.35, -6.5),
+        //Hypotenuse of y from center: (3.75 , -1)
+		Vector2d(3.75), -1)
 	};
 
     odom_node = new OdometryNode(node_manager, "odometry", x_odom_encoder,
