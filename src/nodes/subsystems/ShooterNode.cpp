@@ -42,11 +42,8 @@ void ShooterNode::teleopPeriodic() {
     switch (m_state) {
         case IDLE:
             m_target_velocity = IDLE_VELOCITY;
-            // if(m_currentError <= ACCEPTED_ERROR){
-                
-            // }
 
-            if (shootButtonCurrentState && !m_previousShooterState) {
+            if (shootButtonCurrentState && !m_previousShooterButtonState) {
                 m_state = SHOOTING;
             }
 
@@ -54,23 +51,24 @@ void ShooterNode::teleopPeriodic() {
         case SHOOTING:
             m_target_velocity = SHOOTING_VELOCITY;
 
-            if (shootButtonCurrentState && !m_previousShooterState) {
+            if (shootButtonCurrentState && !m_previousShooterButtonState) {
                 m_state = IDLE;
             }
 
             break;
         case MANUAL:
+            //Uses set target velocity to control velocity externally
             break;
         default:
             break;
     };
 
     //setShootVelocity(40.0f);
-    setShooterPID();
-    m_previousShooterState = shootButtonCurrentState;
+    updateShooterPID();
+    m_previousShooterButtonState = shootButtonCurrentState;
 }
 
-void ShooterNode::setShooterPID() {
+void ShooterNode::updateShooterPID() {
     m_currentError = m_target_velocity - m_shooter->getVelocity();
 
     m_feedback =  m_PID.calculate(m_currentError) * MAX_VELOCITY;

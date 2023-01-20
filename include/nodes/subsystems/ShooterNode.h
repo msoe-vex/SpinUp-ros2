@@ -23,10 +23,6 @@ public:
 
     void setTargetVelocity(double velocity);
 
-    void setShootVoltage(int voltage);
-
-    void setShootVelocity(float velocity);
-
     void setState(ShooterNode::ShooterState state);
 
     void initialize();
@@ -35,11 +31,16 @@ public:
 
     void autonPeriodic();
 
-    void setShooterPID();
-
     ~ShooterNode();
 
 private:
+
+    void setShootVoltage(int voltage);
+
+    void setShootVelocity(float velocity);
+
+    void updateShooterPID();
+
     ShooterState m_state;
 
     pros::Controller* m_controller;
@@ -48,7 +49,7 @@ private:
 
     pros::controller_digital_e_t m_shootButton;
 
-    bool m_previousShooterState = false;
+    bool m_previousShooterButtonState = false;
 
     PID m_PID;
 
