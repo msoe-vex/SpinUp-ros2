@@ -14,16 +14,20 @@
 class ShooterNode: public Node {
 public:
     enum ShooterState {
-        SHOOTING, REVERSE, IDLE, TEST
+        SHOOTING, IDLE, MANUAL
     };
 
     ShooterNode(NodeManager* node_manager, std::string handle_name, 
     ControllerNode* controller, pros::controller_digital_e_t shoot_button, 
     MotorNode* shooter, MotorNode* shooter2);
 
+    void setTargetVelocity(double velocity);
+
     void setShootVoltage(int voltage);
 
     void setShootVelocity(float velocity);
+
+    void setState(ShooterNode::ShooterState state);
 
     void initialize();
 
