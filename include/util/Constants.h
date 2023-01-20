@@ -42,4 +42,8 @@
 
 #define GYRO_ROLLOVER_ANGLE (M_PI * 3) / 2
 
+//Shooter Stuff
+#define SHOOTING_VELOCITY 50.0f
+#define IDLE_VELOCITY 0.0f
+
 #endif

@@ -52,7 +52,7 @@ void init15in() {
 
     EncoderConfig holonomic_encoder_config = {
         0,   // Initial ticks
-        360, // Ticks per RPM
+        360, // Ticks per Rotation
         3.75 // Wheel diameter
     };
 

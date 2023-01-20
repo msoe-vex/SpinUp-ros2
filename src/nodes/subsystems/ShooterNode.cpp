@@ -1,4 +1,5 @@
 #include "nodes/subsystems/ShooterNode.h"
+#include "util/Constants.h"
 
 ShooterNode::ShooterNode(NodeManager* node_manager, std::string handle_name, ControllerNode* controller, 
 pros::controller_digital_e_t shoot_button, 
@@ -7,8 +8,18 @@ pros::controller_digital_e_t shoot_button,
         m_shooter(shooter),
         m_shooter2(shooter2),
         m_state(IDLE),
-        m_shootButton(shoot_button) {
+        m_shootButton(shoot_button),
+        m_PID(5,0,0,0) {
     m_handle_name = handle_name.insert(0, "robot/");
+    m_target_velocity = SHOOTING_VELOCITY;
+}
+
+void ShooterNode::setTargetVelocity(double velocity) {
+    m_target_velocity = velocity;
+}
+
+void ShooterNode::setState(ShooterNode::ShooterState state) {
+    m_state = state;
 }
 
 void ShooterNode::setShootVoltage(int voltage) {
@@ -30,26 +41,43 @@ void ShooterNode::teleopPeriodic() {
 
     switch (m_state) {
         case IDLE:
-            setShootVoltage(0);
+            m_target_velocity = IDLE_VELOCITY;
 
-            if (shootButtonCurrentState && !m_previousShooterState) {
+            if (shootButtonCurrentState && !m_previousShooterButtonState) {
                 m_state = SHOOTING;
             }
 
             break;
         case SHOOTING:
-            setShootVoltage(MAX_MOTOR_VOLTAGE);
+            m_target_velocity = SHOOTING_VELOCITY;
 
-            if (shootButtonCurrentState && !m_previousShooterState) {
+            if (shootButtonCurrentState && !m_previousShooterButtonState) {
                 m_state = IDLE;
             }
 
+            break;
+        case MANUAL:
+            //Uses set target velocity to control velocity externally
             break;
         default:
             break;
     };
 
-    m_previousShooterState = shootButtonCurrentState;
+    //setShootVelocity(40.0f);
+    updateShooterPID();
+    m_previousShooterButtonState = shootButtonCurrentState;
+}
+
+void ShooterNode::updateShooterPID() {
+    m_currentError = m_target_velocity - m_shooter->getVelocity();
+
+    m_feedback =  m_PID.calculate(m_currentError) * MAX_VELOCITY;
+
+
+    pros::lcd::print(1,"Current Velocity: %f", m_shooter->getVelocity());
+    m_shooter->moveVelocity(m_feedback);
+    m_shooter2->moveVelocity(m_feedback);
+                
 }
 
 void ShooterNode::autonPeriodic() {

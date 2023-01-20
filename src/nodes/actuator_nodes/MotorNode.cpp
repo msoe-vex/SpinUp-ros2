@@ -50,6 +50,11 @@ void MotorNode::moveVelocity(float velocity) {
     m_motor.move_velocity(rpm);
 }
 
+float MotorNode::getVelocity() {
+    float rpm = m_motor.get_actual_velocity();
+    return (rpm / m_getMaxRPM()) * MAX_VELOCITY;
+}   
+
 void MotorNode::moveAbsolute(double position, int max_velocity) {
     m_motor.move_absolute(position, max_velocity);
 }
