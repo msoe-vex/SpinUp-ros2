@@ -90,7 +90,7 @@ void init15in() {
         //Hypotenuse of x from center: (0.35, -6)
 		Vector2d(-0.35, -6.5),
         //Hypotenuse of y from center: (3.75 , -1)
-		Vector2d(3.75), -1)
+		Vector2d(3.75, -1)
 	};
 
     odom_node = new OdometryNode(node_manager, "odometry", x_odom_encoder,
@@ -300,5 +300,6 @@ void opcontrol() {
         shooter_node->teleopPeriodic();
         encoder->teleopPeriodic();
         inertial_sensor->teleopPeriodic();
+        odom_node -> teleopPeriodic();
     }
 }
