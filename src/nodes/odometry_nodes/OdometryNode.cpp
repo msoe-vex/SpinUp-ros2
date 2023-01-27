@@ -72,8 +72,8 @@ void OdometryNode::autonPeriodic() {
     float y = currentPose.position.y();
     float angle = currentPose.angle.angle();
     
-    pros::lcd::print(0, "Position: (%.2f, %.2f)\n", x, y);
-    pros::lcd::print(1, "Angle: %.2f", angle);
+    pros::lcd::print(2, "Position: (%.2f, %.2f)\n", x, y);
+    pros::lcd::print(3, "Angle: %.2f", angle);
 }
 
 OdometryNode::~OdometryNode() {
