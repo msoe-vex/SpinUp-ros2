@@ -55,7 +55,7 @@ void HolonomicDriveNode::m_fieldOrientedControl() {
     controller_target_velocity(1) = (m_controller->get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y) / 127.0) * MAX_VELOCITY;
     rotation_velocity = -(m_controller->get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X) / 127.0) * MAX_VELOCITY;
 
-    field_target_velocity = m_inertial_sensor->getYaw().inverse() * Rotation2Dd(GYRO_OFFSET) *  controller_target_velocity;
+    field_target_velocity = m_inertial_sensor->getYaw().inverse() * Rotation2Dd(GYRO_OFFSET) * controller_target_velocity;
     setDriveVelocity(field_target_velocity.x(), field_target_velocity.y(), rotation_velocity);
 }
 
