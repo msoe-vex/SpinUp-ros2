@@ -1,6 +1,6 @@
-#include "auton/auton_routines/tipping_point/odomTest.h"
+#include "auton/auton_routines/tipping_point/OdomTest.h"
 
-odomTest::odomTest(IDriveNode* drive_node, OdometryNode* odom_node, InertialSensorNode* inertial_sensor_node) : 
+OdomTest::OdomTest(IDriveNode* drive_node, OdometryNode* odom_node, InertialSensorNode* inertial_sensor_node) : 
         Auton("Test Turn Node"), 
         m_drive_node(drive_node),
         m_odom_node(odom_node),
@@ -8,7 +8,7 @@ odomTest::odomTest(IDriveNode* drive_node, OdometryNode* odom_node, InertialSens
     
 }
 
-void odomTest::AddNodes() {
+void OdomTest::AddNodes() {
     AutonNode* test = new AutonNode(100, new testOdometry(m_drive_node, m_odom_node));
     Auton::AddFirstNode(test);
 

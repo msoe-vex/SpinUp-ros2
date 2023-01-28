@@ -11,9 +11,9 @@
 #include "util/Constants.h"
 #include "eigen/Eigen/Dense"
 
-class odomTest : public Auton {
+class OdomTest : public Auton {
 public:
-    odomTest(IDriveNode* drive_node, OdometryNode* odom_node, InertialSensorNode* inertial_sensor_node);
+    OdomTest(IDriveNode* drive_node, OdometryNode* odom_node, InertialSensorNode* inertial_sensor_node);
 
     void AddNodes();
 

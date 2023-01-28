@@ -1,12 +1,16 @@
 #include "main.h"
+#include "auton/auton_routines/tipping_point/OdomTest.h"
 #include "nodes/actuator_nodes/MotorNode.h"
 #include "nodes/odometry_nodes/OdometryNode.h"
 #include "nodes/sensor_nodes/ADIEncoderNode.h"
+#include "nodes/subsystems/HolonomicDriveNode.h"
 #include "nodes/subsystems/IntakeNode.h"
+#include "auton/AutonManagerNode.h"
+#include "auton/Auton.h"
 
-NodeManager *nodeManager;
+AutonManagerNode* autonManagerNode;
 
-NodeManager *node_manager = new NodeManager(pros::millis);
+NodeManager *node_manager;
 
 ControllerNode *primary_controller;
 
@@ -208,7 +212,7 @@ std::string getRobotName() {
  */
 void initialize() {
     pros::lcd::initialize();
-    nodeManager = new NodeManager(pros::millis);
+    node_manager = new NodeManager(pros::millis);
     primary_controller = new ControllerNode(node_manager, "primary");
 
     // Maps robot name to initialization function
@@ -229,9 +233,27 @@ void initialize() {
         primary_controller->updateDisplay("Running Default");
         initDefault();
     }
-    
+
+    //Create autonomous modes
+    OdomTest* odomTest = new OdomTest(holonomic_drive_node, odom_node, inertial_sensor);
+
+    std::vector<Auton*> autons = {odomTest};
+
+
+    // Initialize the autonomous manager
+	autonManagerNode = new AutonManagerNode(node_manager, autons);
+
     // Call the node manager to initialize all of the nodes above
     node_manager->initialize();
+
+    // controller selection menus
+    bool needsPath = selectAuton(primary_controller, autonManagerNode);
+	pros::delay(500);
+	if (needsPath) {
+		selectPathJSON(primary_controller, autonManagerNode);
+		pros::delay(500);
+	}
+	primary_controller->updateDisplay("Selection Complete");
 }
 
 /**
@@ -280,7 +302,7 @@ void autonomous() {}
  */
 void opcontrol() {
     // Reset all nodes to default configuration
-    nodeManager->reset();
+    node_manager->reset();
 
     // Check that all nodes are initialized
     std::vector<Node*> nodes = {holonomic_drive_node, intake_node, indexer_node, shooter_node, encoder, inertial_sensor};
@@ -293,7 +315,7 @@ void opcontrol() {
 
     // Execute teleop code
     while (true) {
-        nodeManager->executeTeleop();
+        node_manager->executeTeleop();
         holonomic_drive_node->teleopPeriodic();
         intake_node->teleopPeriodic();
         indexer_node->teleopPeriodic();
