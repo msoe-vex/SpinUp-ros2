@@ -23,7 +23,12 @@ int ADIEncoderNode::getValue() {
 
 void ADIEncoderNode::teleopPeriodic() {
     std::string msg = m_handle_name + " value: " + std::to_string(getValue());
-    pros::lcd::print(0, msg.c_str());
+    //Hard-coded different line printing
+    if (m_handle_name.find('y') != std::string::npos) {
+        pros::lcd::print(3, msg.c_str());
+    } else {
+        pros::lcd::print(4, msg.c_str());
+    }
     // m_handle->logwarn(msg.c_str());
 }
 

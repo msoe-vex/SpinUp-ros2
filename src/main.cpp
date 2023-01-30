@@ -157,8 +157,7 @@ void init18in() {
 
     encoder = new ADIEncoderNode(node_manager, 'C', 'D', "encoder");        
 
-    // TODO: PUT A GYRO ON THE ROBOT
-    // Also put the right port here
+    // Gyro Port: Also put the right port here
     inertial_sensor =
         new InertialSensorNode(node_manager, "inertialSensor", 10); 
 
@@ -285,7 +284,23 @@ void competition_initialize() {}
  * will be stopped. Re-enabling the robot will restart the task, not re-start it
  * from where it left off.
  */
-void autonomous() {}
+void autonomous() {// Reset all nodes to default configuration
+	node_manager->reset();
+
+	// Reset the chosen autonomous and initialize
+	autonManagerNode->selected_auton->AutonInit();
+	
+	// Execute autonomous code
+	while (pros::competition::is_autonomous()) {
+		node_manager->executeAuton();
+        holonomic_drive_node->autonPeriodic();
+        intake_node->autonPeriodic();
+        indexer_node->autonPeriodic();
+        shooter_node->autonPeriodic();
+        encoder->autonPeriodic();
+        inertial_sensor->autonPeriodic();
+        odom_node ->autonPeriodic();
+	}}
 
 /**
  * Runs the operator control code. This function will be started in its own task
