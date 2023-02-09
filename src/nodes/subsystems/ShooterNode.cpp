@@ -7,11 +7,11 @@ pros::controller_digital_e_t shoot_button,
         m_controller(controller->getController()),
         m_shooter(shooter),
         m_shooter2(shooter2),
-        m_state(IDLE),
+        m_state(MANUAL),
         m_shootButton(shoot_button),
         m_PID(5,0,0,0) {
     m_handle_name = handle_name.insert(0, "robot/");
-    m_target_velocity = SHOOTING_VELOCITY;
+    m_target_velocity = IDLE_VELOCITY;
 }
 
 void ShooterNode::setTargetVelocity(double velocity) {
@@ -58,6 +58,11 @@ void ShooterNode::teleopPeriodic() {
             break;
         case MANUAL:
             //Uses set target velocity to control velocity externally
+            if (m_controller->get_digital(pros::E_CONTROLLER_DIGITAL_A)) {
+                m_target_velocity++;
+            } else if (m_controller->get_digital(pros::E_CONTROLLER_DIGITAL_B)) {
+                m_target_velocity--;
+            }
             break;
         default:
             break;
@@ -75,6 +80,7 @@ void ShooterNode::updateShooterPID() {
 
 
     pros::lcd::print(1,"Current Velocity: %f", m_shooter->getVelocity());
+    pros::lcd::print(2,"Target Velocity: %f", m_target_velocity);
     m_shooter->moveVelocity(m_feedback);
     m_shooter2->moveVelocity(m_feedback);
                 
