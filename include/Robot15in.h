@@ -16,6 +16,7 @@ public:
     MotorNode *right_front_drive_2;
     MotorNode *right_rear_drive;
     MotorNode *right_rear_drive_2;
+    HolonomicDriveKinematics *holonomic_drive_kinematics;
     HolonomicDriveNode *holonomic_drive_node;
 
     /* Intake Subsystem */

@@ -21,7 +21,8 @@ void Robot15in::initialize() {
     HolonomicDriveNode::HolonomicEightMotors holonomic_drive_motors = {
         left_front_drive,  left_front_drive_2, left_rear_drive,
         left_rear_drive_2, right_front_drive,  right_front_drive_2,
-        right_rear_drive,  right_rear_drive_2};
+        right_rear_drive,  right_rear_drive_2
+    };
 
     EncoderConfig holonomic_encoder_config = {
         0,   // Initial ticks
@@ -29,25 +30,26 @@ void Robot15in::initialize() {
         3.75 // Wheel diameter
     };
 
-    HolonomicDriveKinematics::HolonomicWheelLocations holonomic_wheel_locations =
-        {
-            Vector2d(-5.48, 5.48),  // Left front
-            Vector2d(-5.48, -5.48), // Left rear
-            Vector2d(5.48, 5.48),   // Right front
-            Vector2d(5.48, -5.48)   // Right rear
-        };
+    HolonomicDriveKinematics::HolonomicWheelLocations holonomic_wheel_locations = {
+        Vector2d(-5.48, 5.48),  // Left front
+        Vector2d(-5.48, -5.48), // Left rear
+        Vector2d(5.48, 5.48),   // Right front
+        Vector2d(5.48, -5.48)   // Right rear
+    };
 
     encoder = new ADIEncoderNode(node_manager, 'C', 'D', "encoder");        
 
-    inertial_sensor =
-        new InertialSensorNode(node_manager, "inertialSensor", 10); 
+    inertial_sensor = new InertialSensorNode(node_manager, "inertialSensor", 10); 
 
-    HolonomicDriveKinematics holonomic_drive_kinematics(
-        holonomic_encoder_config, holonomic_wheel_locations);
+    holonomic_drive_kinematics = new HolonomicDriveKinematics(
+            holonomic_encoder_config, holonomic_wheel_locations
+    );
 
     holonomic_drive_node = new HolonomicDriveNode(
-        node_manager, "drivetrain", primary_controller, inertial_sensor,
-        holonomic_drive_motors, holonomic_drive_kinematics);
+            node_manager, "drivetrain", 
+            primary_controller, inertial_sensor,
+            holonomic_drive_motors, *holonomic_drive_kinematics
+    );
 
     /* Define the intake components */
     intake_motor = new MotorNode(node_manager, 5, "intake", true);
@@ -56,14 +58,20 @@ void Robot15in::initialize() {
     shooter_motor_2 = new MotorNode(node_manager, 17, "shooter2", true);
 
     intake_node = new IntakeNode(node_manager, "intake", 
-    primary_controller, pros::E_CONTROLLER_DIGITAL_R1, pros::E_CONTROLLER_DIGITAL_R2, intake_motor);	
+            primary_controller, pros::E_CONTROLLER_DIGITAL_R1, 
+            pros::E_CONTROLLER_DIGITAL_R2, intake_motor
+    );	
 
     indexer_node = new IntakeNode(node_manager, "indexer", 
-    primary_controller, pros::E_CONTROLLER_DIGITAL_R1, pros::E_CONTROLLER_DIGITAL_R2, indexer_motor);	
+            primary_controller, pros::E_CONTROLLER_DIGITAL_R1, 
+            pros::E_CONTROLLER_DIGITAL_R2, indexer_motor
+    );	
 
 
     shooter_node = new ShooterNode(node_manager, "shooter", 
-    primary_controller, pros::E_CONTROLLER_DIGITAL_L1, shooter_motor, shooter_motor_2);	
+            primary_controller, pros::E_CONTROLLER_DIGITAL_L1, 
+            shooter_motor, shooter_motor_2
+    );	
 }
 
 void Robot15in::disabled() {}

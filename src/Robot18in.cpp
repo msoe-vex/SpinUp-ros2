@@ -20,7 +20,8 @@ void Robot18in::initialize() {
     TankDriveNode::TankEightMotors tank_drive_motors = {
         left_front_drive,  left_front_drive_2, left_rear_drive,
         left_rear_drive_2, right_front_drive,  right_front_drive_2,
-        right_rear_drive,  right_rear_drive_2};
+        right_rear_drive,  right_rear_drive_2
+    };
 
     TankDriveKinematics::TankWheelLocations tank_wheel_locations = {
         Vector2d(0, 0),  // Left
@@ -33,17 +34,18 @@ void Robot18in::initialize() {
 		3.25 // Wheel diameter
 	};
 
-    TankDriveKinematics tank_kinematics(encoder_config, tank_wheel_locations);
+    tank_kinematics = new TankDriveKinematics(encoder_config, tank_wheel_locations);
 
-    tank_drive_node = new TankDriveNode(node_manager, "tankDrive", primary_controller,
-                                        tank_drive_motors, tank_kinematics);
+    tank_drive_node = new TankDriveNode(
+            node_manager, "tankDrive", primary_controller,
+            tank_drive_motors, *tank_kinematics
+    );
 
     encoder = new ADIEncoderNode(node_manager, 'C', 'D', "encoder");        
 
     // TODO: PUT A GYRO ON THE ROBOT
     // Also put the right port here
-    inertial_sensor =
-        new InertialSensorNode(node_manager, "inertialSensor", 10); 
+    inertial_sensor = new InertialSensorNode(node_manager, "inertialSensor", 10); 
 
     /* Define the intake components */
     intake_motor = new MotorNode(node_manager, 5, "intake", true);
@@ -51,14 +53,20 @@ void Robot18in::initialize() {
     shooter_motor = new MotorNode(node_manager, 11, "shooter", true);
     shooter_motor_2 = new MotorNode(node_manager, 12, "shooter2", true);
 
-    intake_node = new IntakeNode(node_manager, "intake", 
-    primary_controller, pros::E_CONTROLLER_DIGITAL_R1, pros::E_CONTROLLER_DIGITAL_R2, intake_motor);	
+    intake_node = new IntakeNode(
+            node_manager, "intake", primary_controller, 
+            pros::E_CONTROLLER_DIGITAL_R1, pros::E_CONTROLLER_DIGITAL_R2, intake_motor
+    );	
 
-    indexer_node = new IntakeNode(node_manager, "indexer", 
-    primary_controller, pros::E_CONTROLLER_DIGITAL_X, pros::E_CONTROLLER_DIGITAL_Y, indexer_motor);	
+    indexer_node = new IntakeNode(
+            node_manager, "indexer", primary_controller, 
+            pros::E_CONTROLLER_DIGITAL_X, pros::E_CONTROLLER_DIGITAL_Y, indexer_motor
+    );	
 
-    shooter_node = new ShooterNode(node_manager, "shooter", 
-    primary_controller, pros::E_CONTROLLER_DIGITAL_L1, shooter_motor, shooter_motor_2);	
+    shooter_node = new ShooterNode(
+            node_manager, "shooter", primary_controller, 
+            pros::E_CONTROLLER_DIGITAL_L1, shooter_motor, shooter_motor_2
+    );	
 }
 
 void Robot18in::disabled() {}
