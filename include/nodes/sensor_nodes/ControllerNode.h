@@ -24,7 +24,10 @@ public:
     void autonPeriodic();
     
     int selectorMenu(std::vector<std::string> options);
+
     void updateDisplay(std::string text);
+
+    static void updateDisplay(pros::controller_id_e_t controller_type, std::string text);
 
     ~ControllerNode();
 };

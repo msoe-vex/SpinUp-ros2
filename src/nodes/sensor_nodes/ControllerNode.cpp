@@ -77,6 +77,11 @@ void ControllerNode::updateDisplay(std::string text) {
     m_controller.clear_line(0);
     pros::delay(50);
     m_controller.set_text(0, 0, text);
+    pros::delay(50);
+}
+
+void ControllerNode::updateDisplay(pros::controller_id_e_t controller_type, std::string text) {
+    pros::c::controller_print(controller_type, 0, 0, text.c_str());
 }
 
 ControllerNode::~ControllerNode() {
