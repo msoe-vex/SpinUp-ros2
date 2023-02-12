@@ -46,16 +46,16 @@ class Motor {
 	 * \param encoder_units
 	 *        The motor's encoder units
 	 */
-	explicit Motor(const std::uint8_t port, const motor_gearset_e_t gearset, const bool reverse,
+	explicit Motor(const std::int8_t port, const motor_gearset_e_t gearset, const bool reverse,
 	               const motor_encoder_units_e_t encoder_units);
 
-	explicit Motor(const std::uint8_t port, const motor_gearset_e_t gearset, const bool reverse);
+	explicit Motor(const std::int8_t port, const motor_gearset_e_t gearset, const bool reverse);
 
-	explicit Motor(const std::uint8_t port, const motor_gearset_e_t gearset);
+	explicit Motor(const std::int8_t port, const motor_gearset_e_t gearset);
 
-	explicit Motor(const std::uint8_t port, const bool reverse);
+	explicit Motor(const std::int8_t port, const bool reverse);
 
-	explicit Motor(const std::uint8_t port);
+	explicit Motor(const std::int8_t port);
 
 	/****************************************************************************/
 	/**                         Motor movement functions                       **/
@@ -1021,6 +1021,29 @@ class Motor_Group {
 	/****************************************************************************/
 
 	/**
+	 * Indexes Motor in the Motor_Group in the same way as an array.
+	 * 
+	 * This function uses the following values of errno when an error state is
+	 * reached:
+	 * ENXIO - Out of bounds on indexing the motor groups.
+	 * 
+	 * \param i
+	 *        The index value in the motor group.
+	 *
+	 * \return the appropriate Motor reference or the erno if the operation
+	 *  failed
+	 */ 
+	pros::Motor& operator[](int i);
+
+
+	/**
+	 * Indexes Motor in the Motor_Group in the same way as an array.
+	 * 
+	 * \return the size of the vector containing motors
+	 */ 
+	std::int32_t size();
+
+	/**
 	 * Sets the position for the motor in its encoder units.
 	 *
 	 * This will be the future reference point for the motors' "absolute"
@@ -1324,6 +1347,8 @@ class Motor_Group {
 	pros::Mutex _motor_group_mutex;
 	std::uint8_t _motor_count;
 };
+
+using MotorGroup = Motor_Group; //alias
 
 namespace literals {
 const pros::Motor operator"" _mtr(const unsigned long long int m);
