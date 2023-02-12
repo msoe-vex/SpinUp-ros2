@@ -1,27 +1,30 @@
 #pragma once
 
 #include <vector>
+#include <map>
 #include <iostream>
 #include "eigen/Eigen/Dense"
 #include "pathing/PathPoint.h"
 #include "math/Pose.h"
-
-using namespace std;
+#include "auton/Auton.h"
 
 class Path {
 public:
     Path();
 
-    Path(vector<PathPoint> pathPoints);
+    Path(std::vector<PathPoint> pathPoints);
 
     Pose update(float time);
 
-    vector<PathPoint> getPathPoints();
+    std::vector<PathPoint> getPathPoints();
 
+    void setAutonNodes(std::map<std::string, AutonNode*> auton_nodes);
+    
     bool isComplete();
 
 private:
-    vector<PathPoint> m_pathPoints;
+    std::vector<PathPoint> m_pathPoints;
     PathPoint m_last_point;
+    std::map<std::string, AutonNode*> m_auton_nodes;
     bool m_is_complete;
 };

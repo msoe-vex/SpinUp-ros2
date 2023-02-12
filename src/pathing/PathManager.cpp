@@ -40,9 +40,10 @@ bool PathManager::LoadPaths(json loadedJson) {
                 Vector2d linear_velocity(point["vx"], point["vy"]);
                 float time = point["time"];
                 float rotational_velocity = point["omega"];
+                std::vector<std::string> auton_action_names = point["auton_actions"];
                 Rotation2Dd rotation(toRadians(point["theta"]));
                 Vector2d position(point["x"], point["y"]);
-                pathPoints.push_back(PathPoint(time, Pose(position, rotation), linear_velocity, rotational_velocity));
+                pathPoints.push_back(PathPoint(time, Pose(position, rotation), linear_velocity, rotational_velocity, auton_action_names));
                 Logger::logInfo(" Time: " + std::to_string(time) +  " Pose: " + std::to_string(position.x()) + " " + std::to_string(position.y()) + " velocity: " + std::to_string(linear_velocity.x()) +  " " + std::to_string(linear_velocity.y()));
             }
             Path newPath(pathPoints);

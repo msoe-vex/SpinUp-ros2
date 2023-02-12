@@ -1,10 +1,18 @@
 #include "pathing/PathPoint.h"
 
 PathPoint::PathPoint(float time, Pose pose, Vector2d linear_velocity, float rotational_velocity) {
-    m_time = time;
-    m_pose = pose;
-    m_linear_velocity = linear_velocity;
-    m_rotational_velocity = rotational_velocity;
+        m_time = time;
+        m_pose = pose;
+        m_linear_velocity = linear_velocity;
+        m_rotational_velocity = rotational_velocity;
+}
+
+PathPoint::PathPoint(float time, Pose pose, Vector2d linear_velocity, float rotational_velocity, std::vector<std::string> auton_action_names) {
+        m_time = time;
+        m_pose = pose;
+        m_linear_velocity = linear_velocity;
+        m_rotational_velocity = rotational_velocity;
+        m_auton_action_names = auton_action_names;
 }
 
 float PathPoint::getTime() {
@@ -21,6 +29,10 @@ Vector2d PathPoint::getLinearVelocity() {
 
 float PathPoint::getRotationalVelocity() {
     return m_rotational_velocity;
+}
+
+std::vector<std::string> PathPoint::getAutonActionNames() {
+    return m_auton_action_names;
 }
 
 PathPoint PathPoint::interpolateTo(PathPoint other, float time) {

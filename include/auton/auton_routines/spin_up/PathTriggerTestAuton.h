@@ -10,10 +10,14 @@
 #include "auton/auton_actions/MoveLiftToPositionAction.h"
 #include "util/Constants.h"
 #include "eigen/Eigen/Dense"
+#include "pathing/PathManager.h"
+#include "auton/auton_actions/FollowPathAction.h"
+#include "pursuit/path_pursuit/HolonomicPathPursuit.h"
+#include "pathing/Path.h"
 
-class OdomTest : public Auton {
+class PathTriggerTestAuton : public Auton {
 public:
-    OdomTest(IDriveNode* drive_node, OdometryNode* odom_node, InertialSensorNode* inertial_sensor_node);
+    PathTriggerTestAuton(IDriveNode* drive_node, OdometryNode* odom_node, InertialSensorNode* inertial_sensor_node);
 
     void AddNodes();
 

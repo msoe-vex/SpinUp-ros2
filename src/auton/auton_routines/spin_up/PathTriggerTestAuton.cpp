@@ -1,8 +1,8 @@
-#include "auton/auton_routines/tipping_point/OdomTest.h"
+#include "auton/auton_routines/spin_up/PathTriggerTestAuton.h"
 
 #define DRIVE_CONFIG {900., 5./3., M_PI * 3.25}
 
-OdomTest::OdomTest(IDriveNode* drive_node, OdometryNode* odom_node, InertialSensorNode* inertial_sensor_node) : 
+PathTriggerTestAuton::PathTriggerTestAuton(IDriveNode* drive_node, OdometryNode* odom_node, InertialSensorNode* inertial_sensor_node) : 
         Auton("Test Turn Node", "/usd/paths/pathMatchAuton2-15.json"), 
         m_drive_node(drive_node),
         m_odom_node(odom_node),
@@ -10,7 +10,7 @@ OdomTest::OdomTest(IDriveNode* drive_node, OdometryNode* odom_node, InertialSens
     
 }
 
-void OdomTest::AddNodes() {
+void PathTriggerTestAuton::AddNodes() {
     //AutonNode* test = new AutonNode(100, new testOdometry(m_drive_node, m_odom_node));
     /*AutonNode* forward = new AutonNode(2, new DriveStraightAction(m_drive_node, m_odom_node, DRIVE_CONFIG, 24, 70, 80));
     DriveStraightAction::DriveStraightParams driveParams = {
@@ -22,6 +22,7 @@ void OdomTest::AddNodes() {
     Path dragMiddleNeutral = PathManager::GetInstance()->GetPath("RipNeutral");
     
     AutonNode* wingReleaseDelay = new AutonNode(0.7, new WaitAction(0.7));
+    wingReleaseDelay->AddCondition([](){return false;});
 
     std::map<std::string, AutonNode*> dragMiddleNeutralNodes = {
         {"1", wingReleaseDelay}

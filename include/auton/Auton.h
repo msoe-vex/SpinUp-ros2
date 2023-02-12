@@ -10,8 +10,6 @@
 
 #include "util/Timer.h"
 
-using namespace std;
-
 class AutonAction {
 public:
     enum actionStatus {
@@ -40,18 +38,18 @@ public:
     void Act(bool lastNodeDone);
     ~AutonNode();
 private:
-    vector<AutonNode*> m_children;
-    vector<AutonAction*> m_actions;
+    std::vector<AutonNode*> m_children;
+    std::vector<AutonAction*> m_actions;
     bool m_startConditonGiven = false;
     bool m_actionsInitialized = false;
-    function<bool()> m_startCondition;
+    std::function<bool()> m_startCondition;
     double m_timeout;
     Timer m_timer;
 };
 
 class Auton {
 public:
-    Auton(string name, string path = "", bool needsPath = true, bool defaultAuton = false);
+    Auton(std::string name, std::string path = "", bool needsPath = true, bool defaultAuton = false);
 
     inline Auton* GetInstance() {
         return this;
@@ -61,9 +59,9 @@ public:
         return m_defaultAuton;
     }
 
-    string GetName();
+    std::string GetName();
     bool GetNeedsPath();
-    string GetAssociatedPath();
+    std::string GetAssociatedPath();
     void AutonPeriodic();
     void AutonInit();
     bool Complete();
@@ -73,11 +71,11 @@ protected:
     void AddFirstNode(AutonNode* firstNode);
     virtual void AddNodes() = 0;
 private:
-    string m_name;
+    std::string m_name;
     bool m_needsPath;
-    string m_path;
+    std::string m_path;
     bool m_defaultAuton = false;
-    vector<AutonNode*> m_firstNode;
+    std::vector<AutonNode*> m_firstNode;
 };
 
 class WaitAction : public AutonAction {
@@ -92,10 +90,10 @@ private:
 
 class PrintAction : public AutonAction {
 public:
-    PrintAction(string toPrint);
+    PrintAction(std::string toPrint);
     void ActionInit();
     actionStatus Action();
 
 private:
-    string m_toPrint;
+    std::string m_toPrint;
 };
