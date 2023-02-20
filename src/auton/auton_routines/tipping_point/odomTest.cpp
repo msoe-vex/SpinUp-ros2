@@ -3,7 +3,7 @@
 #define DRIVE_CONFIG {900., 5./3., M_PI * 3.25}
 
 OdomTest::OdomTest(IDriveNode* drive_node, OdometryNode* odom_node, InertialSensorNode* inertial_sensor_node) : 
-        Auton("Test Turn Node"), 
+        Auton("Test Turn Node", "/usd/paths/pathMatchAuton2-15.json"), 
         m_drive_node(drive_node),
         m_odom_node(odom_node),
         m_inertial_sensor_node(inertial_sensor_node) {
@@ -19,6 +19,18 @@ void OdomTest::AddNodes() {
         M_PI * 3.25
     };
 
-    Auton::AddFirstNode(forward);
+    Path dragMiddleNeutral = PathManager::GetInstance()->GetPath("RipNeutral");
+    AutonNode* goalDragToColorGoal = new AutonNode(
+        45, 
+        new FollowPathAction(
+            m_drive_node, 
+            m_odom_node, 
+            new HolonomicPathPursuit(dragMiddleNeutral), 
+            dragMiddleNeutral, 
+            false
+        )
+    );
+    Auton::AddFirstNode(goalDragToColorGoal);
+    // Auton::AddFirstNode(forward);
 
 }

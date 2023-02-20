@@ -91,10 +91,10 @@ void init15in() {
     //Encoder values in inches
     IOdometry::EncoderLocations encoderLocations {
         //TODO : Get more accurate measurements -- cad file?
-        //Hypotenuse of x from center: (0.35, -6)
-		Vector2d(-0.35, -6.5),
-        //Hypotenuse of y from center: (3.75 , -1)
-		Vector2d(3.75, -1)
+        //Hypotenuse of x from center: (0.35, 6.75-1.125 from the back c channel) (0.5, -5.625)
+		Vector2d(0.5, -5.625),
+        //Hypotenuse of y from center: (3.75 , 6.75-2.4375) (-2.5, -4.3125)
+		Vector2d(-2.5, 4.3125)
 	};
 
     odom_node = new OdometryNode(node_manager, "odometry", x_odom_encoder,
