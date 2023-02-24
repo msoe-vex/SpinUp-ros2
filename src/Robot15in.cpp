@@ -39,7 +39,22 @@ void Robot15in::initialize() {
 
     encoder = new ADIEncoderNode(node_manager, 'C', 'D', "encoder");        
 
+    /* Define the Odometry components*/
+    x_odom_encoder = new ADIEncoderNode(node_manager, 'A', 'B', "xOdomEncoder", false);
+    y_odom_encoder = new ADIEncoderNode(node_manager, 'C', 'D', "yOdomEncoder", false);
+
+    IOdometry::EncoderLocations encoderLocations {
+        //TODO : Get more accurate measurements -- cad file?
+        //Hypotenuse of x from center: (0.35, 6.75-1.125 from the back c channel) (0.5, -5.625)
+		Vector2d(0.5, -5.625),
+        //Hypotenuse of y from center: (3.75 , 6.75-2.4375) (-2.5, -4.3125)
+		Vector2d(-2.5, 4.3125)
+	};
+
     inertial_sensor = new InertialSensorNode(node_manager, "inertialSensor", 20); 
+
+    odom_node = new OdometryNode(node_manager, "odometry", x_odom_encoder,
+            y_odom_encoder, inertial_sensor, OdometryNode::FOLLOWER, encoderLocations);
 
     holonomic_drive_kinematics = new HolonomicDriveKinematics(
             holonomic_encoder_config, holonomic_wheel_locations
@@ -73,7 +88,7 @@ void Robot15in::initialize() {
     shooter_node = new ShooterNode(node_manager, "shooter", 
             primary_controller, pros::E_CONTROLLER_DIGITAL_R1, 
             {shooter_motor, shooter_motor_2}
-    );	
+    );
 }
 
 void Robot15in::disabled() {}

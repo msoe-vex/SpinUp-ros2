@@ -41,8 +41,15 @@ public:
     MotorNode *shooter_motor_2;
     ShooterNode* shooter_node;
 
-    /* Intertial Sensor */
+    /* Odometry System */
+    OdometryNode* odom_node;
+
+    /* Inertial Sensor */
     InertialSensorNode *inertial_sensor;
+    
+    /* Odometry Wheels */
+    ADIEncoderNode* x_odom_encoder;
+    ADIEncoderNode* y_odom_encoder;
 
     /* Standard PROS structural functions */
     void initialize() override;
