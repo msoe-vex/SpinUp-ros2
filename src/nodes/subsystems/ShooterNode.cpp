@@ -3,11 +3,10 @@
 
 ShooterNode::ShooterNode(NodeManager* node_manager, std::string handle_name, ControllerNode* controller, 
 pros::controller_digital_e_t shoot_button, 
-        MotorNode* shooter, MotorNode* shooter2) : Node(node_manager, 10), 
+        std::vector<MotorNode*> shooters) : Node(node_manager, 10), 
         m_controller(controller->getController()),
-        m_shooter(shooter),
-        m_shooter2(shooter2),
-        m_state(MANUAL),
+        m_shooters(shooters),
+        m_state(IDLE),
         m_shootButton(shoot_button),
         m_PID(5,0,0,0) {
     m_handle_name = handle_name.insert(0, "robot/");
@@ -23,13 +22,15 @@ void ShooterNode::setState(ShooterNode::ShooterState state) {
 }
 
 void ShooterNode::setShootVoltage(int voltage) {
-    m_shooter->moveVoltage(voltage);
-    m_shooter2->moveVoltage(voltage);
+    for (auto shooter : m_shooters) {
+        shooter->moveVoltage(voltage);
+    }
 }
 
 void ShooterNode::setShootVelocity(float velocity) {
-    m_shooter->moveVelocity(velocity);
-    m_shooter2->moveVelocity(velocity);
+    for (auto shooter : m_shooters) {
+        shooter->moveVelocity(velocity);
+    }
 }
 
 void ShooterNode::initialize() {
@@ -74,16 +75,13 @@ void ShooterNode::teleopPeriodic() {
 }
 
 void ShooterNode::updateShooterPID() {
-    m_currentError = m_target_velocity - m_shooter->getVelocity();
-
+    m_currentError = m_target_velocity - m_shooters.front()->getVelocity();
     m_feedback =  m_PID.calculate(m_currentError) * MAX_VELOCITY;
 
 
-    pros::lcd::print(1,"Current Velocity: %f", m_shooter->getVelocity());
+    pros::lcd::print(1,"Current Velocity: %f", m_shooters.front()->getVelocity());
     pros::lcd::print(2,"Target Velocity: %f", m_target_velocity);
-    m_shooter->moveVelocity(m_feedback);
-    m_shooter2->moveVelocity(m_feedback);
-                
+    setShootVelocity(m_feedback);
 }
 
 void ShooterNode::autonPeriodic() {
@@ -91,5 +89,7 @@ void ShooterNode::autonPeriodic() {
 }
 
 ShooterNode::~ShooterNode() {
-    delete m_shooter;
+    for (auto shooter : m_shooters) {
+        delete shooter;
+    }
 }

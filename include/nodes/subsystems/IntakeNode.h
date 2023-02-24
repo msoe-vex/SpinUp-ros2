@@ -16,7 +16,7 @@ public:
 
     IntakeNode(NodeManager* node_manager, std::string handle_name, 
     ControllerNode* controller, pros::controller_digital_e_t intake_button, 
-    pros::controller_digital_e_t outtake_button, MotorNode* intake);
+    pros::controller_digital_e_t outtake_button, std::vector<MotorNode*> intakes);
 
     void setIntakeVoltage(int voltage);
 
@@ -34,7 +34,7 @@ private:
     IntakeState m_state;
 
     pros::Controller* m_controller;
-    MotorNode* m_intake;
+    std::vector<MotorNode*> m_intakes;
 
     pros::controller_digital_e_t m_intakeButton;
     pros::controller_digital_e_t m_outtakeButton;

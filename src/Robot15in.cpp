@@ -10,11 +10,11 @@ void Robot15in::initialize() {
     // For the 15in X-Drive `_2` motors are the ones on the top of the other motors
     left_front_drive = new MotorNode(node_manager, 17, "leftFrontDrive", true); // previously 16
     left_front_drive_2 = new MotorNode(node_manager, 18, "leftFrontTopDrive", false);
-    left_rear_drive = new MotorNode(node_manager, 13, "leftRearDrive", true);
-    left_rear_drive_2 = new MotorNode(node_manager, 14, "leftRearTopDrive", false);
+    left_rear_drive = new MotorNode(node_manager, 15, "leftRearDrive", true);
+    left_rear_drive_2 = new MotorNode(node_manager, 11, "leftRearTopDrive", false);
 
-    right_front_drive = new MotorNode(node_manager, 15, "rightFrontDrive", false);
-    right_front_drive_2 = new MotorNode(node_manager, 16, "rightFrontTopDrive", true);
+    right_front_drive = new MotorNode(node_manager, 13, "rightFrontDrive", false);
+    right_front_drive_2 = new MotorNode(node_manager, 14, "rightFrontTopDrive", true);
     right_rear_drive = new MotorNode(node_manager, 9, "rightRearDrive", false); // 2 is ded
     right_rear_drive_2 = new MotorNode(node_manager, 10, "rightRearTopDrive", true); // prev 3
 
@@ -52,25 +52,16 @@ void Robot15in::initialize() {
     );
 
     /* Define the intake components */
-    intake_motor = new MotorNode(node_manager, 1, "intake", false);
-    intake_motor_2 = new MotorNode(node_manager, 3, "intake2", false);
-    intake_motor_3 = new MotorNode(node_manager, 4, "intake3", true);
+    intake_motor = new MotorNode(node_manager, 1, "intake", true);
+    intake_motor_2 = new MotorNode(node_manager, 3, "intake2", true);
+    intake_motor_3 = new MotorNode(node_manager, 4, "intake3", false);
     //indexer_motor = new MotorNode(node_manager, 6, "indexer", false);
     shooter_motor = new MotorNode(node_manager, 6, "shooter", true);
     shooter_motor_2 = new MotorNode(node_manager, 8, "shooter2", true);
 
     intake_node = new IntakeNode(node_manager, "intake", 
-            primary_controller, pros::E_CONTROLLER_DIGITAL_R1, 
-            pros::E_CONTROLLER_DIGITAL_R2, intake_motor
-    );	
-    intake_node_2 = new IntakeNode(node_manager, "intake2", 
-            primary_controller, pros::E_CONTROLLER_DIGITAL_R1, 
-            pros::E_CONTROLLER_DIGITAL_R2, intake_motor_2
-    );	
-
-    intake_node_3 = new IntakeNode(node_manager, "intake3", 
-            primary_controller, pros::E_CONTROLLER_DIGITAL_R1, 
-            pros::E_CONTROLLER_DIGITAL_R2, intake_motor_3
+            primary_controller, pros::E_CONTROLLER_DIGITAL_A, 
+            pros::E_CONTROLLER_DIGITAL_Y, {intake_motor, intake_motor_2, intake_motor_3}
     );	
 
     /*indexer_node = new IntakeNode(node_manager, "indexer", 
@@ -80,8 +71,8 @@ void Robot15in::initialize() {
 
 
     shooter_node = new ShooterNode(node_manager, "shooter", 
-            primary_controller, pros::E_CONTROLLER_DIGITAL_L1, 
-            shooter_motor, shooter_motor_2
+            primary_controller, pros::E_CONTROLLER_DIGITAL_R1, 
+            {shooter_motor, shooter_motor_2}
     );	
 }
 
@@ -97,8 +88,6 @@ void Robot15in::opcontrol() {
         // nodeManager->executeTeleop();
         holonomic_drive_node->teleopPeriodic();
         intake_node->teleopPeriodic();
-        intake_node_2->teleopPeriodic();
-        intake_node_3->teleopPeriodic();
         //indexer_node->teleopPeriodic();
         shooter_node->teleopPeriodic();
         encoder->teleopPeriodic();

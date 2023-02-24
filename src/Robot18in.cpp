@@ -55,17 +55,17 @@ void Robot18in::initialize() {
 
     intake_node = new IntakeNode(
             node_manager, "intake", primary_controller, 
-            pros::E_CONTROLLER_DIGITAL_R1, pros::E_CONTROLLER_DIGITAL_R2, intake_motor
+            pros::E_CONTROLLER_DIGITAL_R1, pros::E_CONTROLLER_DIGITAL_R2, {intake_motor}
     );	
 
     indexer_node = new IntakeNode(
             node_manager, "indexer", primary_controller, 
-            pros::E_CONTROLLER_DIGITAL_X, pros::E_CONTROLLER_DIGITAL_Y, indexer_motor
+            pros::E_CONTROLLER_DIGITAL_X, pros::E_CONTROLLER_DIGITAL_Y, {indexer_motor}
     );	
 
     shooter_node = new ShooterNode(
             node_manager, "shooter", primary_controller, 
-            pros::E_CONTROLLER_DIGITAL_L1, shooter_motor, shooter_motor_2
+            pros::E_CONTROLLER_DIGITAL_L1, {shooter_motor, shooter_motor_2}
     );	
 }
 

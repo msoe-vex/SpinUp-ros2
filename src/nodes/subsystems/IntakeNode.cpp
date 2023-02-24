@@ -2,9 +2,9 @@
 
 IntakeNode::IntakeNode(NodeManager* node_manager, std::string handle_name, ControllerNode* controller, 
 pros::controller_digital_e_t intake_button, pros::controller_digital_e_t outtake_button, 
-        MotorNode* left_intake) : IRollerIntakeNode(node_manager, handle_name), 
+        std::vector<MotorNode*> intakes) : IRollerIntakeNode(node_manager, handle_name), 
         m_controller(controller->getController()),
-        m_intake(left_intake),
+        m_intakes(intakes),
         m_state(HOLDING),
         m_intakeButton(intake_button),
         m_outtakeButton(outtake_button) {
@@ -12,11 +12,15 @@ pros::controller_digital_e_t intake_button, pros::controller_digital_e_t outtake
 }
 
 void IntakeNode::setIntakeVoltage(int voltage) {
-    m_intake->moveVoltage(voltage);
+    for (auto intake : m_intakes) {
+        intake->moveVoltage(voltage);
+    }
 }
 
 void IntakeNode::setIntakeVelocity(float velocity) {
-    m_intake->moveVelocity(velocity);
+    for (auto intake : m_intakes) {
+        intake->moveVelocity(velocity);
+    }
 }
 
 void IntakeNode::initialize() {
@@ -70,5 +74,7 @@ void IntakeNode::autonPeriodic() {
 }
 
 IntakeNode::~IntakeNode() {
-    delete m_intake;
+    for (auto intake : m_intakes) {
+        delete intake;
+    }
 }

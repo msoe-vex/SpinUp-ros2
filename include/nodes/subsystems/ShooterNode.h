@@ -19,7 +19,7 @@ public:
 
     ShooterNode(NodeManager* node_manager, std::string handle_name, 
     ControllerNode* controller, pros::controller_digital_e_t shoot_button, 
-    MotorNode* shooter, MotorNode* shooter2);
+    std::vector<MotorNode*> shooters);
 
     void setTargetVelocity(double velocity);
 
@@ -44,8 +44,7 @@ private:
     ShooterState m_state;
 
     pros::Controller* m_controller;
-    MotorNode* m_shooter;
-    MotorNode* m_shooter2;
+    std::vector<MotorNode*> m_shooters;
 
     pros::controller_digital_e_t m_shootButton;
 
