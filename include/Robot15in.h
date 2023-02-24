@@ -20,8 +20,14 @@ public:
     HolonomicDriveNode *holonomic_drive_node;
 
     /* Intake Subsystem */
-    MotorNode *intake_motor;
+    MotorNode* intake_motor;
     IntakeNode* intake_node;
+    
+    MotorNode* intake_motor_2;
+    IntakeNode* intake_node_2;
+
+    MotorNode* intake_motor_3;
+    IntakeNode* intake_node_3;
 
     /* Indexer Subsystem */
     MotorNode *indexer_motor;

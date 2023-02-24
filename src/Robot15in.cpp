@@ -8,15 +8,15 @@ void Robot15in::initialize() {
 
     /* Define the drivetrain components */
     // For the 15in X-Drive `_2` motors are the ones on the top of the other motors
-    left_front_drive = new MotorNode(node_manager, 15, "leftFrontDrive", true); // previously 16
+    left_front_drive = new MotorNode(node_manager, 17, "leftFrontDrive", true); // previously 16
     left_front_drive_2 = new MotorNode(node_manager, 18, "leftFrontTopDrive", false);
-    left_rear_drive = new MotorNode(node_manager, 8, "leftRearDrive", true);
-    left_rear_drive_2 = new MotorNode(node_manager, 9, "leftRearTopDrive", false);
+    left_rear_drive = new MotorNode(node_manager, 13, "leftRearDrive", true);
+    left_rear_drive_2 = new MotorNode(node_manager, 14, "leftRearTopDrive", false);
 
-    right_front_drive = new MotorNode(node_manager, 13, "rightFrontDrive", false);
-    right_front_drive_2 = new MotorNode(node_manager, 1, "rightFrontTopDrive", true);
-    right_rear_drive = new MotorNode(node_manager, 4, "rightRearDrive", false); // 2 is ded
-    right_rear_drive_2 = new MotorNode(node_manager, 3, "rightRearTopDrive", true); // prev 3
+    right_front_drive = new MotorNode(node_manager, 15, "rightFrontDrive", false);
+    right_front_drive_2 = new MotorNode(node_manager, 16, "rightFrontTopDrive", true);
+    right_rear_drive = new MotorNode(node_manager, 9, "rightRearDrive", false); // 2 is ded
+    right_rear_drive_2 = new MotorNode(node_manager, 10, "rightRearTopDrive", true); // prev 3
 
     HolonomicDriveNode::HolonomicEightMotors holonomic_drive_motors = {
         left_front_drive,  left_front_drive_2, left_rear_drive,
@@ -39,7 +39,7 @@ void Robot15in::initialize() {
 
     encoder = new ADIEncoderNode(node_manager, 'C', 'D', "encoder");        
 
-    inertial_sensor = new InertialSensorNode(node_manager, "inertialSensor", 10); 
+    inertial_sensor = new InertialSensorNode(node_manager, "inertialSensor", 20); 
 
     holonomic_drive_kinematics = new HolonomicDriveKinematics(
             holonomic_encoder_config, holonomic_wheel_locations
@@ -52,20 +52,31 @@ void Robot15in::initialize() {
     );
 
     /* Define the intake components */
-    intake_motor = new MotorNode(node_manager, 5, "intake", true);
-    indexer_motor = new MotorNode(node_manager, 6, "indexer", false);
-    shooter_motor = new MotorNode(node_manager, 14, "shooter", true);
-    shooter_motor_2 = new MotorNode(node_manager, 17, "shooter2", true);
+    intake_motor = new MotorNode(node_manager, 1, "intake", false);
+    intake_motor_2 = new MotorNode(node_manager, 3, "intake2", false);
+    intake_motor_3 = new MotorNode(node_manager, 4, "intake3", true);
+    //indexer_motor = new MotorNode(node_manager, 6, "indexer", false);
+    shooter_motor = new MotorNode(node_manager, 6, "shooter", true);
+    shooter_motor_2 = new MotorNode(node_manager, 8, "shooter2", true);
 
     intake_node = new IntakeNode(node_manager, "intake", 
             primary_controller, pros::E_CONTROLLER_DIGITAL_R1, 
             pros::E_CONTROLLER_DIGITAL_R2, intake_motor
     );	
+    intake_node_2 = new IntakeNode(node_manager, "intake2", 
+            primary_controller, pros::E_CONTROLLER_DIGITAL_R1, 
+            pros::E_CONTROLLER_DIGITAL_R2, intake_motor_2
+    );	
 
-    indexer_node = new IntakeNode(node_manager, "indexer", 
+    intake_node_3 = new IntakeNode(node_manager, "intake3", 
+            primary_controller, pros::E_CONTROLLER_DIGITAL_R1, 
+            pros::E_CONTROLLER_DIGITAL_R2, intake_motor_3
+    );	
+
+    /*indexer_node = new IntakeNode(node_manager, "indexer", 
             primary_controller, pros::E_CONTROLLER_DIGITAL_R1, 
             pros::E_CONTROLLER_DIGITAL_R2, indexer_motor
-    );	
+    );*/	
 
 
     shooter_node = new ShooterNode(node_manager, "shooter", 
@@ -86,7 +97,9 @@ void Robot15in::opcontrol() {
         // nodeManager->executeTeleop();
         holonomic_drive_node->teleopPeriodic();
         intake_node->teleopPeriodic();
-        indexer_node->teleopPeriodic();
+        intake_node_2->teleopPeriodic();
+        intake_node_3->teleopPeriodic();
+        //indexer_node->teleopPeriodic();
         shooter_node->teleopPeriodic();
         encoder->teleopPeriodic();
         inertial_sensor->teleopPeriodic();
