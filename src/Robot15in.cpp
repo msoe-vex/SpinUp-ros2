@@ -37,7 +37,7 @@ void Robot15in::initialize() {
         Vector2d(5.48, -5.48)   // Right rear
     };
 
-    encoder = new ADIEncoderNode(node_manager, 'C', 'D', "encoder");        
+    // encoder = new ADIEncoderNode(node_manager, 'C', 'D', "encoder");  //What does encoder do?
 
     /* Define the Odometry components*/
     x_odom_encoder = new ADIEncoderNode(node_manager, 'A', 'B', "xOdomEncoder", false);
@@ -126,7 +126,7 @@ void Robot15in::autonomous() {node_manager->reset();
         intake_node->autonPeriodic();
         indexer_node->autonPeriodic();
         shooter_node->autonPeriodic();
-        encoder->autonPeriodic();
+        //encoder->autonPeriodic();
         inertial_sensor->autonPeriodic();
         odom_node ->autonPeriodic();
 	}}
@@ -139,7 +139,7 @@ void Robot15in::opcontrol() {
         intake_node->teleopPeriodic();
         //indexer_node->teleopPeriodic();
         shooter_node->teleopPeriodic();
-        encoder->teleopPeriodic();
+        //encoder->teleopPeriodic();
         inertial_sensor->teleopPeriodic();
         odom_node->teleopPeriodic();
     }
