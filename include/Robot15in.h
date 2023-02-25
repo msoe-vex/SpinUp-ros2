@@ -7,6 +7,9 @@ public:
     /* Node Manager */
     NodeManager *node_manager;
 
+    /* Auton Node Manager */
+    AutonManagerNode* auton_manager_node;
+
     /* X-Drive Subsystem */
     MotorNode *left_front_drive;
     MotorNode *left_front_drive_2;
@@ -50,6 +53,9 @@ public:
     /* Odometry Wheels */
     ADIEncoderNode* x_odom_encoder;
     ADIEncoderNode* y_odom_encoder;
+
+    /* Autonomous */
+    TestPathAuton* test_path;
 
     /* Standard PROS structural functions */
     void initialize() override;

@@ -89,13 +89,50 @@ void Robot15in::initialize() {
             primary_controller, pros::E_CONTROLLER_DIGITAL_R1, 
             {shooter_motor, shooter_motor_2}
     );
+
+    //Create autonomous modes
+    // OdomTest* odomTest = new OdomTest(holonomic_drive_node, odom_node, inertial_sensor);
+    TestPathAuton* test_path = new TestPathAuton(holonomic_drive_node, odom_node);
+
+    std::vector<Auton*> autons = {test_path};
+
+
+    // Initialize the autonomous manager
+	auton_manager_node = new AutonManagerNode(node_manager, autons);
+
+    // Call the node manager to initialize all of the nodes above
+    node_manager->initialize();
+
+    // controller selection menus
+    bool needsPath = selectAuton(primary_controller, auton_manager_node);
+	pros::delay(500);
+	if (needsPath) {
+		selectPathJSON(primary_controller, auton_manager_node);
+		pros::delay(500);
+	}
+	primary_controller->updateDisplay("Selection Complete");
 }
 
 void Robot15in::disabled() {}
 
 void Robot15in::competition_initialize() {}
 
-void Robot15in::autonomous() {}
+void Robot15in::autonomous() {node_manager->reset();
+
+	// Reset the chosen autonomous and initialize
+	auton_manager_node->selected_auton->AutonInit();
+	
+	// Execute autonomous code
+	while (pros::competition::is_autonomous()) {
+		node_manager->executeAuton();
+        holonomic_drive_node->autonPeriodic();
+        intake_node->autonPeriodic();
+        indexer_node->autonPeriodic();
+        shooter_node->autonPeriodic();
+        encoder->autonPeriodic();
+        inertial_sensor->autonPeriodic();
+        odom_node ->autonPeriodic();
+	}}
 
 // Must put all telepPeriodic() method from each class into here
 void Robot15in::opcontrol() {

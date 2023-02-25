@@ -21,6 +21,7 @@
 #include "nodes/subsystems/IRollerIntakeNode.h"
 #include "auton/auton_actions/DriveStraightAction.h"
 #include "auton/auton_actions/FollowPathAction.h"
+#include "auton/auton_routines/TestPathAuton.h"
 #include "eigen/Eigen/Dense"
 #include "pathing/PathManager.h"
 #include "pathing/PathSelector.h"
