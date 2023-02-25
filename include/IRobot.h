@@ -30,6 +30,7 @@
 #include "nodes/subsystems/IntakeNode.h"
 #include "nodes/subsystems/ShooterNode.h"
 #include "nodes/subsystems/ClawNode.h"
+#include "nodes/subsystems/RollerNode.h"
 
 class IRobot {
 public:

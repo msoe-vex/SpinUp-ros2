@@ -51,6 +51,8 @@ public:
   void teleopPeriodic();
 
   void autonPeriodic();
+  
+  void m_notFieldOrientedControl();
 
   void m_fieldOrientedControl();
 

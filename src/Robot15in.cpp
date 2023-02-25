@@ -67,7 +67,7 @@ void Robot15in::initialize() {
             pros::E_CONTROLLER_DIGITAL_Y, {intake_motor, intake_motor_2, intake_motor_3}
     );
 
-    roller_node = new IntakeNode(node_manager, "rollerNode", primary_controller, pros::E_CONTROLLER_DIGITAL_L1, pros::E_CONTROLLER_DIGITAL_L2, {roller_motor});	
+    roller_node = new RollerNode(node_manager, "rollerNode", primary_controller, pros::E_CONTROLLER_DIGITAL_L1, pros::E_CONTROLLER_DIGITAL_L2, {roller_motor});	
 
     shooter_piston_node = new ClawNode(
         node_manager,
@@ -105,6 +105,12 @@ void Robot15in::competition_initialize() {}
 
 void Robot15in::autonomous() {
     drop_intake->setValue(1);
+    holonomic_drive_node->setDriveVoltage(0, -MAX_MOTOR_VOLTAGE, 0);
+    pros::delay(500);
+    roller_node->setIntakeVoltage(MAX_MOTOR_VOLTAGE);
+    pros::delay(100);
+    roller_node->setIntakeVoltage(0);
+    holonomic_drive_node->setDriveVoltage(0, 0, 0);
 }
 
 // Must put all telepPeriodic() method from each class into here

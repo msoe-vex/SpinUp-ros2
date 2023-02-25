@@ -59,6 +59,15 @@ void HolonomicDriveNode::m_fieldOrientedControl() {
     setDriveVelocity(field_target_velocity.x(), field_target_velocity.y(), rotation_velocity);
 }
 
+void HolonomicDriveNode::m_notFieldOrientedControl() {
+    controller_target_velocity(0) = (m_controller->get_analog(pros::E_CONTROLLER_ANALOG_LEFT_X) / 127.0) * MAX_VELOCITY;
+    controller_target_velocity(1) = (m_controller->get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y) / 127.0) * MAX_VELOCITY;
+    rotation_velocity = -(m_controller->get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X) / 127.0) * MAX_VELOCITY;
+
+    //field_target_velocity = m_inertial_sensor->getYaw().inverse() * Rotation2Dd(GYRO_OFFSET) *  controller_target_velocity;
+    setDriveVelocity(controller_target_velocity.x(), controller_target_velocity.y(), rotation_velocity);
+}
+
 void HolonomicDriveNode::m_tankControl() {
     int left_x = (m_controller->get_analog(pros::E_CONTROLLER_ANALOG_LEFT_X) / 127.0) * MAX_MOTOR_VOLTAGE;
     int left_y = (m_controller->get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y) / 127.0) * MAX_MOTOR_VOLTAGE;
@@ -132,7 +141,8 @@ void HolonomicDriveNode::setDriveVelocity(float x_velocity, float y_velocity, fl
 
 void HolonomicDriveNode::teleopPeriodic() {
     //m_fieldOrientedControl();
-    m_tankControl();
+    m_notFieldOrientedControl();
+    //m_tankControl();
 }
 
 void HolonomicDriveNode::autonPeriodic() {

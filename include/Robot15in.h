@@ -43,7 +43,7 @@ public:
     
     /* Roller Mech Subsystem */
     MotorNode* roller_motor;
-    IntakeNode* roller_node;
+    RollerNode* roller_node;
     
     /* Shoot Pneumatics Subsystem */
     ClawNode* shooter_piston_node;

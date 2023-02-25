@@ -71,7 +71,7 @@ void ShooterNode::teleopPeriodic() {
 
     //setShootVelocity(40.0f);
     //updateShooterPID();
-    setShootVelocity(m_target_velocity);
+    setShootVelocity(m_target_velocity * .75);
     m_previousShooterButtonState = shootButtonCurrentState;
 }
 
