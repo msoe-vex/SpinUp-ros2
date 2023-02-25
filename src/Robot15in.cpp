@@ -64,6 +64,14 @@ void Robot15in::initialize() {
             pros::E_CONTROLLER_DIGITAL_Y, {intake_motor, intake_motor_2, intake_motor_3}
     );	
 
+    shooter_piston_node = new ClawNode(
+        node_manager,
+        "shooterPistonNode",
+        primary_controller,
+        new ADIDigitalOutNode(node_manager, "shooterNode", 'H', false),
+        pros::E_CONTROLLER_DIGITAL_R2
+    );
+
     /*indexer_node = new IntakeNode(node_manager, "indexer", 
             primary_controller, pros::E_CONTROLLER_DIGITAL_R1, 
             pros::E_CONTROLLER_DIGITAL_R2, indexer_motor
@@ -88,6 +96,7 @@ void Robot15in::opcontrol() {
         // nodeManager->executeTeleop();
         holonomic_drive_node->teleopPeriodic();
         intake_node->teleopPeriodic();
+        shooter_piston_node->teleopPeriodic();
         //indexer_node->teleopPeriodic();
         shooter_node->teleopPeriodic();
         encoder->teleopPeriodic();

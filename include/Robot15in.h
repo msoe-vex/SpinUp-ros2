@@ -40,6 +40,9 @@ public:
     MotorNode *shooter_motor;
     MotorNode *shooter_motor_2;
     ShooterNode* shooter_node;
+    
+    /* Shoot Pneumatics Subsystem */
+    ClawNode* shooter_piston_node;
 
     /* Intertial Sensor */
     InertialSensorNode *inertial_sensor;

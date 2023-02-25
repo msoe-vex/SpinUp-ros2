@@ -29,6 +29,7 @@
 #include "nodes/subsystems/TankDriveNode.h"
 #include "nodes/subsystems/IntakeNode.h"
 #include "nodes/subsystems/ShooterNode.h"
+#include "nodes/subsystems/ClawNode.h"
 
 class IRobot {
 public:
