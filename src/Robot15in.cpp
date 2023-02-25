@@ -44,11 +44,8 @@ void Robot15in::initialize() {
     y_odom_encoder = new ADIEncoderNode(node_manager, 'C', 'D', "yOdomEncoder", false);
 
     IOdometry::EncoderLocations encoderLocations {
-        //TODO : Get more accurate measurements -- cad file?
-        //Hypotenuse of x from center: (0.35, 6.75-1.125 from the back c channel) (0.5, -5.625)
-		Vector2d(0.5, -5.625),
-        //Hypotenuse of y from center: (3.75 , 6.75-2.4375) (-2.5, -4.3125)
-		Vector2d(-2.5, 4.3125)
+		Vector2d(0.606, -5.638),
+		Vector2d(-2.624, 4.446)
 	};
 
     inertial_sensor = new InertialSensorNode(node_manager, "inertialSensor", 20); 
