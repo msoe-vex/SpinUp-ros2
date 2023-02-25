@@ -1,6 +1,7 @@
 #pragma once
 
 #include "IRobot.h"
+#include "nodes/subsystems/IntakeNode.h"
 
 class Robot15in : public IRobot {
 public:
@@ -46,6 +47,10 @@ public:
 
     /* End-Game Pneumatics Subsystem*/
     ClawNode* end_game_node;
+
+    /* Roller Subsystem */
+    MotorNode* roller_motor;
+    IntakeNode* roller_node;
 
     /* Intertial Sensor */
     InertialSensorNode *inertial_sensor;
