@@ -74,6 +74,12 @@ void Robot15in::initialize() {
             primary_controller, pros::E_CONTROLLER_DIGITAL_R1, 
             {shooter_motor, shooter_motor_2}
     );	
+
+    shooter_arm_solenoid = new ADIDigitalOutNode(node_manager, "shooter_arm_solenoid", 'H');
+    shooter_arm = new ClawNode(node_manager, "shooter_arm", primary_controller, shooter_arm_solenoid, pros::E_CONTROLLER_DIGITAL_R2);
+
+    endgame_relase_solenoid = new ADIDigitalOutNode(node_manager, "endgame_relase_solenoid", 'G');
+    endgame_release = new ClawNode(node_manager, "endgame_release", primary_controller, endgame_relase_solenoid, pros::E_CONTROLLER_DIGITAL_RIGHT);
 }
 
 void Robot15in::disabled() {}

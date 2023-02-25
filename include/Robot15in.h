@@ -44,6 +44,14 @@ public:
     /* Intertial Sensor */
     InertialSensorNode *inertial_sensor;
 
+    /* Shooter Arm */
+    ADIDigitalOutNode *shooter_arm_solenoid;
+    ClawNode *shooter_arm;
+
+    /* Endgame */
+    ADIDigitalOutNode *endgame_relase_solenoid;
+    ClawNode *endgame_release;
+
     /* Standard PROS structural functions */
     void initialize() override;
     void disabled() override;
