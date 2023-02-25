@@ -141,5 +141,6 @@ void Robot15in::opcontrol() {
         shooter_node->teleopPeriodic();
         encoder->teleopPeriodic();
         inertial_sensor->teleopPeriodic();
+        odom_node->teleopPeriodic();
     }
 }
