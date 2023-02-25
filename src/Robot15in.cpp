@@ -40,8 +40,8 @@ void Robot15in::initialize() {
     // encoder = new ADIEncoderNode(node_manager, 'C', 'D', "encoder");  //What does encoder do?
 
     /* Define the Odometry components*/
-    x_odom_encoder = new ADIEncoderNode(node_manager, 'A', 'B', "xOdomEncoder", false);
-    y_odom_encoder = new ADIEncoderNode(node_manager, 'C', 'D', "yOdomEncoder", false);
+     x_odom_encoder = new ADIEncoderNode(node_manager, 'D', 'E', "xOdomEncoder", false);
+     y_odom_encoder = new ADIEncoderNode(node_manager, 'A', 'B', "yOdomEncoder", false);
 
     IOdometry::EncoderLocations encoderLocations {
 		Vector2d(0.606, -5.638),
