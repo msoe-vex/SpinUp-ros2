@@ -41,11 +41,17 @@ public:
     MotorNode *shooter_motor_2;
     ShooterNode* shooter_node;
     
+    /* Roller Mech Subsystem */
+    MotorNode* roller_motor;
+    IntakeNode* roller_node;
+    
     /* Shoot Pneumatics Subsystem */
     ClawNode* shooter_piston_node;
 
     /* Intertial Sensor */
     InertialSensorNode *inertial_sensor;
+    
+    ADIDigitalOutNode* drop_intake;
 
     /* Standard PROS structural functions */
     void initialize() override;

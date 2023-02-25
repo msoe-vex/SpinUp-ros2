@@ -58,11 +58,15 @@ void Robot15in::initialize() {
     //indexer_motor = new MotorNode(node_manager, 6, "indexer", false);
     shooter_motor = new MotorNode(node_manager, 6, "shooter", true);
     shooter_motor_2 = new MotorNode(node_manager, 8, "shooter2", true);
+    
+    roller_motor = new MotorNode(node_manager, 19, "roller", true);
 
     intake_node = new IntakeNode(node_manager, "intake", 
             primary_controller, pros::E_CONTROLLER_DIGITAL_A, 
             pros::E_CONTROLLER_DIGITAL_Y, {intake_motor, intake_motor_2, intake_motor_3}
-    );	
+    );
+
+    roller_node = new IntakeNode(node_manager, "rollerNode", primary_controller, pros::E_CONTROLLER_DIGITAL_L1, pros::E_CONTROLLER_DIGITAL_L2, {roller_motor});	
 
     shooter_piston_node = new ClawNode(
         node_manager,
@@ -82,13 +86,17 @@ void Robot15in::initialize() {
             primary_controller, pros::E_CONTROLLER_DIGITAL_R1, 
             {shooter_motor, shooter_motor_2}
     );	
+    
+    drop_intake = new ADIDigitalOutNode(node_manager, "dropIntake", 'F', false);
 }
 
 void Robot15in::disabled() {}
 
 void Robot15in::competition_initialize() {}
 
-void Robot15in::autonomous() {}
+void Robot15in::autonomous() {
+    drop_intake->setValue(1);
+}
 
 // Must put all telepPeriodic() method from each class into here
 void Robot15in::opcontrol() {
@@ -101,5 +109,6 @@ void Robot15in::opcontrol() {
         shooter_node->teleopPeriodic();
         encoder->teleopPeriodic();
         inertial_sensor->teleopPeriodic();
+        roller_node->teleopPeriodic();
     }
 }
