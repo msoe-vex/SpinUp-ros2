@@ -48,6 +48,9 @@ public:
     /* Shoot Pneumatics Subsystem */
     ClawNode* shooter_piston_node;
 
+    /* End-Game Pneumatics Subsystem*/
+    ClawNode* end_game_node;
+
     /* Intertial Sensor */
     InertialSensorNode *inertial_sensor;
     

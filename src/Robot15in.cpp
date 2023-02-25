@@ -1,4 +1,5 @@
 #include "Robot15in.h"
+#include "pros/misc.h"
 
 // Initializes 15in robot
 void Robot15in::initialize() { 
@@ -76,6 +77,14 @@ void Robot15in::initialize() {
         pros::E_CONTROLLER_DIGITAL_R2
     );
 
+    end_game_node = new ClawNode(
+        node_manager,
+        "endGameNode",
+        primary_controller,
+        new ADIDigitalOutNode(node_manager, "endGameNode", 'G', false),
+        pros::E_CONTROLLER_DIGITAL_RIGHT
+    );
+
     /*indexer_node = new IntakeNode(node_manager, "indexer", 
             primary_controller, pros::E_CONTROLLER_DIGITAL_R1, 
             pros::E_CONTROLLER_DIGITAL_R2, indexer_motor
@@ -105,6 +114,7 @@ void Robot15in::opcontrol() {
         holonomic_drive_node->teleopPeriodic();
         intake_node->teleopPeriodic();
         shooter_piston_node->teleopPeriodic();
+        end_game_node->teleopPeriodic();
         //indexer_node->teleopPeriodic();
         shooter_node->teleopPeriodic();
         encoder->teleopPeriodic();
