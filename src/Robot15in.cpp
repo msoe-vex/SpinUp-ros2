@@ -1,5 +1,4 @@
 #include "Robot15in.h"
-#include "nodes/subsystems/IntakeNode.h"
 #include "pros/misc.h"
 
 // Initializes 15in robot
@@ -61,9 +60,6 @@ void Robot15in::initialize() {
     shooter_motor = new MotorNode(node_manager, 6, "shooter", true);
     shooter_motor_2 = new MotorNode(node_manager, 8, "shooter2", true);
 
-    /* Define roller component */
-    roller_motor = new MotorNode(node_manager, 19, "roller", false);
-
     intake_node = new IntakeNode(node_manager, "intake", 
             primary_controller, pros::E_CONTROLLER_DIGITAL_A, 
             pros::E_CONTROLLER_DIGITAL_Y, {intake_motor, intake_motor_2, intake_motor_3}
@@ -95,9 +91,6 @@ void Robot15in::initialize() {
             primary_controller, pros::E_CONTROLLER_DIGITAL_R1, 
             {shooter_motor, shooter_motor_2}
     );	
-
-    roller_node = new IntakeNode(node_manager, "roller", primary_controller, 
-    pros::E_CONTROLLER_DIGITAL_L1, pros::E_CONTROLLER_DIGITAL_L2, {roller_motor});
 }
 
 void Robot15in::disabled() {}
