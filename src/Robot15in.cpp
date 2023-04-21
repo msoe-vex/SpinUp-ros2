@@ -1,4 +1,6 @@
 #include "Robot15in.h"
+#include "kinematics/TankDriveKinematics.h"
+#include "nodes/subsystems/TankDriveNode.h"
 #include "pros/misc.h"
 
 // Initializes 15in robot
@@ -9,16 +11,17 @@ void Robot15in::initialize() {
 
     /* Define the drivetrain components */
     // For the 15in X-Drive `_2` motors are the ones on the top of the other motors
-    left_front_drive = new MotorNode(node_manager, 17, "leftFrontDrive", true); // previously 16
-    left_front_drive_2 = new MotorNode(node_manager, 18, "leftFrontTopDrive", false);
-    left_rear_drive = new MotorNode(node_manager, 15, "leftRearDrive", true);
-    left_rear_drive_2 = new MotorNode(node_manager, 11, "leftRearTopDrive", false);
+    left_front_drive = new MotorNode(node_manager, 2, "leftFrontDrive", true); // previously 16
+    left_front_drive_2 = new MotorNode(node_manager, 1, "leftFrontTopDrive", false);
+    left_rear_drive = new MotorNode(node_manager, 11, "leftRearDrive", true);
+    left_rear_drive_2 = new MotorNode(node_manager, 12, "leftRearTopDrive", false);
 
-    right_front_drive = new MotorNode(node_manager, 13, "rightFrontDrive", false);
-    right_front_drive_2 = new MotorNode(node_manager, 14, "rightFrontTopDrive", true);
-    right_rear_drive = new MotorNode(node_manager, 9, "rightRearDrive", false); // 2 is ded
-    right_rear_drive_2 = new MotorNode(node_manager, 10, "rightRearTopDrive", true); // prev 3
+    right_front_drive = new MotorNode(node_manager, 3, "rightFrontDrive", false);
+    right_front_drive_2 = new MotorNode(node_manager, 4, "rightFrontTopDrive", true);
+    right_rear_drive = new MotorNode(node_manager, 7, "rightRearDrive", false); // 2 is ded
+    right_rear_drive_2 = new MotorNode(node_manager, 8, "rightRearTopDrive", true); // prev 3
 
+    // Drive Node stuff
     HolonomicDriveNode::HolonomicEightMotors holonomic_drive_motors = {
         left_front_drive,  left_front_drive_2, left_rear_drive,
         left_rear_drive_2, right_front_drive,  right_front_drive_2,
@@ -53,37 +56,39 @@ void Robot15in::initialize() {
     );
 
     /* Define the intake components */
-    intake_motor = new MotorNode(node_manager, 1, "intake", true);
-    intake_motor_2 = new MotorNode(node_manager, 3, "intake2", true);
-    intake_motor_3 = new MotorNode(node_manager, 4, "intake3", false);
+    intake_motor = new MotorNode(node_manager, 9, "intake", true);
+    // intake_motor_2 = new MotorNode(node_manager, 3, "intake2", true);
+    // intake_motor_3 = new MotorNode(node_manager, 4, "intake3", false);
     //indexer_motor = new MotorNode(node_manager, 6, "indexer", false);
-    shooter_motor = new MotorNode(node_manager, 6, "shooter", true);
-    shooter_motor_2 = new MotorNode(node_manager, 8, "shooter2", true);
+    //shooter_motor = new MotorNode(node_manager, 6, "shooter", true);
+    //shooter_motor_2 = new MotorNode(node_manager, 8, "shooter2", true);
     
-    roller_motor = new MotorNode(node_manager, 19, "roller", true);
+    roller_motor = new MotorNode(node_manager, 20, "roller", true);
 
     intake_node = new IntakeNode(node_manager, "intake", 
             primary_controller, pros::E_CONTROLLER_DIGITAL_A, 
-            pros::E_CONTROLLER_DIGITAL_Y, {intake_motor, intake_motor_2, intake_motor_3}
+            pros::E_CONTROLLER_DIGITAL_Y, {intake_motor} //intake_motor_2, intake_motor_3}
     );
 
     roller_node = new RollerNode(node_manager, "rollerNode", primary_controller, pros::E_CONTROLLER_DIGITAL_L1, pros::E_CONTROLLER_DIGITAL_L2, {roller_motor});	
 
+    /*
     shooter_piston_node = new ClawNode(
         node_manager,
         "shooterPistonNode",
         primary_controller,
         new ADIDigitalOutNode(node_manager, "shooterNode", 'H', false),
         pros::E_CONTROLLER_DIGITAL_R2
-    );
+    ); */
 
+    /*
     end_game_node = new ClawNode(
         node_manager,
         "endGameNode",
         primary_controller,
         new ADIDigitalOutNode(node_manager, "endGameNode", 'G', false),
         pros::E_CONTROLLER_DIGITAL_RIGHT
-    );
+    ); */
 
     /*indexer_node = new IntakeNode(node_manager, "indexer", 
             primary_controller, pros::E_CONTROLLER_DIGITAL_R1, 
@@ -91,12 +96,13 @@ void Robot15in::initialize() {
     );*/	
 
 
+    /*
     shooter_node = new ShooterNode(node_manager, "shooter", 
             primary_controller, pros::E_CONTROLLER_DIGITAL_R1, 
             {shooter_motor, shooter_motor_2}
-    );	
+    );	*/
     
-    drop_intake = new ADIDigitalOutNode(node_manager, "dropIntake", 'F', false);
+    //drop_intake = new ADIDigitalOutNode(node_manager, "dropIntake", 'F', false);
 }
 
 void Robot15in::disabled() {}
@@ -104,13 +110,13 @@ void Robot15in::disabled() {}
 void Robot15in::competition_initialize() {}
 
 void Robot15in::autonomous() {
-    drop_intake->setValue(1);
-    holonomic_drive_node->setDriveVoltage(0, -MAX_MOTOR_VOLTAGE, 0);
-    pros::delay(500);
-    roller_node->setIntakeVoltage(MAX_MOTOR_VOLTAGE);
-    pros::delay(100);
-    roller_node->setIntakeVoltage(0);
-    holonomic_drive_node->setDriveVoltage(0, 0, 0);
+    // drop_intake->setValue(1);
+    // holonomic_drive_node->setDriveVoltage(0, -MAX_MOTOR_VOLTAGE, 0);
+    // pros::delay(500);
+    // roller_node->setIntakeVoltage(MAX_MOTOR_VOLTAGE);
+    // pros::delay(100);
+    // roller_node->setIntakeVoltage(0);
+    // holonomic_drive_node->setDriveVoltage(0, 0, 0);
 }
 
 // Must put all telepPeriodic() method from each class into here
@@ -119,12 +125,12 @@ void Robot15in::opcontrol() {
         // nodeManager->executeTeleop();
         holonomic_drive_node->teleopPeriodic();
         intake_node->teleopPeriodic();
-        shooter_piston_node->teleopPeriodic();
-        end_game_node->teleopPeriodic();
+        //shooter_piston_node->teleopPeriodic();
+        //end_game_node->teleopPeriodic();
         //indexer_node->teleopPeriodic();
-        shooter_node->teleopPeriodic();
-        encoder->teleopPeriodic();
-        inertial_sensor->teleopPeriodic();
+        //shooter_node->teleopPeriodic();
+        //encoder->teleopPeriodic();
+        //inertial_sensor->teleopPeriodic();
         roller_node->teleopPeriodic();
     }
 }

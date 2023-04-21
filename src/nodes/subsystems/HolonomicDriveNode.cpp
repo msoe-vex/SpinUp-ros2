@@ -141,8 +141,8 @@ void HolonomicDriveNode::setDriveVelocity(float x_velocity, float y_velocity, fl
 
 void HolonomicDriveNode::teleopPeriodic() {
     //m_fieldOrientedControl();
-    m_notFieldOrientedControl();
-    //m_tankControl();
+    //m_notFieldOrientedControl();
+    m_tankControl();
 }
 
 void HolonomicDriveNode::autonPeriodic() {
