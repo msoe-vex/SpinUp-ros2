@@ -12,12 +12,12 @@ void Robot15in::initialize() {
     /* Define the drivetrain components */
     // For the 15in X-Drive `_2` motors are the ones on the top of the other motors
     left_front_drive = new MotorNode(node_manager, 2, "leftFrontDrive", true); // previously 16
-    left_front_drive_2 = new MotorNode(node_manager, 1, "leftFrontTopDrive", false);
+    left_front_drive_2 = new MotorNode(node_manager, 1, "leftFrontTopDrive", true);
     left_rear_drive = new MotorNode(node_manager, 11, "leftRearDrive", true);
     left_rear_drive_2 = new MotorNode(node_manager, 12, "leftRearTopDrive", false);
 
-    right_front_drive = new MotorNode(node_manager, 3, "rightFrontDrive", false);
-    right_front_drive_2 = new MotorNode(node_manager, 4, "rightFrontTopDrive", true);
+    right_front_drive = new MotorNode(node_manager, 3, "rightFrontDrive", true);
+    right_front_drive_2 = new MotorNode(node_manager, 4, "rightFrontTopDrive", false);
     right_rear_drive = new MotorNode(node_manager, 7, "rightRearDrive", false); // 2 is ded
     right_rear_drive_2 = new MotorNode(node_manager, 8, "rightRearTopDrive", true); // prev 3
 
@@ -81,14 +81,14 @@ void Robot15in::initialize() {
         pros::E_CONTROLLER_DIGITAL_R2
     ); */
 
-    /*
+    
     end_game_node = new ClawNode(
         node_manager,
         "endGameNode",
         primary_controller,
-        new ADIDigitalOutNode(node_manager, "endGameNode", 'G', false),
+        new ADIDigitalOutNode(node_manager, "endGameNode", 'B', false),
         pros::E_CONTROLLER_DIGITAL_RIGHT
-    ); */
+    );
 
     /*indexer_node = new IntakeNode(node_manager, "indexer", 
             primary_controller, pros::E_CONTROLLER_DIGITAL_R1, 
@@ -126,7 +126,7 @@ void Robot15in::opcontrol() {
         holonomic_drive_node->teleopPeriodic();
         intake_node->teleopPeriodic();
         //shooter_piston_node->teleopPeriodic();
-        //end_game_node->teleopPeriodic();
+        end_game_node->teleopPeriodic();
         //indexer_node->teleopPeriodic();
         //shooter_node->teleopPeriodic();
         //encoder->teleopPeriodic();

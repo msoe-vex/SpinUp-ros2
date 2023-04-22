@@ -32,9 +32,9 @@ void RollerNode::teleopPeriodic() {
     bool outtakeButtonCurrentState = m_controller->get_digital(m_outtakeButton);
     
     if (intakeButtonCurrentState) {
-        setIntakeVoltage(MAX_MOTOR_VOLTAGE * .5);
+        setIntakeVoltage(MAX_MOTOR_VOLTAGE);
     } else if (outtakeButtonCurrentState) {
-        setIntakeVoltage(-1 * MAX_MOTOR_VOLTAGE * .5);
+        setIntakeVoltage(-1 * MAX_MOTOR_VOLTAGE);
     } else {
         setIntakeVoltage(0);
     }
