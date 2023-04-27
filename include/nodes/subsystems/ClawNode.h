@@ -20,7 +20,7 @@ public:
 
     void initialize();
 
-    void useClaw(bool opened);
+    void setState(bool opened);
 
     void teleopPeriodic();
 

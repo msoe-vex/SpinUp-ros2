@@ -12,7 +12,7 @@ public:
 
     virtual void initialize() = 0;
 
-    virtual void useClaw(bool opened) = 0;
+    virtual void setState(bool opened) = 0;
     
     //virtual void setDisabled(bool disabled) = 0;
 

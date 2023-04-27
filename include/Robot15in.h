@@ -50,6 +50,9 @@ public:
 
     /* End-Game Pneumatics Subsystem*/
     ClawNode* end_game_node;
+    
+    /* Drive Base Subsystem */
+    LauncherNode* launcher_node;
 
     /* Intertial Sensor */
     InertialSensorNode *inertial_sensor;

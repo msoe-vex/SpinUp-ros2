@@ -14,12 +14,12 @@ void Robot15in::initialize() {
     left_front_drive = new MotorNode(node_manager, 2, "leftFrontDrive", true); // previously 16
     left_front_drive_2 = new MotorNode(node_manager, 1, "leftFrontTopDrive", true);
     left_rear_drive = new MotorNode(node_manager, 11, "leftRearDrive", true);
-    left_rear_drive_2 = new MotorNode(node_manager, 12, "leftRearTopDrive", false);
+    left_rear_drive_2 = new MotorNode(node_manager, 12, "leftRearTopDrive", true);
 
-    right_front_drive = new MotorNode(node_manager, 3, "rightFrontDrive", true);
+    right_front_drive = new MotorNode(node_manager, 3, "rightFrontDrive", false);
     right_front_drive_2 = new MotorNode(node_manager, 4, "rightFrontTopDrive", false);
     right_rear_drive = new MotorNode(node_manager, 7, "rightRearDrive", false); // 2 is ded
-    right_rear_drive_2 = new MotorNode(node_manager, 8, "rightRearTopDrive", true); // prev 3
+    right_rear_drive_2 = new MotorNode(node_manager, 8, "rightRearTopDrive", false); // prev 3
 
     // Drive Node stuff
     HolonomicDriveNode::HolonomicEightMotors holonomic_drive_motors = {
@@ -86,8 +86,18 @@ void Robot15in::initialize() {
         node_manager,
         "endGameNode",
         primary_controller,
-        new ADIDigitalOutNode(node_manager, "endGameNode", 'B', false),
+        new ADIDigitalOutNode(node_manager, "endGameNode", 'C', false),
         pros::E_CONTROLLER_DIGITAL_RIGHT
+    );
+    
+    launcher_node = new LauncherNode(
+        node_manager,
+        "driveBaseNode",
+        primary_controller,
+        new ADIDigitalOutNode(node_manager, "driveBaseNode", 'A', false),
+        new ADIDigitalOutNode(node_manager, "driveBaseNode", 'B', false),
+        pros::E_CONTROLLER_DIGITAL_X,
+        pros::E_CONTROLLER_DIGITAL_Y
     );
 
     /*indexer_node = new IntakeNode(node_manager, "indexer", 
@@ -127,6 +137,7 @@ void Robot15in::opcontrol() {
         intake_node->teleopPeriodic();
         //shooter_piston_node->teleopPeriodic();
         end_game_node->teleopPeriodic();
+        launcher_node->teleopPeriodic();
         //indexer_node->teleopPeriodic();
         //shooter_node->teleopPeriodic();
         //encoder->teleopPeriodic();

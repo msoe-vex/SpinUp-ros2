@@ -31,6 +31,7 @@
 #include "nodes/subsystems/ShooterNode.h"
 #include "nodes/subsystems/ClawNode.h"
 #include "nodes/subsystems/RollerNode.h"
+#include "nodes/subsystems/LauncherNode.h"
 
 class IRobot {
 public:
