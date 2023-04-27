@@ -56,6 +56,9 @@ public:
 
   void m_fieldOrientedControl();
 
+
+  void setDriveMode(bool isTank);
+
   ~HolonomicDriveNode();
 
 private:
@@ -72,6 +75,8 @@ private:
   Eigen::Vector2d controller_target_velocity;
   Eigen::Vector2d field_target_velocity;
   double rotation_velocity;
+
+  bool m_isTank;
 
   void m_setLeftFrontVoltage(int voltage);
 
