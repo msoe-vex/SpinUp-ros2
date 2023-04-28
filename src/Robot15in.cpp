@@ -1,5 +1,6 @@
 #include "Robot15in.h"
 #include "kinematics/TankDriveKinematics.h"
+#include "nodes/subsystems/ButterflyNode.h"
 #include "nodes/subsystems/TankDriveNode.h"
 #include "pros/misc.h"
 
@@ -41,7 +42,7 @@ void Robot15in::initialize() {
         Vector2d(5.48, -5.48)   // Right rear
     };
 
-    encoder = new ADIEncoderNode(node_manager, 'C', 'D', "encoder");        
+    // encoder = new ADIEncoderNode(node_manager, 'C', 'D', "encoder");        
 
     inertial_sensor = new InertialSensorNode(node_manager, "inertialSensor", 20); 
 
@@ -53,6 +54,16 @@ void Robot15in::initialize() {
             node_manager, "drivetrain", 
             primary_controller, inertial_sensor,
             holonomic_drive_motors, *holonomic_drive_kinematics
+    );
+
+    //Manages switching drives for butterflyNode -- Is this button press->hold? --Andy Dao
+    butterfly_node = new ButterflyNode(
+        node_manager,
+        "butterflyPistonNode",
+        primary_controller,
+        new ADIDigitalOutNode(node_manager, "butterflyNode", 'B', false), // initial state true for tank, false for holonomic
+        pros::E_CONTROLLER_DIGITAL_Y,
+        holonomic_drive_node
     );
 
     /* Define the intake components */
@@ -67,7 +78,7 @@ void Robot15in::initialize() {
 
     intake_node = new IntakeNode(node_manager, "intake", 
             primary_controller, pros::E_CONTROLLER_DIGITAL_A, 
-            pros::E_CONTROLLER_DIGITAL_Y, {intake_motor} //intake_motor_2, intake_motor_3}
+            pros::E_CONTROLLER_DIGITAL_R1, {intake_motor} //intake_motor_2, intake_motor_3}
     );
 
     roller_node = new RollerNode(node_manager, "rollerNode", primary_controller, pros::E_CONTROLLER_DIGITAL_L1, pros::E_CONTROLLER_DIGITAL_L2, {roller_motor});	
@@ -86,7 +97,7 @@ void Robot15in::initialize() {
         node_manager,
         "endGameNode",
         primary_controller,
-        new ADIDigitalOutNode(node_manager, "endGameNode", 'C', false),
+        new ADIDigitalOutNode(node_manager, "endGameNode", 'C', true),
         pros::E_CONTROLLER_DIGITAL_RIGHT
     );
     
@@ -95,9 +106,9 @@ void Robot15in::initialize() {
         "driveBaseNode",
         primary_controller,
         new ADIDigitalOutNode(node_manager, "driveBaseNode", 'A', false),
-        new ADIDigitalOutNode(node_manager, "driveBaseNode", 'B', false),
-        pros::E_CONTROLLER_DIGITAL_X,
-        pros::E_CONTROLLER_DIGITAL_Y
+        new ADIDigitalOutNode(node_manager, "driveBaseNode", 'D', false),
+        pros::E_CONTROLLER_DIGITAL_UP,
+        pros::E_CONTROLLER_DIGITAL_R2
     );
 
     /*indexer_node = new IntakeNode(node_manager, "indexer", 
@@ -105,7 +116,7 @@ void Robot15in::initialize() {
             pros::E_CONTROLLER_DIGITAL_R2, indexer_motor
     );*/	
 
-
+    
     /*
     shooter_node = new ShooterNode(node_manager, "shooter", 
             primary_controller, pros::E_CONTROLLER_DIGITAL_R1, 
@@ -137,6 +148,7 @@ void Robot15in::opcontrol() {
         intake_node->teleopPeriodic();
         //shooter_piston_node->teleopPeriodic();
         end_game_node->teleopPeriodic();
+        butterfly_node->teleopPeriodic();
         launcher_node->teleopPeriodic();
         //indexer_node->teleopPeriodic();
         //shooter_node->teleopPeriodic();

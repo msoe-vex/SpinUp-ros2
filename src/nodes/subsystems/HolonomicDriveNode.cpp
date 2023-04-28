@@ -6,7 +6,7 @@ HolonomicDriveNode::HolonomicDriveNode(NodeManager* node_manager, std::string ha
         m_controller(controller->getController()),
         m_inertial_sensor(inertial_sensor),
         m_motors(motors),
-        m_kinematics(kinematics) {
+        m_kinematics(kinematics), m_isTank(true) {
     m_handle_name = handle_name.insert(0, "robot/");
 }
 

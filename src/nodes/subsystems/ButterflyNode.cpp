@@ -1,13 +1,15 @@
 #include "nodes/subsystems/ButterflyNode.h"
+#include "HolonomicDriveNode.h"
 
 ButterflyNode::ButterflyNode(NodeManager* node_manager, std::string handle_name, 
-		ControllerNode* controller, ADIDigitalOutNode* claw, pros::controller_digital_e_t button) : 
+		ControllerNode* controller, ADIDigitalOutNode* claw, pros::controller_digital_e_t button, HolonomicDriveNode* holonomic_drive_node) : 
 		IClawNode(node_manager, handle_name), 
 		m_controller(controller),
 		m_claw(claw),
 		m_button(button),
-		m_claw_open(true),
-		m_a_previous_state(false){
+		m_claw_open(false),
+		m_a_previous_state(false),
+		m_holonomic_drive_node(holonomic_drive_node){
 
 }
 
@@ -18,8 +20,10 @@ void ButterflyNode::initialize() {
 void ButterflyNode::setState(bool opened) {
 	if (opened) {
 		m_claw->setValue(0);
+		m_holonomic_drive_node->setDriveMode(true);
 	} else {
         m_claw->setValue(1);
+		m_holonomic_drive_node->setDriveMode(false);
 	}
 }
 

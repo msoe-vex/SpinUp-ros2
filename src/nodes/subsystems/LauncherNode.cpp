@@ -20,13 +20,15 @@ void LauncherNode::initialize() {
 
 void LauncherNode::setState(bool up) {
 	if (up) {
+		m_down_state->setValue(0);
+		pros::delay(10);
 		m_up_state->setValue(1);
-		pros::delay(10);
-		m_up_state->setValue(0);
+		
 	} else {
-		m_down_state->setValue(1);
+		m_up_state->setValue(0);
 		pros::delay(10);
-        m_down_state->setValue(0);
+		m_down_state->setValue(1);
+		
 	}
 }
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "IRobot.h"
+#include "nodes/subsystems/ButterflyNode.h"
 
 class Robot15in : public IRobot {
 public:
@@ -18,6 +19,7 @@ public:
     MotorNode *right_rear_drive_2;
     HolonomicDriveKinematics *holonomic_drive_kinematics;
     HolonomicDriveNode *holonomic_drive_node;
+    
 
     /* Intake Subsystem */
     MotorNode* intake_motor;
@@ -52,6 +54,9 @@ public:
     ClawNode* end_game_node;
     
     /* Drive Base Subsystem */
+    ButterflyNode* butterfly_node;
+
+    /* Disk Launcher Subsystem*/
     LauncherNode* launcher_node;
 
     /* Intertial Sensor */
