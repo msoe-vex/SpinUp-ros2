@@ -3,6 +3,7 @@
 #include "nodes/subsystems/IntakeNode.h"
 #include "Robot15in.h"
 #include "Robot18in.h"
+#include "RobotKen.h"
 
 // Below are the definitions for all the objects for both robots
 
@@ -12,6 +13,7 @@ NodeManager *node_manager = new NodeManager(pros::millis);
 IRobot* selectedRobot;
 Robot15in* robot15in;
 Robot18in* robot18in;
+RobotKen* robotKen;
 
 /* Maps robotNames to IRobots */
 map<std::string, IRobot*> robotMap;
@@ -60,11 +62,13 @@ void initialize() {
     /* Create Robot Objects */
     robot15in = new Robot15in;
     robot18in = new Robot18in;
+    robotKen = new RobotKen;
 
     /* Maps robot name to initialization function */
     robotMap = {
         {"15in", robot15in}, 
-        {"18in", robot18in}
+        {"18in", robot18in},
+        {"Ken", robotKen}
     };
 
     /* Gets the name of the robot from the SD Card */
