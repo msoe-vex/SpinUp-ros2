@@ -1,20 +1,20 @@
-#include "RobotFatAlbert.h"
+#include "RobotBuddyBoiy.h"
 
 // Initializes 18in robot
-void RobotFatAlbert::initialize() {
+void RobotBuddyBoiy::initialize() {
     pros::lcd::initialize();
     node_manager = new NodeManager(pros::millis);
     primary_controller = new ControllerNode(node_manager, "primary");
 
     /* Define the drivetrain components */
-    left_drive_1 = new MotorNode(node_manager, 6, "leftDrive1", false); // 1
-    left_drive_2 = new MotorNode(node_manager, 5, "leftDrive2", false); // 8
-    left_drive_3 = new MotorNode(node_manager, 4, "leftDrive3", false); // 3
+    left_drive_1 = new MotorNode(node_manager, 1, "leftDrive1", false); // 1
+    left_drive_2 = new MotorNode(node_manager, 12, "leftDrive2", false); // 8
+    left_drive_3 = new MotorNode(node_manager, 11, "leftDrive3", false); // 3
     left_drive_4 = new MotorNode(node_manager, 10, "LeftDrive4", false);
     // 1, 4, 17`, 6
-    right_drive_1 = new MotorNode(node_manager, 3, "rightDrive1", true); //4 
-    right_drive_2 = new MotorNode(node_manager, 8, "rightDrive2", true); // 5
-    right_drive_3 = new MotorNode(node_manager, 1, "rightRearDrive", true); // 6
+    right_drive_1 = new MotorNode(node_manager, 9, "rightDrive1", true); //4 
+    right_drive_2 = new MotorNode(node_manager, 19, "rightDrive2", true); // 5
+    right_drive_3 = new MotorNode(node_manager, 20, "rightRearDrive", true); // 6
     right_drive_4 = new MotorNode(node_manager, 14, "rightRearTopDrive", true); 
 
     TankDriveNode::TankEightMotors tank_drive_motors = {
@@ -63,14 +63,14 @@ void RobotFatAlbert::initialize() {
     // );
 }
 
-void RobotFatAlbert::disabled() {}
+void RobotBuddyBoiy::disabled() {}
 
-void RobotFatAlbert::competition_initialize() {}
+void RobotBuddyBoiy::competition_initialize() {}
 
-void RobotFatAlbert::autonomous() {}
+void RobotBuddyBoiy::autonomous() {}
 
 // Must put all telepPeriodic() method from each class into here
-void RobotFatAlbert::opcontrol() {
+void RobotBuddyBoiy::opcontrol() {
     while (true) {
         // nodeManager->executeTeleop();
         tank_drive_node->teleopPeriodic();

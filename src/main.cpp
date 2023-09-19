@@ -4,6 +4,8 @@
 #include "Robot15in.h"
 #include "Robot18in.h"
 #include "RobotKen.h"
+#include "RobotFatAlbert.h"
+#include "RobotBuddyBoiy.h"
 
 // Below are the definitions for all the objects for both robots
 
@@ -14,6 +16,8 @@ IRobot* selectedRobot;
 Robot15in* robot15in;
 Robot18in* robot18in;
 RobotKen* robotKen;
+RobotFatAlbert* robotFatAlbert;
+RobotBuddyBoiy* robotBuddyBoiy;
 
 /* Maps robotNames to IRobots */
 map<std::string, IRobot*> robotMap;
@@ -63,12 +67,16 @@ void initialize() {
     robot15in = new Robot15in;
     robot18in = new Robot18in;
     robotKen = new RobotKen;
+    robotFatAlbert = new RobotFatAlbert;
+    robotBuddyBoiy = new RobotBuddyBoiy;
 
     /* Maps robot name to initialization function */
     robotMap = {
         {"15in", robot15in}, 
         {"18in", robot18in},
-        {"Ken", robotKen}
+        {"Ken", robotKen},
+        {"FatAlbert", robotFatAlbert},
+        {"BuddyBoiy", robotBuddyBoiy},
     };
 
     /* Gets the name of the robot from the SD Card */

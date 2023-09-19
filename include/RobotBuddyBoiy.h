@@ -2,7 +2,7 @@
 
 #include "IRobot.h"
 
-class RobotFatAlbert : public IRobot {
+class RobotBuddyBoiy : public IRobot {
 public:
     /* Node Manager */
     NodeManager *node_manager;
