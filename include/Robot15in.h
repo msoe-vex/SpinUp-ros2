@@ -19,6 +19,11 @@ public:
     HolonomicDriveKinematics *holonomic_drive_kinematics;
     HolonomicDriveNode *holonomic_drive_node;
 
+    /* Arm Motor Subsystem */
+    MotorNode* arm_motor;
+    MotorNode* arm_motor_2;
+    IntakeNode* arm_node;
+
     /* Intake Subsystem */
     MotorNode* intake_motor;
     IntakeNode* intake_node;

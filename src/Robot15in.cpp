@@ -1,4 +1,5 @@
 #include "Robot15in.h"
+#include "nodes/actuator_nodes/MotorNode.h"
 #include "pros/misc.h"
 
 // Initializes 15in robot
@@ -18,6 +19,15 @@ void Robot15in::initialize() {
     right_front_drive_2 = new MotorNode(node_manager, 14, "rightFrontTopDrive", true);
     right_rear_drive = new MotorNode(node_manager, 9, "rightRearDrive", false); // 2 is ded
     right_rear_drive_2 = new MotorNode(node_manager, 10, "rightRearTopDrive", true); // prev 3
+
+    /* Define Arm Motor */
+    arm_motor = new MotorNode(node_manager, 1, "arm_motor");
+    arm_motor_2 = new MotorNode(node_manager, 2, "arm_motor_2");
+
+    arm_node = new IntakeNode(node_manager, "arm_system", 
+            primary_controller, pros::E_CONTROLLER_DIGITAL_UP, 
+            pros::E_CONTROLLER_DIGITAL_DOWN, {arm_motor, arm_motor_2}
+    );
 
     HolonomicDriveNode::HolonomicEightMotors holonomic_drive_motors = {
         left_front_drive,  left_front_drive_2, left_rear_drive,
@@ -121,6 +131,7 @@ void Robot15in::opcontrol() {
         intake_node->teleopPeriodic();
         shooter_piston_node->teleopPeriodic();
         end_game_node->teleopPeriodic();
+        arm_node->teleopPeriodic();
         //indexer_node->teleopPeriodic();
         shooter_node->teleopPeriodic();
         encoder->teleopPeriodic();
