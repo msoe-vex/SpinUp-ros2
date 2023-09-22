@@ -1,6 +1,7 @@
 #include "main.h"
 #include "nodes/actuator_nodes/MotorNode.h"
 #include "nodes/subsystems/IntakeNode.h"
+#include "RobotDefault.h"
 #include "Robot15in.h"
 #include "Robot18in.h"
 #include "RobotKen.h"
@@ -13,6 +14,7 @@ NodeManager *node_manager = new NodeManager(pros::millis);
 
 /* Robots */
 IRobot* selectedRobot;
+RobotDefault* robotDefault;
 Robot15in* robot15in;
 Robot18in* robot18in;
 RobotKen* robotKen;
@@ -64,6 +66,7 @@ void initialize() {
     */
 
     /* Create Robot Objects */
+    robotDefault = new RobotDefault;
     robot15in = new Robot15in;
     robot18in = new Robot18in;
     robotKen = new RobotKen;
@@ -72,6 +75,7 @@ void initialize() {
 
     /* Maps robot name to initialization function */
     robotMap = {
+        {"Default", robotDefault}
         {"15in", robot15in}, 
         {"18in", robot18in},
         {"Ken", robotKen},
@@ -86,11 +90,12 @@ void initialize() {
     if (robotMap.find(robotName) != robotMap.end()) {
         selectedRobot = robotMap[robotName];
         // Using the overloaded version of updateDisplay() uses the C API that does not require an object
-        selectedRobot->primary_controller->updateDisplay(pros::E_CONTROLLER_MASTER, "Running " + robotName);
     } else {
+        // use the default robot
         selectedRobot = robotMap.begin()->second;
-        selectedRobot->primary_controller->updateDisplay(pros::E_CONTROLLER_MASTER, "Running Default");
     }
+
+    selectedRobot->primary_controller->updateDisplay(pros::E_CONTROLLER_MASTER, "Running " + robotName);
 
     selectedRobot->initialize();
     
