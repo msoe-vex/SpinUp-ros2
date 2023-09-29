@@ -2,6 +2,7 @@
 #include "nodes/actuator_nodes/MotorNode.h"
 #include "nodes/subsystems/IntakeNode.h"
 #include "RobotDefault.h"
+#include "RobotConfig.h"
 #include "Robot15in.h"
 #include "Robot18in.h"
 #include "RobotKen.h"
@@ -15,6 +16,7 @@ NodeManager *node_manager = new NodeManager(pros::millis);
 /* Robots */
 IRobot* selectedRobot;
 RobotDefault* robotDefault;
+RobotConfig* robotConfig;
 Robot15in* robot15in;
 Robot18in* robot18in;
 RobotKen* robotKen;
@@ -28,16 +30,21 @@ map<std::string, IRobot*> robotMap;
 std::string robotName;
 
 std::string getRobotName() {
-    std::ifstream file("/usd/robotName.txt");
+    std::ifstream file("/usd/robotDefinition.json");
 
     if (file.is_open()) {
         std::string robotName;
         std::getline(file, robotName);
         file.close();
-        return robotName;
+        return toLowercase(robotName);
     } else {
         return "Unknown";
     }
+}
+
+std::string toLowercase(std::string string) {
+    std::transform(string.begin(), string.end(), string.begin(), ::tolower);
+    return string;
 }
 
 /**
@@ -67,6 +74,7 @@ void initialize() {
 
     /* Create Robot Objects */
     robotDefault = new RobotDefault;
+    robotConfig = new RobotConfig;
     robot15in = new Robot15in;
     robot18in = new Robot18in;
     robotKen = new RobotKen;
@@ -75,12 +83,13 @@ void initialize() {
 
     /* Maps robot name to initialization function */
     robotMap = {
-        {"Default", robotDefault}
+        {"default", robotDefault},
+        {"config", robotConfig},
         {"15in", robot15in}, 
         {"18in", robot18in},
-        {"Ken", robotKen},
-        {"FatAlbert", robotFatAlbert},
-        {"BuddyBoiy", robotBuddyBoiy},
+        {"ken", robotKen},
+        {"fat_albert", robotFatAlbert},
+        {"buddy_boiy", robotBuddyBoiy},
     };
 
     /* Gets the name of the robot from the SD Card */

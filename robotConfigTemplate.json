@@ -1,0 +1,62 @@
+{
+	"robotName" : "config",
+	"drivetrain" : "tank",
+	"drivetrainMotors" : [
+		{
+			"name" : "leftDrive1",
+			"port" : 1,
+			"reversed" : true
+		},
+		{
+			"name" : "leftDrive2",
+			"port" : 2,
+			"reversed" : false
+		},
+		{
+			"name" : "leftDrive3",
+			"port" : 3,
+			"reversed" : false
+		},
+		{
+			"name" : "leftDrive4",
+			"port" : 4,
+			"reversed" : true
+		},
+		{
+			"name" : "rightDrive1",
+			"port" : 5,
+			"reversed" : true
+		},
+		{
+			"name" : "rightDrive2",
+			"port" : 6,
+			"reversed" : false
+		},
+		{
+			"name" : "rightDrive3",
+			"port" : 7,
+			"reversed" : false
+		},
+		{
+			"name" : "rightDrive4",
+			"port" : 8,
+			"reversed" : true
+		}
+	],
+	"otherMotors" : [
+		{
+			"name" : "intake",
+			"port" : 9,
+			"reversed" : false,
+			"forwardButton" : "A",
+			"backwardButton" : "B"
+		},
+		{
+			"name" : "climber",
+			"port" : 10,
+			"reversed" : false,
+			"forwardButton" : "L1",
+			"backwardButton" : "R1"
+		},
+	]
+}
