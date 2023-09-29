@@ -75,7 +75,7 @@ void initialize() {
 
     /* Maps robot name to initialization function */
     robotMap = {
-        {"Default", robotDefault}
+        {"Default", robotDefault},
         {"15in", robot15in}, 
         {"18in", robot18in},
         {"Ken", robotKen},

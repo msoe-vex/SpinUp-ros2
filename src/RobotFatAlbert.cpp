@@ -7,15 +7,15 @@ void RobotFatAlbert::initialize() {
     primary_controller = new ControllerNode(node_manager, "primary");
 
     /* Define the drivetrain components */
-    left_drive_1 = new MotorNode(node_manager, 6, "leftDrive1", false); // 1
-    left_drive_2 = new MotorNode(node_manager, 5, "leftDrive2", false); // 8
-    left_drive_3 = new MotorNode(node_manager, 4, "leftDrive3", false); // 3
+    left_drive_1 = new MotorNode(node_manager, 8, "leftDrive1", false);
+    left_drive_2 = new MotorNode(node_manager, 9, "leftDrive2", true);
+    left_drive_3 = new MotorNode(node_manager, 14, "leftDrive3", true); 
     left_drive_4 = new MotorNode(node_manager, 10, "LeftDrive4", false);
     // 1, 4, 17`, 6
-    right_drive_1 = new MotorNode(node_manager, 3, "rightDrive1", true); //4 
-    right_drive_2 = new MotorNode(node_manager, 8, "rightDrive2", true); // 5
-    right_drive_3 = new MotorNode(node_manager, 1, "rightRearDrive", true); // 6
-    right_drive_4 = new MotorNode(node_manager, 14, "rightRearTopDrive", true); 
+    right_drive_1 = new MotorNode(node_manager, 1, "rightDrive1", true); 
+    right_drive_2 = new MotorNode(node_manager, 4, "rightDrive2", false); 
+    right_drive_3 = new MotorNode(node_manager, 17, "rightRearDrive", false);
+    right_drive_4 = new MotorNode(node_manager, 6, "rightRearTopDrive", true); 
 
     TankDriveNode::TankEightMotors tank_drive_motors = {
         left_drive_1,  left_drive_2, left_drive_3, left_drive_4, 
