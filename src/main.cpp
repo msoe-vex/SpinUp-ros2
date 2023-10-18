@@ -1,7 +1,6 @@
 #include "main.h"
 #include "nodes/actuator_nodes/MotorNode.h"
 #include "nodes/subsystems/IntakeNode.h"
-#include "RobotDefault.h"
 #include "RobotConfig.h"
 #include "Robot15in.h"
 #include "Robot18in.h"
@@ -15,7 +14,6 @@ NodeManager *node_manager = new NodeManager(pros::millis);
 
 /* Robots */
 IRobot* selectedRobot;
-RobotDefault* robotDefault;
 RobotConfig* robotConfig;
 Robot15in* robot15in;
 Robot18in* robot18in;
@@ -68,7 +66,6 @@ void initialize() {
     */
 
     /* Create Robot Objects */
-    robotDefault = new RobotDefault;
     robotConfig = new RobotConfig;
     robot15in = new Robot15in;
     robot18in = new Robot18in;
@@ -78,7 +75,6 @@ void initialize() {
 
     /* Maps robot name to initialization function */
     robotMap = {
-        {"Default", robotDefault},
         {"config", robotConfig},
         {"15in", robot15in}, 
         {"18in", robot18in},
@@ -98,7 +94,7 @@ void initialize() {
     } else {
         // use the default robot
         selectedRobot = robotMap.begin()->second;
-        selectedRobot->primary_controller->updateDisplay(pros::E_CONTROLLER_MASTER, "Running Default");
+        selectedRobot->primary_controller->updateDisplay(pros::E_CONTROLLER_MASTER, "Running Default (15 in)");
     }
     
     selectedRobot->initialize();
