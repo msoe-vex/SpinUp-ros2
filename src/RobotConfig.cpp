@@ -1,46 +1,45 @@
 #include "RobotConfig.h"
 
-void RobotConfig::readConfig() {
+void RobotConfig::readConfig()
+{
     std::ifstream file;
     file.open("/usd/robotConfig.txt");
 
-    if (file.is_open()) {
-        for (int i = 0; i < 11; ++i) {
-            configVector.push_back(std::make_pair(readPort(file), readBool(file)));
+    if (file.is_open())
+    {
+        for (int i = 0; i < 11; ++i)
+        {
+            configVector.push_back(std::make_pair(readPort(file), readReversed(file)));
         }
-    } else {
-        return primary_controller->updateDisplay(pros::E_CONTROLLER_MASTER, "Error reading config");
+    }
+    else
+    {
+        primary_controller->updateDisplay(pros::E_CONTROLLER_MASTER, "Error reading config");
     }
 }
 
-int RobotConfig::readPort(std::ifstream &file) {
+int RobotConfig::readPort(std::ifstream &file)
+{
     std::string portString = "";
     std::getline(file, portString);
-    pros::lcd::set_text(0, "test");
-    print_string.append(portString + " ");
     return stoi(portString);
 }
 
-bool RobotConfig::readBool(std::ifstream &file) {
+bool RobotConfig::readReversed(std::ifstream &file) {
     std::string reversedString = "";
     std::getline(file, reversedString);
-    print_string.append(reversedString + " ");
-    return reversedString == "true";
+    int reversedInt = stoi(reversedString);
+    return reversedInt == 1;
 }
 
 // Initializes 18in robot
-void RobotConfig::initialize() {
+void RobotConfig::initialize()
+{
     pros::lcd::initialize();
     node_manager = new NodeManager(pros::millis);
     primary_controller = new ControllerNode(node_manager, "primary");
 
     readConfig();
-
-    pros::lcd::set_text(0, print_string);
-    pros::lcd::set_text(0, "print_string");
-    std::cout << print_string;
-    std::cout << "print_string";
-
 
     /* Define the drivetrain components */
     left_drive_1 = new MotorNode(node_manager, configVector[0].first, "leftDrive1", configVector[0].second);
@@ -101,8 +100,10 @@ void RobotConfig::competition_initialize() {}
 void RobotConfig::autonomous() {}
 
 // Must put all telepPeriodic() method from each class into here
-void RobotConfig::opcontrol() {
-    while (true) {
+void RobotConfig::opcontrol()
+{
+    while (true)
+    {
         // nodeManager->executeTeleop();
         tank_drive_node->teleopPeriodic();
         intake_node->teleopPeriodic();

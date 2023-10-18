@@ -40,7 +40,7 @@ public:
 private:
     void readConfig();
     int readPort(std::ifstream &file);
-    bool readBool(std::ifstream &file);
+    bool readReversed(std::ifstream &file);
 
     std::vector<std::pair<int, bool>> configVector;
     std::string print_string;
