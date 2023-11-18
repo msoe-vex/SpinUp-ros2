@@ -7,7 +7,7 @@ void RobotConfig::readConfig()
 
     if (file.is_open())
     {
-        for (int i = 0; i < 11; ++i)
+        for (int i = 0; i < 13; ++i)
         {
             configVector.push_back(std::make_pair(readPort(file), readReversed(file)));
         }
@@ -83,7 +83,7 @@ void RobotConfig::initialize()
 
     indexer_node = new IntakeNode(
         node_manager, "indexer", primary_controller,
-        pros::E_CONTROLLER_DIGITAL_X, pros::E_CONTROLLER_DIGITAL_Y, {indexer_motor});
+        pros::E_CONTROLLER_DIGITAL_A, pros::E_CONTROLLER_DIGITAL_B, {indexer_motor});
 
     /* Define the Roller Components */
     roller_motor = new MotorNode(node_manager, configVector[10].first, "roller", configVector[10].second);
@@ -91,6 +91,18 @@ void RobotConfig::initialize()
     roller_node = new IntakeNode(
         node_manager, "roller", primary_controller,
         pros::E_CONTROLLER_DIGITAL_L1, pros::E_CONTROLLER_DIGITAL_L2, {roller_motor});
+    
+    extra_motor_1 = new MotorNode(node_manager, configVector[11].first, "extra1", configVector[11].second);
+
+    extra_node_1 = new IntakeNode(
+        node_manager, "extra1", primary_controller,
+        pros::E_CONTROLLER_DIGITAL_L1, pros::E_CONTROLLER_DIGITAL_L2, {extra_motor_1});
+        
+    extra_motor_2 = new MotorNode(node_manager, configVector[12].first, "extra2", configVector[12].second);
+
+    extra_node_2 = new IntakeNode(
+        node_manager, "extra2", primary_controller,
+        pros::E_CONTROLLER_DIGITAL_X, pros::E_CONTROLLER_DIGITAL_Y, {extra_motor_2});
 }
 
 void RobotConfig::disabled() {}
@@ -109,5 +121,7 @@ void RobotConfig::opcontrol()
         intake_node->teleopPeriodic();
         indexer_node->teleopPeriodic();
         roller_node->teleopPeriodic();
+        extra_node_1->teleopPeriodic();
+        extra_node_2->teleopPeriodic();
     }
 }

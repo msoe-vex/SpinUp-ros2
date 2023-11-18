@@ -31,6 +31,12 @@ public:
     MotorNode *roller_motor;
     IntakeNode *roller_node;
 
+    MotorNode *extra_motor_1;
+    IntakeNode *extra_node_1;
+
+    MotorNode *extra_motor_2;
+    IntakeNode *extra_node_2;
+
     void initialize() override;
     void disabled() override;
     void competition_initialize() override;
