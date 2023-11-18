@@ -4,9 +4,18 @@ TankDriveNode::TankDriveNode(NodeManager* node_manager, std::string handle_name,
         TankEightMotors motors, TankDriveKinematics kinematics) : IDriveNode(node_manager), 
         m_controller(controller->getController()), 
         m_motors(motors), 
-        m_kinematics(kinematics) {
+        m_kinematics(kinematics),
+        reverse_direction(false),
+        m_fwrd_btn(pros::E_CONTROLLER_DIGITAL_L1),
+        m_bwrd_btn(pros::E_CONTROLLER_DIGITAL_R1) {
 
     m_handle_name = handle_name.insert(0, "robot/");
+}
+
+void TankDriveNode::withDriveDirectionButtons(pros::controller_digital_e_t fwrd_btn,
+        pros::controller_digital_e_t bwrd_btn) {
+    m_fwrd_btn = fwrd_btn;
+    m_bwrd_btn = bwrd_btn;
 }
 
 void TankDriveNode::m_setLeftPosition(float distance, int max_velocity) {
@@ -113,12 +122,23 @@ void TankDriveNode::teleopPeriodic() {
     // setLeftVoltage(copysign(max(min(fabs(left) / 127.0, 127.0), 0.0) * MAX_MOTOR_VOLTAGE, left));
     // setRightVoltage(copysign(max(min(fabs(right) / 127.0, 127.0), 0.0) * MAX_MOTOR_VOLTAGE, right));
 
+    if (m_controller->get_digital(m_fwrd_btn)) {
+        reverse_direction = false;
+    } else if (m_controller->get_digital(m_bwrd_btn)) {
+        reverse_direction = true;
+    }
+
     // Normal tank drive
     int left = m_controller->get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
     int right = m_controller->get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
 
-    setLeftVoltage(copysign(max(min(fabs(left) / 127.0, 127.0), 0.0) * MAX_MOTOR_VOLTAGE, left));
-    setRightVoltage(copysign(max(min(fabs(right) / 127.0, 127.0), 0.0) * MAX_MOTOR_VOLTAGE, right));
+    if (reverse_direction) {
+        setLeftVoltage(copysign(max(min(fabs(-right) / 127.0, 127.0), 0.0) * MAX_MOTOR_VOLTAGE, left));
+        setRightVoltage(copysign(max(min(fabs(-left) / 127.0, 127.0), 0.0) * MAX_MOTOR_VOLTAGE, right));
+    } else {
+        setLeftVoltage(copysign(max(min(fabs(left) / 127.0, 127.0), 0.0) * MAX_MOTOR_VOLTAGE, left));
+        setRightVoltage(copysign(max(min(fabs(right) / 127.0, 127.0), 0.0) * MAX_MOTOR_VOLTAGE, right));
+    }
 }
 
 void TankDriveNode::autonPeriodic() {

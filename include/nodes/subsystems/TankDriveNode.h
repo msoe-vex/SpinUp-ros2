@@ -29,6 +29,9 @@ public:
 
     FourMotorDriveEncoderVals getIntegratedEncoderVals();
 
+    void withDriveDirectionButtons(pros::controller_digital_e_t fwrd_btn,
+            pros::controller_digital_e_t bwrd_btn);
+
     void setDriveVoltage(int y_voltage, int theta_voltage);
 
     void setDriveVoltage(int x_voltage, int y_voltage, int theta_voltage);
@@ -61,6 +64,12 @@ private:
     TankDriveKinematics m_kinematics;
 
     Eigen::Vector2d controller_target_velocity;
+
+    pros::controller_digital_e_t m_fwrd_btn;
+
+    pros::controller_digital_e_t m_bwrd_btn;
+
+    bool reverse_direction;
 
     void m_setLeftPosition(float distance, int max_velocity);
 
